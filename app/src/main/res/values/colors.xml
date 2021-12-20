@@ -5,4 +5,5 @@
 	<color name="secondary_color">#1572BD</color>
 	<color name="black">#FF000000</color>
 	<color name="white">#FFFFFFFF</color>
+	<color name="transparent">#00FFFFFF</color>
 </resources>
