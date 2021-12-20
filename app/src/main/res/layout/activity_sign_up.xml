@@ -1,141 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
+		android:gravity="center"
 		tools:context=".activity.SignUpActivity">
+	
+	<ImageView
+			android:id="@+id/iv_logo"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:src="@drawable/t2xm"
+			android:layout_marginHorizontal="@dimen/margin_extralarge" />
 	
 	<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:orientation="vertical">
-		
-		<ImageView
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:src="@drawable/t2xm"
-				android:layout_weight="2"
-				android:layout_marginHorizontal="@dimen/margin_extralarge" />
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:layout_below="@+id/iv_logo"
+			android:layout_marginHorizontal="@dimen/margin_large">
 		
 		<LinearLayout
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:orientation="vertical"
-				android:layout_marginHorizontal="@dimen/margin_large"
-				android:layout_weight="1">
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
 			
 			<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="vertical">
+					android:orientation="horizontal">
 				
-				<LinearLayout
+				<TextView
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
-					
-					<TextView
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:text="Username"
-							android:textSize="@dimen/font_medium"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="2"
-							android:gravity="center" />
-					
-					<EditText
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:id="@+id/et_username"
-							android:hint="Username"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="1"
-							android:gravity="center" />
-				</LinearLayout>
+						android:layout_height="match_parent"
+						android:text="Username"
+						android:textSize="@dimen/font_medium"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="2"
+						android:gravity="center" />
 				
-				<LinearLayout
+				<EditText
 						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
-					
-					<TextView
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:text="Email"
-							android:textSize="@dimen/font_medium"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="2"
-							android:gravity="center" />
-					
-					<EditText
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:id="@+id/et_email"
-							android:hint="Email"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="1"
-							android:gravity="center" />
-				</LinearLayout>
-				
-				<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
-					
-					<TextView
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:text="Password"
-							android:textSize="@dimen/font_medium"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="2"
-							android:gravity="center" />
-					
-					<EditText
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:id="@+id/et_password"
-							android:hint="Username"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="1"
-							android:gravity="center" />
-				</LinearLayout>
-				
-				<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
-					
-					<TextView
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:text="Confirm Password"
-							android:textSize="@dimen/font_medium"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="2"
-							android:gravity="center" />
-					
-					<EditText
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							android:id="@+id/et_confirmPassword"
-							android:hint="Username"
-							android:layout_margin="@dimen/margin_small"
-							android:layout_weight="1"
-							android:gravity="center" />
-				</LinearLayout>
+						android:layout_height="match_parent"
+						android:id="@+id/et_username"
+						android:hint="Username"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="1"
+						android:gravity="center" />
 			</LinearLayout>
 			
-			<Button
+			<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:text="Sign Up"
-					android:textAllCaps="false"
-					android:textSize="@dimen/font_medium"
-					android:layout_marginHorizontal="@dimen/margin_large"
-			android:layout_marginVertical="@dimen/margin_small"
-					android:paddingVertical="@dimen/padding_small" />
+					android:orientation="horizontal">
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:text="Email"
+						android:textSize="@dimen/font_medium"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="2"
+						android:gravity="center" />
+				
+				<EditText
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:id="@+id/et_email"
+						android:hint="Email"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="1"
+						android:gravity="center" />
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:text="Password"
+						android:textSize="@dimen/font_medium"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="2"
+						android:gravity="center" />
+				
+				<EditText
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:id="@+id/et_password"
+						android:hint="Username"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="1"
+						android:gravity="center" />
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:text="Confirm Password"
+						android:textSize="@dimen/font_medium"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="2"
+						android:gravity="center" />
+				
+				<EditText
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:id="@+id/et_confirmPassword"
+						android:hint="Username"
+						android:layout_margin="@dimen/margin_small"
+						android:layout_weight="1"
+						android:gravity="center" />
+			</LinearLayout>
 		</LinearLayout>
+		
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Sign Up"
+				android:textAllCaps="false"
+				android:textSize="@dimen/font_medium"
+				android:layout_marginHorizontal="@dimen/margin_large"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:paddingVertical="@dimen/padding_small" />
 	</LinearLayout>
-</LinearLayout>
+</RelativeLayout>
