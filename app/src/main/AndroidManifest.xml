@@ -9,9 +9,15 @@
 			android:roundIcon="@mipmap/ic_launcher_round"
 			android:supportsRtl="true"
 			android:theme="@style/Theme.Trip2xiamen">
+		<!--	TODO change default activity to StartActivity	-->
 		<activity
-				android:name=".activity.HomeActivity"
-				android:exported="true" />
+				android:name=".activity.MainActivity"
+				android:exported="true">
+			<intent-filter>
+				<category android:name="android.intent.category.LAUNCHER"></category>
+				<action android:name="android.intent.action.MAIN"></action>
+			</intent-filter>
+		</activity>
 		<activity
 				android:name=".activity.SignUpActivity"
 				android:exported="true" />

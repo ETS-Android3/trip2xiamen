@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	
+	<item
+			android:id="@+id/bn_home"
+			android:enabled="true"
+			android:title="Home" />
+	<item
+			android:id="@+id/bn_do"
+			android:enabled="true"
+			android:title="Do" />
+	<item
+			android:id="@+id/bn_stay"
+			android:enabled="true"
+			android:title="Stay" />
+	<item
+			android:id="@+id/bn_eat"
+			android:enabled="true"
+			android:title="Eat" />
+	<item
+			android:id="@+id/bn_profile"
+			android:enabled="true"
+			android:title="Profile" />
+</menu>
