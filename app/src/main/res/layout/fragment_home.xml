@@ -12,7 +12,6 @@
 			android:textAlignment="center"
 			android:paddingVertical="@dimen/padding_small"
 			android:background="@color/primary_light_color"
-			android:textColor="@color/black"
 			android:textStyle="bold" />
 	
 	<ScrollView
