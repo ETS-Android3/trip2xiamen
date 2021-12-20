@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context=".activity.FavouriteActivity">
+	
+	<FrameLayout
+			android:id="@+id/fl_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+		
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="My Favourite"
+				android:textSize="@dimen/font_large"
+				android:textAlignment="center"
+				android:paddingVertical="@dimen/padding_small"
+				android:background="@color/primary_light_color"
+				android:textStyle="bold" />
+	</FrameLayout>
+	
+	<com.google.android.material.tabs.TabLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+		
+		<com.google.android.material.tabs.TabItem
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:icon="@drawable/ic_baseline_attractions_24"
+				android:text="Do" />
+		
+		<com.google.android.material.tabs.TabItem
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:icon="@drawable/ic_baseline_hotel_24"
+				android:text="Stay" />
+		
+		<com.google.android.material.tabs.TabItem
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:icon="@drawable/ic_baseline_fastfood_24"
+				android:text="Eat" />
+	</com.google.android.material.tabs.TabLayout>
+	
+	<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rv_favourite_item"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"/>
+
+</LinearLayout>
