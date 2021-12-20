@@ -8,5 +8,6 @@
 		<!-- Status bar color. -->
 		<item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 		<!-- Customize your theme here. -->
+		<item name="fontFamily">@font/comfortaa_normal</item>
 	</style>
 </resources>

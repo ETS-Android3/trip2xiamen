@@ -3,5 +3,16 @@
 		android:orientation="vertical"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
+	
+	<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Travel 2 Xiamen"
+			android:textSize="@dimen/font_large"
+			android:textAlignment="center"
+			android:paddingVertical="@dimen/padding_small"
+			android:background="@color/primary_light_color"
+			android:textColor="@color/black"
+			android:textStyle="bold" />
 
 </LinearLayout>
