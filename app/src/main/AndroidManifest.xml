@@ -10,6 +10,9 @@
 			android:supportsRtl="true"
 			android:theme="@style/Theme.Trip2xiamen">
 		<activity
+				android:name=".activity.MyReviewsActivity"
+				android:exported="true" />
+		<activity
 				android:name=".activity.FavouriteActivity"
 				android:exported="true" />
 		<activity
