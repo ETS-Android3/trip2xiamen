@@ -4,21 +4,26 @@
 	<item
 			android:id="@+id/bn_home"
 			android:enabled="true"
+			android:icon="@drawable/ic_baseline_home_24"
 			android:title="Home" />
 	<item
 			android:id="@+id/bn_do"
 			android:enabled="true"
+			android:icon="@drawable/ic_baseline_attractions_24"
 			android:title="Do" />
 	<item
 			android:id="@+id/bn_stay"
 			android:enabled="true"
+			android:icon="@drawable/ic_baseline_hotel_24"
 			android:title="Stay" />
 	<item
 			android:id="@+id/bn_eat"
 			android:enabled="true"
+			android:icon="@drawable/ic_baseline_fastfood_24"
 			android:title="Eat" />
 	<item
 			android:id="@+id/bn_profile"
 			android:enabled="true"
+			android:icon="@drawable/ic_baseline_person_24"
 			android:title="Profile" />
 </menu>
