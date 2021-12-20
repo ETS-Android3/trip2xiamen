@@ -97,12 +97,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
-				
-				<LinearLayout
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:orientation="horizontal">
-					
+
 					<TextView
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
@@ -111,15 +106,7 @@
 							android:paddingVertical="@dimen/padding_small"
 							android:text="Reviews" />
 					
-					<Button
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:drawableLeft="@drawable/ic_baseline_comment_24"
-							android:drawableTint="@color/white"
-							android:text="Review"
-							android:layout_weight="2" />
-				</LinearLayout>
-				
+
 				<androidx.recyclerview.widget.RecyclerView
 						android:id="@+id/rv_reviews"
 						android:layout_width="match_parent"
@@ -141,9 +128,9 @@
 		<Button
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Add to My Travel Plan"
+				android:text="Write Review"
 				android:layout_marginHorizontal="@dimen/margin_small"
-				android:drawableLeft="@drawable/ic_baseline_add_24"
+				android:drawableLeft="@drawable/ic_baseline_comment_24"
 				android:drawableTint="@color/white"
 				android:layout_weight="1" />
 		
@@ -151,7 +138,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:src="@drawable/ic_baseline_favorite_24"
-				android:layout_weight="5"
+				android:layout_weight="4"
 				android:layout_marginHorizontal="@dimen/margin_small"
 				style="@style/Widget.MaterialComponents.Button.TextButton" />
 	</LinearLayout>
