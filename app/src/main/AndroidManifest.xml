@@ -10,9 +10,11 @@
 			android:supportsRtl="true"
 			android:theme="@style/Theme.Trip2xiamen">
 		<activity
-				android:name=".activity.DetailsActivity"
+				android:name=".activity.ReviewActivity"
 				android:exported="true" />
-		<!-- TODO change default activity to StartActivity -->
+		<activity
+				android:name=".activity.DetailsActivity"
+				android:exported="true" /> <!-- TODO change default activity to StartActivity -->
 		<activity
 				android:name=".activity.MainActivity"
 				android:exported="true">
