@@ -30,33 +30,32 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, activeFragment).commit();
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment selectedFragment = null;
-
                 switch (item.getItemId()) {
                     case R.id.bn_home:
-                        selectedFragment = HOME_FRAGMENT;
+                        activeFragment = HOME_FRAGMENT;
                         break;
                     case R.id.bn_do:
-                        selectedFragment = DO_FRAGMENT;
+                        activeFragment = DO_FRAGMENT;
                         break;
                     case R.id.bn_stay:
-                        selectedFragment = STAY_FRAGMENT;
+                        activeFragment = STAY_FRAGMENT;
                         break;
                     case R.id.bn_eat:
-                        selectedFragment = EAT_FRAGMENT;
+                        activeFragment = EAT_FRAGMENT;
                         break;
                     case R.id.bn_profile:
-                        selectedFragment = PROFILE_FRAGMENT;
+                        activeFragment = PROFILE_FRAGMENT;
                         break;
                     default:
                         return false;
                 }
-                getSupportFragmentManager().beginTransaction().hide(activeFragment).show(selectedFragment).commit();
-               activeFragment = selectedFragment;
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, activeFragment).commit();
                 return true;
             }
         });
