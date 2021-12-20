@@ -13,7 +13,7 @@
 				android:name=".activity.MyReviewsActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.FavouriteActivity"
+				android:name=".activity.MyFavouriteActivity"
 				android:exported="true" />
 		<activity
 				android:name=".activity.SettingsActivity"

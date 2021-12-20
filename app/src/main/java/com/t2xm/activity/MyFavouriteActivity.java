@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.t2xm.R;
 
-public class FavouriteActivity extends AppCompatActivity {
+public class MyFavouriteActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favourite);
+        setContentView(R.layout.activity_my_favourite);
     }
 }
