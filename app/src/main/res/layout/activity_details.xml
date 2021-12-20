@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
+		xmlns:tools="http://schemas.android.com/tools"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		tools:context=".activity.DetailsActivity">
+	
+	<FrameLayout
+			android:id="@+id/fl_title"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+		
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Travel in Xiamen"
+				android:textSize="@dimen/font_large"
+				android:textAlignment="center"
+				android:paddingVertical="@dimen/padding_small"
+				android:background="@color/primary_light_color"
+				android:textStyle="bold" />
+	</FrameLayout>
+	
+	<ScrollView
+			android:id="@+id/sv"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/fl_title"
+			android:layout_weight="1">
+		
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:orientation="vertical"
+				android:layout_marginHorizontal="@dimen/margin_medium">
+			
+			<ImageView
+					android:layout_width="match_parent"
+					android:layout_height="300dp"
+					android:src="@drawable/t2xm" />
+			
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+				
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal"
+						android:layout_marginVertical="@dimen/margin_small">
+					
+					<TextView
+							android:id="@+id/tv_item_name"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:textSize="@dimen/font_large"
+							android:layout_weight="1"
+							android:paddingVertical="@dimen/padding_small"
+							android:text="Item Name" />
+					
+					<ImageButton
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:scaleType="fitCenter"
+							android:padding="@dimen/padding_small"
+							android:layout_gravity="center"
+							android:layout_weight="4"
+							android:src="@drawable/ic_baseline_pin_drop_24"
+							android:background="@color/transparent"
+							app:tint="@color/red" />
+				
+				</LinearLayout>
+				
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal"
+						android:layout_marginVertical="@dimen/margin_small">
+					
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:text="Rating" />
+				</LinearLayout>
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:textSize="@dimen/font_small"
+						android:layout_marginVertical="@dimen/margin_small"
+						android:text="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups." />
+			</LinearLayout>
+			
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+				
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="horizontal">
+					
+					<TextView
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:textSize="@dimen/font_large"
+							android:layout_weight="1"
+							android:paddingVertical="@dimen/padding_small"
+							android:text="Reviews" />
+					
+					<Button
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:drawableLeft="@drawable/ic_baseline_comment_24"
+							android:drawableTint="@color/white"
+							android:text="Review"
+							android:layout_weight="2" />
+				</LinearLayout>
+				
+				<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/rv_reviews"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+			</LinearLayout>
+		
+		</LinearLayout>
+	</ScrollView>
+	
+	<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/sv"
+			android:orientation="horizontal"
+			android:background="@color/white"
+			android:layout_marginHorizontal="@dimen/margin_medium"
+			android:layout_marginVertical="@dimen/margin_small">
+		
+		<Button
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Add to My Travel Plan"
+				android:layout_marginHorizontal="@dimen/margin_small"
+				android:drawableLeft="@drawable/ic_baseline_add_24"
+				android:drawableTint="@color/white"
+				android:layout_weight="1" />
+		
+		<ImageButton
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:src="@drawable/ic_baseline_favorite_24"
+				android:layout_weight="5"
+				android:layout_marginHorizontal="@dimen/margin_small"
+				style="@style/Widget.MaterialComponents.Button.TextButton" />
+	</LinearLayout>
+
+</LinearLayout>

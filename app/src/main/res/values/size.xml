@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<dimen name="font_small">12dp</dimen>
-	<dimen name="font_medium">18dp</dimen>
+	<dimen name="font_small">15dp</dimen>
+	<dimen name="font_medium">20dp</dimen>
 	<dimen name="font_large">25dp</dimen>
 	<dimen name="margin_small">10dp</dimen>
 	<dimen name="margin_medium">20dp</dimen>

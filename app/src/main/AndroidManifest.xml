@@ -9,13 +9,17 @@
 			android:roundIcon="@mipmap/ic_launcher_round"
 			android:supportsRtl="true"
 			android:theme="@style/Theme.Trip2xiamen">
-		<!--	TODO change default activity to StartActivity	-->
+		<activity
+				android:name=".activity.DetailsActivity"
+				android:exported="true" />
+		<!-- TODO change default activity to StartActivity -->
 		<activity
 				android:name=".activity.MainActivity"
 				android:exported="true">
 			<intent-filter>
-				<category android:name="android.intent.category.LAUNCHER"></category>
-				<action android:name="android.intent.action.MAIN"></action>
+				<category android:name="android.intent.category.LAUNCHER" />
+				
+				<action android:name="android.intent.action.MAIN" />
 			</intent-filter>
 		</activity>
 		<activity
