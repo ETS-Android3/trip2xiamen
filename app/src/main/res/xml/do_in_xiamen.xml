@@ -1,12 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Items>
 	<Item>
-		<itemName>item 1</itemName>
+		<itemName>Gulangyu Island</itemName>
 		<category>1</category>
-		<description>Item Description</description>
+		<description>Gulangyu is a century-old delicate small island on the southwestern side of Xiamen
+			Island. With splendid natural scenery, colonial styled architectures and numerous interesting
+			museums, Gulangyu Island is unmissable for your Xiamen Tour.
+		</description>
 		<image></image>
-		<avgRating>0</avgRating>
-		<longitude></longitude>
-		<latitude></latitude>
+		<latitude>24.446981501640725</latitude>
+		<longitude>118.06636070196205</longitude>
+	</Item>
+	<Item>
+		<itemName>Xiamen Botanical Garden</itemName>
+		<category>1</category>
+		<description>Xiamen Botanical Garden is one of China's most famous and beautiful botanical gardens.
+			The gardenis designed around Wanshiyan Reservoir on the southern slopes of Yangtai Shan('Balcony
+			Mountain')in the southeast of Xiamen Island. Its Chinese ancient garden architecture boasts more
+			than 1.8 million trees and over 4,000 types of flora.
+		</description>
+		<image></image>
+		<latitude>24.455474776572654</latitude>
+		<longitude>118.09401446099909</longitude>
+	</Item>
+	<Item>
+		<itemName>Fujian Hakka Tulou</itemName>
+		<category>1</category>
+		<description>Fujian's Hakka Tulou are unique, usually round, fort-like buildings, built with a mixture
+			of clay and sandy soil. These rare buildings were designed by the circumspect Hakka minority as
+			large fortresses and apartment buildings in one, and were inscribed by UNESCO as a cluster of
+			World Cultural Heritage Sites in 2008.
+		</description>
+		<image></image>
+		<latitude>24.622346063648404</latitude>
+		<longitude>117.10298637023025</longitude>
+	</Item>
+	<Item>
+		<itemName>South Putuo Temple</itemName>
+		<category>1</category>
+		<description>South Putuo is a famous Buddhist temple founded in the Tang dynasty in the
+			Chinese city of Xiamen. It is so named because it is south of the Buddhist holy site Mount Putuo
+			in Zhejiang Province.
+		</description>
+		<image></image>
+		<latitude>24.440909728051967</latitude>
+		<longitude>118.09686837022693</longitude>
+	</Item>
+	<Item>
+		<itemName>Xiamen University</itemName>
+		<category>1</category>
+		<description>Xiamen University is a public research university in Xiamen, Fujian, China. Established
+			in 1921 by Tan Kah Kee, a member of the overseas Chinese diaspora, the university has been
+			perennially regarded as one of the top academic institutions in Southern China, with strengths in
+			mathematics, chemistry, oceanography, economics, management, law, communication and political
+			science.
+		</description>
+		<image></image>
+		<latitude>24.437563273133723</latitude>
+		<longitude>118.097790624197</longitude>
+	</Item>
+	<Item>
+		<itemName>Zhongshan Road Pedestrian Street</itemName>
+		<category>1</category>
+		<description>Zhongshan Road Pedestrian Street is a commercial street in Xiamen. Zhongshan Road is a
+			symbol for Xiamen's prosperity. The buildings along Zhongshan Road are all verandas, popular in
+			South China coastal regions. The verandas feature pink and creamy white as the main colors. With
+			the passage of time, mottled walls and old wooden windows have imparted a special kind of
+			quaintness on the buildings. At the same time, modern commercial buildings such as Paris Printemps
+			are interspersed among them.
+		</description>
+		<image></image>
+		<latitude>24.454124844891414</latitude>
+		<longitude>118.07987853954057</longitude>
 	</Item>
 </Items>
