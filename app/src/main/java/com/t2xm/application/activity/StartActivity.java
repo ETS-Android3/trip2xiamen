@@ -7,6 +7,7 @@ import android.os.Handler;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
+import com.t2xm.utils.DatabaseOpenHelper;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -17,6 +18,9 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+
+        //open database
+        DatabaseOpenHelper.getDatabase(getApplicationContext());
 
         new Handler().postDelayed(new Runnable() {
             @Override
