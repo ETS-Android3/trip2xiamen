@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Items>
+	<Item>
+		<itemName>item 1</itemName>
+		<category>1</category>
+		<description>Item Description</description>
+		<image></image>
+		<avgRating>0</avgRating>
+		<longitude></longitude>
+		<latitude></latitude>
+	</Item>
+</Items>
