@@ -15,6 +15,8 @@ public class ReviewDao extends Dao {
     private static final String ITEMID = "itemId";
     private static final String USERID = "userId";
     private static final String REVIEWTEXT = "reviewText";
+    private static final String RATING = "rating";
+    private static final String TIME = "time";
 
     public static long insertReviewAndGetReviewId(Review review) {
         ContentValues cv = new ContentValues();
@@ -43,13 +45,14 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> get10LatestReview() {
-        Cursor cursor = database.rawQuery("select userId, itemId, reviewtext from reviews order by time limit 10", null);
+        Cursor cursor = database.rawQuery("select userId, itemId, reviewtext, rating from reviews order by time limit 10", null);
         List<Review> reviewList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Review review = new Review();
             review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
             review.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
             review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+            review.rating = cursor.getInt(cursor.getColumnIndex(RATING));
         }
         return reviewList;
     }
