@@ -1,14 +1,10 @@
 package com.t2xm.dao;
 
 import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 
 import com.t2xm.entity.User;
-import com.t2xm.utils.DatabaseOpenHelper;
 
-public class UserDao {
-    private static SQLiteDatabase database = DatabaseOpenHelper.getDatabase(null);
-
+public class UserDao extends Dao {
     private static final String TABLE = "users";
     private static final String USERID = "userid";
     private static final String USERNAME = "username";
