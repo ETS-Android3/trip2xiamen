@@ -8,7 +8,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
 
-public class TestClass {
+public class ItemParserTest {
     @Test
     public void test() throws IOException, IllegalAccessException, XmlPullParserException, InstantiationException, NoSuchFieldException {
         XmlParserUtil.parseItems(ContextUtil.getContext().getResources().getXml(R.xml.do_in_xiamen));

@@ -10,9 +10,9 @@ public class Item {
     public Integer category;
     public String description;
     public byte[] image;
-    public double avgRating;
-    public double longitude;
-    public double latitude;
+    public Double avgRating;
+    public Double longitude;
+    public Double latitude;
 
     public Item() {
     }
@@ -31,7 +31,7 @@ public class Item {
                 '}';
     }
 
-    public Item(Integer itemId, String itemName, Integer category, String description, byte[] image, double avgRating, double longitude, double latitude) {
+    public Item(Integer itemId, String itemName, Integer category, String description, byte[] image, Double avgRating, Double longitude, Double latitude) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.category = category;

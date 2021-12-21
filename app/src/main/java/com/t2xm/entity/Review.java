@@ -8,13 +8,13 @@ public class Review {
     public Integer userId;
     public String reviewText;
     public Integer rating;
-    public long time;
+    public Long time;
 
     public Review() {
     }
 
     public Review(@Nullable Integer reviewId, Integer itemId, Integer userId, String reviewText, Integer rating,
-                  long time) {
+                  Long time) {
         this.reviewId = reviewId;
         this.itemId = itemId;
         this.userId = userId;
