@@ -23,22 +23,21 @@
 				android:exported="true" />
 		<activity
 				android:name=".application.activity.DetailsActivity"
-				android:exported="true" /> <!-- TODO change default activity to StartActivity -->
+				android:exported="true" />
 		<activity
 				android:name=".application.activity.MainActivity"
-				android:exported="true">
-			<intent-filter>
-				<category android:name="android.intent.category.LAUNCHER" />
-				
-				<action android:name="android.intent.action.MAIN" />
-			</intent-filter>
-		</activity>
+				android:exported="true"/>
 		<activity
 				android:name=".application.activity.SignUpActivity"
 				android:exported="true" />
 		<activity
 				android:name=".application.activity.StartActivity"
-				android:exported="true" />
+				android:exported="true">
+			<intent-filter>
+				<category android:name="android.intent.category.LAUNCHER" />
+				<action android:name="android.intent.action.MAIN" />
+			</intent-filter>
+		</activity>
 	</application>
 
 </manifest>
