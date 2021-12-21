@@ -35,7 +35,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("create table users (userid integer primary key autoincrement, username text not null, email text not null, password text not null, profileImg longblob)");
-        sqLiteDatabase.execSQL("create table reviews (reviewid integer primary key autoincrement, userid integer not null, reviewText text not null)");
+        sqLiteDatabase.execSQL("create table reviews (reviewid integer primary key autoincrement, itemId integer not null, userid integer not null, reviewText text not null)");
         sqLiteDatabase.execSQL("create table reviewImages (imageid integer primary key autoincrement, reviewid integer not null, reviewImage longblob not null)");
         sqLiteDatabase.execSQL("create table items (itemid integer primary key autoincrement, category integer not null, description text, image longblob, avgRating double, longitude double, latitude double)");
         sqLiteDatabase.execSQL("create table ratings (ratingid integer primary key autoincrement, userid integer not null, itemid integer not null, rate integer not null)");

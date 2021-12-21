@@ -38,8 +38,4 @@ public class ReviewImageDao extends Dao {
         }
         return imageList;
     }
-
-    public static boolean deleteReviewImageByImageId(Integer imageId) {
-        return database.delete(TABLE, "imageId=?", new String[]{String.valueOf(imageId)}) > 0;
-    }
 }
