@@ -5,7 +5,8 @@ import com.t2xm.utils.LoggingUtil;
 
 import org.junit.Test;
 
-public class UserDaoTest extends DaoTest{
+public class UserDaoTest extends DaoTest {
+    //TODO generate missed test
 
     private User user = new User(null, "testuser", "test@mail.com", "password", null);
 

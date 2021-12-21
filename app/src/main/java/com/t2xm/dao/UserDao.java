@@ -1,6 +1,8 @@
 package com.t2xm.dao;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.database.Cursor;
 
 import com.t2xm.entity.User;
 
@@ -11,6 +13,31 @@ public class UserDao extends Dao {
     private static final String EMAIL = "email";
     private static final String PASSWORD = "password";
     private static final String PROFILE_IMG = "profileImg";
+
+    public static Boolean checkUsernameExistence(String username) {
+        return database.rawQuery("select userid from users where username=?", new String[]{username}).getCount() > 0;
+    }
+
+    public static Boolean checkEmailExistence(String email) {
+        return database.rawQuery("select userid from users where email=?", new String[]{email}).getCount() > 0;
+    }
+
+    public static Integer getUserIdByUsername(String username) {
+        Cursor cursor = database.rawQuery("select userId from users where username=?",
+                new String[]{username});
+        if (cursor.moveToNext()) {
+            return cursor.getInt(0);
+        }
+        return null;
+    }
+
+    public static String getUsernameByUserId(Integer userId) {
+        Cursor cursor = database.rawQuery("select username from users where userId=?", new String[]{String.valueOf(userId)});
+        if (cursor.moveToNext()) {
+            return cursor.getString(0);
+        }
+        return null;
+    }
 
     public static Boolean insertUser(User user) {
         return insertUserAndGetUserId(user) > 0;
@@ -23,5 +50,42 @@ public class UserDao extends Dao {
         cv.put(PASSWORD, user.password);
         long result = database.insert(TABLE, null, cv);
         return result;
+    }
+
+    public static User getUserInfoByUsername(String username) {
+        return getUserInfoByUserId(getUserIdByUsername(username));
+    }
+
+   @SuppressLint("Range")
+   public static User getUserInfoByUserId(Integer userId) {
+       Cursor cursor = database.rawQuery("select username, email, profileImg from users where userId=?", new String[]{String.valueOf(userId)});User user = new User();
+       if (cursor.moveToNext()) {
+           user.username = cursor.getString(cursor.getColumnIndex("username"));
+           user.email = cursor.getString(cursor.getColumnIndex("email"));
+           user.profileImg = cursor.getBlob(cursor.getColumnIndex("profileImg"));
+       }
+       return user;
+   }
+
+    public static Boolean editUserProfileImage(User user) {
+        ContentValues cv = new ContentValues();
+        cv.put(PROFILE_IMG, user.profileImg);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+    }
+
+    public static Boolean editUserPassword(User user) {
+        ContentValues cv = new ContentValues();
+        cv.put(PASSWORD, user.password);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+    }
+
+    public static Boolean editUserEmail(User user) {
+        ContentValues cv = new ContentValues();
+        cv.put(EMAIL, user.email);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+    }
+
+    public static Boolean deleteUser(User user) {
+        return database.delete(TABLE, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
     }
 }
