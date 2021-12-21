@@ -29,7 +29,7 @@ public class FavouriteItemDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Item> getFavouriteItemListByUserId(Integer userId) {
-        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating, longitude, latitude from favouriteItems t1 left join items t2 on t1.itemId=t2.itemId where userId=?", new String[]{String.valueOf(userId)});
+        Cursor cursor = database.rawQuery("select t1.itemId, itemName, category, description, image, avgRating, longitude, latitude from favouriteItems t1 left join items t2 on t1.itemId=t2.itemId where userId=?", new String[]{String.valueOf(userId)});
         List<Item> itemList = new ArrayList<>();
         while (cursor.moveToNext()) {
             Item item = new Item();
