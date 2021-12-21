@@ -1,7 +1,9 @@
-package com.t2xm.database;
+package com.t2xm.dao;
 
 import android.database.sqlite.SQLiteDatabase;
 
-public class ItemDao {
+import com.t2xm.utils.DatabaseOpenHelper;
+
+public class ReviewImageDao {
     private static SQLiteDatabase database = DatabaseOpenHelper.getDatabase(null);
 }

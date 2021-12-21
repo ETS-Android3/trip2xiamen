@@ -10,22 +10,22 @@
 			android:supportsRtl="true"
 			android:theme="@style/Theme.Trip2xiamen">
 		<activity
-				android:name=".activity.MyReviewsActivity"
+				android:name=".application.activity.MyReviewsActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.MyFavouriteActivity"
+				android:name=".application.activity.MyFavouriteActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.SettingsActivity"
+				android:name=".application.activity.SettingsActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.ReviewActivity"
+				android:name=".application.activity.ReviewActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.DetailsActivity"
+				android:name=".application.activity.DetailsActivity"
 				android:exported="true" /> <!-- TODO change default activity to StartActivity -->
 		<activity
-				android:name=".activity.MainActivity"
+				android:name=".application.activity.MainActivity"
 				android:exported="true">
 			<intent-filter>
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -34,10 +34,10 @@
 			</intent-filter>
 		</activity>
 		<activity
-				android:name=".activity.SignUpActivity"
+				android:name=".application.activity.SignUpActivity"
 				android:exported="true" />
 		<activity
-				android:name=".activity.StartActivity"
+				android:name=".application.activity.StartActivity"
 				android:exported="true" />
 	</application>
 

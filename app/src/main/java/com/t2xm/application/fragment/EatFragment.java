@@ -1,4 +1,4 @@
-package com.t2xm.fragment;
+package com.t2xm.application.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

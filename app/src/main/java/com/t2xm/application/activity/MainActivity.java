@@ -1,4 +1,4 @@
-package com.t2xm.activity;
+package com.t2xm.application.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.t2xm.R;
-import com.t2xm.fragment.DoFragment;
-import com.t2xm.fragment.EatFragment;
-import com.t2xm.fragment.HomeFragment;
-import com.t2xm.fragment.ProfileFragment;
-import com.t2xm.fragment.StayFragment;
+import com.t2xm.application.fragment.DoFragment;
+import com.t2xm.application.fragment.EatFragment;
+import com.t2xm.application.fragment.HomeFragment;
+import com.t2xm.application.fragment.ProfileFragment;
+import com.t2xm.application.fragment.StayFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.t2xm.database;
+package com.t2xm.utils;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -1,4 +1,4 @@
-package com.t2xm.activity;
+package com.t2xm.application.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
