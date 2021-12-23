@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
-       List<Item> itemList = ItemDao.getItemListByCategory(1) ;
+        List<Item> itemList = ItemDao.getItemListByCategory(1);
         ListItemAdapter listItemAdapter = new ListItemAdapter(getContext(), itemList);
         rv.setAdapter(listItemAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
