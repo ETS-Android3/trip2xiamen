@@ -12,6 +12,7 @@
 			android:scaleType="centerCrop" />
 	
 	<TextView
+			android:id="@+id/tv_item_name"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_below="@+id/iv_item_image"

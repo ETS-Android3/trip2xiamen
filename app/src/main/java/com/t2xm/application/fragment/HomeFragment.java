@@ -15,6 +15,7 @@ import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.adapter.ListItemAdapter;
+import com.t2xm.utils.adapter.TopPlacesAdapter;
 
 import java.util.List;
 
@@ -29,8 +30,14 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
         List<Item> itemList = ItemDao.getItemListByCategory(1);
+
+        RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
+        TopPlacesAdapter adapter1 = new TopPlacesAdapter(getContext(), itemList);
+        rv_topPlaces.setAdapter(adapter1);
+        rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
         ListItemAdapter listItemAdapter = new ListItemAdapter(getContext(), itemList);
         rv.setAdapter(listItemAdapter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
