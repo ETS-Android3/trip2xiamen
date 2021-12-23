@@ -37,7 +37,7 @@ public class FavouriteItemDao extends Dao {
             item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
             item.category = cursor.getInt(cursor.getColumnIndex("category"));
             item.description = cursor.getString(cursor.getColumnIndex("description"));
-            item.image = cursor.getBlob(cursor.getColumnIndex("image"));
+            item.image = cursor.getString(cursor.getColumnIndex("image"));
             item.avgRating = cursor.getDouble(cursor.getColumnIndex("avgRating"));
             item.longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
             item.latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
