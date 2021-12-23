@@ -61,7 +61,7 @@ public class ItemDao extends Dao {
     public static List<Item> getItemListByCategory(Integer category) {
         Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating, longitude, latitude from items where category=?", new String[]{String.valueOf(category)});
         List<Item> itemList = new ArrayList<>();
-        if (cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
             Item item = new Item();
             item.itemId = cursor.getInt(cursor.getColumnIndex("itemId"));
             item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
