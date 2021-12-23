@@ -31,7 +31,8 @@ public class Item {
                 '}';
     }
 
-    public Item(Integer itemId, String itemName, Integer category, String description, byte[] image, Double avgRating, Double longitude, Double latitude) {
+    public Item(@Nullable Integer itemId, String itemName, Integer category, String description, byte[] image,
+                Double avgRating, Double longitude, Double latitude) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.category = category;
