@@ -13,10 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
+import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
-import com.t2xm.utils.adapter.ListItemAdapter;
+import com.t2xm.entity.Review;
+import com.t2xm.utils.adapter.ReviewItemAdapter;
 import com.t2xm.utils.adapter.TopPlacesAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -37,9 +40,14 @@ public class HomeFragment extends Fragment {
         rv_topPlaces.setAdapter(adapter1);
         rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
+        List<Review> topReviewList = ReviewDao.get10LatestReview();
+        List<Item> reviewItemList = new ArrayList<>();
+        for (Review review : topReviewList) {
+            reviewItemList.add(ItemDao.getItemByItemId(review.itemId));
+        }
         RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
-        ListItemAdapter listItemAdapter = new ListItemAdapter(getContext(), itemList);
-        rv.setAdapter(listItemAdapter);
+        ReviewItemAdapter adapter2 = new ReviewItemAdapter(getContext(), topReviewList, reviewItemList);
+        rv.setAdapter(adapter2);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
