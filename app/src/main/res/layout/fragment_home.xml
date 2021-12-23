@@ -19,7 +19,7 @@
 				android:textStyle="bold" />
 	</FrameLayout>
 	
-	<ScrollView
+	<androidx.core.widget.NestedScrollView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@+id/fl_title"
@@ -76,9 +76,8 @@
 						android:id="@+id/rv_latest_reviews"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:orientation="vertical"
-						android:nestedScrollingEnabled="false"/>
+						android:orientation="vertical"/>
 			</LinearLayout>
 		</LinearLayout>
-	</ScrollView>
+	</androidx.core.widget.NestedScrollView>
 </RelativeLayout>
