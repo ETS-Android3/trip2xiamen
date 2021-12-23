@@ -14,7 +14,9 @@ import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.JsonUtil;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.ViewHolder> {
@@ -49,6 +51,10 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
             e.printStackTrace();
         }
         viewHolder.tv_itemName.setText(item.itemName);
+        //TODO get item rating
+        Double rand = new Random().nextDouble() * 10 % 5d ;
+        viewHolder.tv_itemRating.setText(rand.toString());
+        updateRatingStars(viewHolder, rand);
         viewHolder.tv_itemContent.setText(review.reviewText);
     }
 
@@ -65,11 +71,29 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
         return reviewList.get(position);
     }
 
+    private void updateRatingStars(ViewHolder viewHolder, Double rating) {
+        int index = 0;
+        while (index < 5) {
+            if (rating >= 1) {
+                viewHolder.iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_24);
+                rating -= 1;
+            } else if (rating >= 0.5) {
+                viewHolder.iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_half_24);
+                rating = Math.floor(rating);
+            } else {
+                viewHolder.iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_border_24);
+                rating = Math.floor(rating);
+            }
+           index++;
+        }
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView iv_itemImage;
         public TextView tv_itemName;
         public TextView tv_itemRating;
         public TextView tv_itemContent;
+        public List<ImageView> iv_starList = new ArrayList<>();
 
         public ViewHolder(View view) {
             super(view);
@@ -77,6 +101,12 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
             tv_itemName = view.findViewById(R.id.tv_item_name);
             tv_itemRating = view.findViewById(R.id.tv_item_rating);
             tv_itemContent = view.findViewById(R.id.tv_item_content);
+            iv_starList.add(view.findViewById(R.id.iv_star_1));
+            iv_starList.add(view.findViewById(R.id.iv_star_2));
+            iv_starList.add(view.findViewById(R.id.iv_star_3));
+            iv_starList.add(view.findViewById(R.id.iv_star_4));
+            iv_starList.add(view.findViewById(R.id.iv_star_5));
+
             view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
         }
     }
