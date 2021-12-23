@@ -69,6 +69,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             tv_itemName = view.findViewById(R.id.tv_item_name);
             tv_itemRating = view.findViewById(R.id.tv_item_rating);
             tv_itemContent = view.findViewById(R.id.tv_item_content);
+            view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
         }
     }
 }
