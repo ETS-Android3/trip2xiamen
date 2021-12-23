@@ -37,7 +37,7 @@ public class ItemXmlParser {
                                 parser.nextTag();
                             }
                         }
-                        item.image = imageNameList.toString();
+                        item.image = JsonUtil.mapObjectToJson(imageNameList);
                     }
                     if (parser.next() == XmlPullParser.TEXT) {
                         Field field = item.getClass().getDeclaredField(attr);
