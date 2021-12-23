@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.entity.Item;
+import com.t2xm.utils.JsonUtil;
 
 import java.util.List;
 
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHolder> {
 
-   private LayoutInflater inflater;
+    private LayoutInflater inflater;
     private Context context;
     private List<Item> itemList;
 
@@ -37,7 +38,12 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Item item = getItemByPosition(position);
-        viewHolder.iv_itemImage.setImageResource(this.context.getResources().getIdentifier(item.image, "drawable", context.getPackageName()));
+        try {
+            String firstImageName = (String) JsonUtil.mapJsonToObject(item.image, List.class).get(0);
+            viewHolder.iv_itemImage.setImageResource(this.context.getResources().getIdentifier(firstImageName, "drawable", context.getPackageName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         viewHolder.tv_itemName.setText(item.itemName);
         viewHolder.tv_itemContent.setText(item.description);
     }
