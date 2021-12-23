@@ -19,7 +19,7 @@
 				android:textStyle="bold" />
 	</FrameLayout>
 	
-	<ScrollView
+	<androidx.core.widget.NestedScrollView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_below="@+id/fl_title"
@@ -56,10 +56,10 @@
 					android:id="@+id/rv_todo_in_xiamen"
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-				android:layout_marginHorizontal="@dimen/margin_medium"
+					android:layout_marginHorizontal="@dimen/margin_medium"
 					android:layout_weight="1" />
 		
 		</LinearLayout>
-	</ScrollView>
+	</androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>
