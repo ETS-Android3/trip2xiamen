@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+		android:id="@+id/rl_list_container"
+		xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="140dp"
 		android:layout_height="wrap_content"
 		android:padding="@dimen/padding_small">
