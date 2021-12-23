@@ -12,9 +12,8 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XmlParserUtil {
-    public static List<Item> parseItems(XmlResourceParser parser) throws XmlPullParserException,
-            IOException, InstantiationException, IllegalAccessException, NoSuchFieldException {
+public class ItemXmlParser {
+    public static List<Item> parseItems(XmlResourceParser parser) throws XmlPullParserException, IOException, IllegalAccessException, NoSuchFieldException {
         List<Item> itemList = new ArrayList<>();
         while (parser.next() != XmlPullParser.END_TAG) {
             if (parser.getEventType() != XmlPullParser.START_TAG) {
@@ -27,6 +26,19 @@ public class XmlParserUtil {
                         continue;
                     }
                     String attr = parser.getName();
+                    if (attr.equals("images")) {
+                        List<String> imageNameList = new ArrayList<>();
+                        while (parser.next() != XmlPullParser.END_TAG) {
+                            if (parser.getEventType() != XmlPullParser.START_TAG) {
+                                continue;
+                            }
+                            if (parser.next() == XmlPullParser.TEXT) {
+                                imageNameList.add(parser.getText());
+                                parser.nextTag();
+                            }
+                        }
+                        item.image = imageNameList.toString();
+                    }
                     if (parser.next() == XmlPullParser.TEXT) {
                         Field field = item.getClass().getDeclaredField(attr);
                         field.set(item, FieldCastUtil.castStringToType(parser.getText(), field.getType()));

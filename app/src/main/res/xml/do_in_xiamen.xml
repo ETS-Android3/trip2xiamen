@@ -7,7 +7,10 @@
 			Island. With splendid natural scenery, colonial styled architectures and numerous interesting
 			museums, Gulangyu Island is unmissable for your Xiamen Tour.
 		</description>
-		<image></image>
+		<images>
+			<image>gulangyu_island_1</image>
+			<image>gulangyu_island_2</image>
+		</images>
 		<latitude>24.446981501640725</latitude>
 		<longitude>118.06636070196205</longitude>
 	</Item>
