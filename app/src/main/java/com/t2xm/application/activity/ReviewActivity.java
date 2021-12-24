@@ -48,16 +48,16 @@ public class ReviewActivity extends AppCompatActivity {
 
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
-            //TODO error
             ToastUtil.createAndShowToast(getApplicationContext(), "Error");
             onBackPressed();
+            return;
         }
 
         item = ItemDao.getItemByItemId(itemId);
         if (item == null) {
-            //TODO error
             ToastUtil.createAndShowToast(getApplicationContext(), "Error");
             onBackPressed();
+            return;
         }
         try {
             String img = String.valueOf(JsonUtil.mapJsonToObject(item.image, List.class).get(0));

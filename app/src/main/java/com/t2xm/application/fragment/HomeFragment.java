@@ -35,19 +35,28 @@ public class HomeFragment extends Fragment {
 
         List<Item> itemList = ItemDao.getItemListByCategory(1);
 
-        RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
-        TopPlacesAdapter adapter1 = new TopPlacesAdapter(getContext(), itemList);
-        rv_topPlaces.setAdapter(adapter1);
-        rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        if(itemList != null) {
+            RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
+            TopPlacesAdapter adapter1 = new TopPlacesAdapter(getContext(), itemList);
+            rv_topPlaces.setAdapter(adapter1);
+            rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        }
 
         List<Review> topReviewList = ReviewDao.get10LatestReview();
-        List<Item> reviewItemList = new ArrayList<>();
-        for (Review review : topReviewList) {
-            reviewItemList.add(ItemDao.getItemByItemId(review.itemId));
+        if(topReviewList != null) {
+            List<Item> reviewItemList = new ArrayList<>();
+            for (Review review : topReviewList) {
+                Item item = ItemDao.getItemByItemId(review.itemId) ;
+                if(item != null) {
+                    reviewItemList.add(item);
+                }
+            }
+            if(reviewItemList.size() > 0) {
+                RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
+                ReviewItemAdapter adapter2 = new ReviewItemAdapter(getContext(), topReviewList, reviewItemList);
+                rv.setAdapter(adapter2);
+                rv.setLayoutManager(new LinearLayoutManager(getContext()));
+            }
         }
-        RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
-        ReviewItemAdapter adapter2 = new ReviewItemAdapter(getContext(), topReviewList, reviewItemList);
-        rv.setAdapter(adapter2);
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }
