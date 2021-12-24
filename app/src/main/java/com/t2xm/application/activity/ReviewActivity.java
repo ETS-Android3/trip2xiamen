@@ -1,6 +1,8 @@
 package com.t2xm.application.activity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,6 +23,7 @@ import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity {
 
+    private final Integer MAX_REVIEW_LENGTH = 500;
     private Integer itemId;
 
     private ImageView iv_itemImage;
@@ -53,6 +56,7 @@ public class ReviewActivity extends AppCompatActivity {
             return;
         }
 
+        //set item attributes
         item = ItemDao.getItemByItemId(itemId);
         if (item == null) {
             ToastUtil.createAndShowToast(getApplicationContext(), "Error");
@@ -68,6 +72,21 @@ public class ReviewActivity extends AppCompatActivity {
         }
         tv_itemName.setText(item.itemName);
 
+        //set listeners
+        et_reviewText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                tv_reviewCharacterCount.setText(et_reviewText.getText().length() + "/" + MAX_REVIEW_LENGTH);
+            }
+        });
         btn_submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

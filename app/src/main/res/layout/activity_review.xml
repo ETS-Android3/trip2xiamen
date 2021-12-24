@@ -88,7 +88,7 @@
 							android:id="@+id/tv_review_character_count"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:text="123/500"
+							android:text="0/500"
 							android:gravity="right"
 							android:paddingRight="@dimen/padding_medium"
 							android:textSize="@dimen/font_small"
