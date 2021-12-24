@@ -68,6 +68,9 @@ public class LocationActivity extends AppCompatActivity
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        //TODO update map mark
+        System.out.println(getIntent().getDoubleExtra("longitude",-1000d));
+        System.out.println(getIntent().getDoubleExtra("latitude",-1000d));
     }
 
     @Override

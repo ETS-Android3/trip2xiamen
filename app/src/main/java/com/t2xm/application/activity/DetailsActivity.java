@@ -1,7 +1,6 @@
 package com.t2xm.application.activity;
 
 import android.content.Intent;
-import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -55,10 +54,10 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         item = ItemDao.getItemByItemId(itemId);
-        if(item == null) {
+        if (item == null) {
             //TODO display error if no item found
             onBackPressed();
-            return ;
+            return;
         }
         try {
             item_imageList = JsonUtil.mapJsonToObject(item.image, List.class);
@@ -85,7 +84,10 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO set up location
-                startActivity(new Intent(getApplicationContext(), LocationActivity.class));
+                Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
+                intent.putExtra("longitude", item.longitude);
+                intent.putExtra("latitude", item.latitude);
+                startActivity(intent);
             }
         });
 
