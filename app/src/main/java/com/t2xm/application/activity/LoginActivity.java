@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO login function
                 //validate input
-
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
 

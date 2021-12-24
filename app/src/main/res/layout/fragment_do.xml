@@ -36,7 +36,7 @@
 					android:layout_alignParentRight="true"
 					android:layout_marginRight="@dimen/margin_large"
 					android:layout_marginTop="@dimen/margin_small"
-					android:text="Rating" />
+					android:text="Sort" />
 			
 			<androidx.recyclerview.widget.RecyclerView
 					android:id="@+id/rv_todo_in_xiamen"
