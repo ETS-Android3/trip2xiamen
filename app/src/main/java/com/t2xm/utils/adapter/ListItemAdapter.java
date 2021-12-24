@@ -1,15 +1,18 @@
 package com.t2xm.utils.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
+import com.t2xm.application.activity.DetailsActivity;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.JsonUtil;
 
@@ -46,6 +49,15 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
         }
         viewHolder.tv_itemName.setText(item.itemName);
         viewHolder.tv_itemContent.setText(item.description);
+
+        viewHolder.ll_container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("itemId", item.itemId);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -58,6 +70,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout ll_container;
         public ImageView iv_itemImage;
         public TextView tv_itemName;
         public TextView tv_itemRating;
@@ -65,6 +78,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
 
         public ViewHolder(View view) {
             super(view);
+            ll_container = view.findViewById(R.id.ll_container);
             iv_itemImage = view.findViewById(R.id.iv_item_image);
             tv_itemName = view.findViewById(R.id.tv_item_name);
             tv_itemRating = view.findViewById(R.id.tv_item_rating);
