@@ -40,6 +40,7 @@ public class ReviewDao extends Dao {
                 Review review = new Review();
                 review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
                 review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+                reviewList.add(review);
             }
         }
         return reviewList;

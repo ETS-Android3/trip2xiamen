@@ -18,7 +18,7 @@ import com.t2xm.dao.ItemDao;
 import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
-import com.t2xm.utils.adapter.ReviewItemAdapter;
+import com.t2xm.utils.adapter.HomeReviewAdapter;
 import com.t2xm.utils.adapter.TopPlacesAdapter;
 
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
             }
             if(reviewItemList.size() > 0) {
                 RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
-                ReviewItemAdapter adapter2 = new ReviewItemAdapter(getContext(), topReviewList, reviewItemList);
+                HomeReviewAdapter adapter2 = new HomeReviewAdapter(getContext(), topReviewList, reviewItemList);
                 rv.setAdapter(adapter2);
                 rv.setLayoutManager(new LinearLayoutManager(getContext()));
             }

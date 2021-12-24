@@ -1,82 +1,59 @@
 package com.t2xm.utils.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
-import com.t2xm.application.activity.DetailsActivity;
+import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
-import com.t2xm.utils.JsonUtil;
+import com.t2xm.entity.User;
+import com.t2xm.utils.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
-public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.ViewHolder> {
+public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
     private LayoutInflater inflater;
     private Context context;
     private List<Review> reviewList;
-    private List<Item> itemList;
 
 
-    public ReviewItemAdapter(Context context, List<Review> reviewList, List<Item> itemList) {
+    public ReviewAdapter(Context context, List<Review> reviewList) {
         this.context = context;
         this.reviewList = reviewList;
-        this.itemList = itemList;
         this.inflater = LayoutInflater.from(this.context);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_details_review, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         Review review = getReviewByPosition(position);
-        Item item = getItemByPosition(position);
-        try {
-            String firstImageName = (String) JsonUtil.mapJsonToObject(item.image, List.class).get(0);
-            viewHolder.iv_itemImage.setImageResource(this.context.getResources().getIdentifier(firstImageName, "drawable", context.getPackageName()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        viewHolder.tv_itemName.setText(item.itemName);
-        //TODO get item rating
-        Double rand = new Random().nextDouble() * 10 % 5d;
-        viewHolder.tv_itemRating.setText(rand.toString());
-        updateRatingStars(viewHolder, rand);
-        viewHolder.tv_itemContent.setText(review.reviewText);
+        User user = UserDao.getUserInfoByUserId(review.userId);
 
-        viewHolder.ll_container.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("itemId", item.itemId);
-                context.startActivity(intent);
-            }
-        });
+        viewHolder.iv_user_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
+        viewHolder.tv_username.setText(user.username);
+        //TODO requires rating
+//        updateRatingStars(viewHolder, Double.valueOf(review.rating));
+        viewHolder.tv_reviewText.setText(review.reviewText);
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
-    }
-
-    private Item getItemByPosition(int position) {
-        return itemList.get(position);
+        return reviewList.size();
     }
 
     private Review getReviewByPosition(int position) {
@@ -101,27 +78,21 @@ public class ReviewItemAdapter extends RecyclerView.Adapter<ReviewItemAdapter.Vi
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public LinearLayout ll_container;
-        public ImageView iv_itemImage;
-        public TextView tv_itemName;
-        public TextView tv_itemRating;
-        public TextView tv_itemContent;
+        public ImageView iv_user_profileImage;
+        public TextView tv_username;
         public List<ImageView> iv_starList = new ArrayList<>();
+        public TextView tv_reviewText;
 
         public ViewHolder(View view) {
             super(view);
-            ll_container = view.findViewById(R.id.ll_container);
-            iv_itemImage = view.findViewById(R.id.iv_item_image);
-            tv_itemName = view.findViewById(R.id.tv_item_name);
-            tv_itemRating = view.findViewById(R.id.tv_item_rating);
-            tv_itemContent = view.findViewById(R.id.tv_item_content);
+            iv_user_profileImage = view.findViewById(R.id.iv_user_profile_image);
+            tv_username = view.findViewById(R.id.tv_username);
             iv_starList.add(view.findViewById(R.id.iv_star_1));
             iv_starList.add(view.findViewById(R.id.iv_star_2));
             iv_starList.add(view.findViewById(R.id.iv_star_3));
             iv_starList.add(view.findViewById(R.id.iv_star_4));
             iv_starList.add(view.findViewById(R.id.iv_star_5));
-
-            view.findViewById(R.id.btn_delete).setVisibility(View.GONE);
+            tv_reviewText = view.findViewById(R.id.tv_review_text);
         }
     }
 }

@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
@@ -16,6 +18,7 @@ import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.JsonUtil;
+import com.t2xm.utils.adapter.ReviewAdapter;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     private ImageButton btn_location;
     private Button btn_writeReview;
     private ImageButton btn_addToFavourite;
+    private RecyclerView rv_reviews;
 
     private Item item;
     private List<String> item_imageList;
@@ -45,6 +49,7 @@ public class DetailsActivity extends AppCompatActivity {
         btn_location = findViewById(R.id.btn_location);
         btn_writeReview = findViewById(R.id.btn_write_review);
         btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);
+        rv_reviews = findViewById(R.id.rv_reviews);
 
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
@@ -77,6 +82,9 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemDescription.setText(item.description);
 
         //TODO setup reviews
+        ReviewAdapter adapter = new ReviewAdapter(getApplicationContext(), item_reviewList);
+        rv_reviews.setAdapter(adapter);
+        rv_reviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 
     private void setupOnClickListeners() {
