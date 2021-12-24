@@ -75,7 +75,7 @@
 				
 				</LinearLayout>
 				
-<!--				TODO rating	-->
+				<!--				TODO rating	-->
 				<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
@@ -101,20 +101,45 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
-
-					<TextView
-							android:layout_width="match_parent"
-							android:layout_height="wrap_content"
-							android:textSize="@dimen/font_large"
-							android:layout_weight="1"
-							android:paddingVertical="@dimen/padding_small"
-							android:text="Reviews" />
-					
-
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:textSize="@dimen/font_large"
+						android:layout_weight="1"
+						android:paddingVertical="@dimen/padding_small"
+						android:text="Reviews" />
+				
+				
 				<androidx.recyclerview.widget.RecyclerView
 						android:id="@+id/rv_reviews"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content" />
+				
+				<LinearLayout
+						android:id="@+id/ll_no_reviews_container"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:layout_marginVertical="@dimen/margin_large"
+						android:visibility="gone">
+					
+					<TextView
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:text="No reviews yet"
+							android:textSize="@dimen/font_large"
+							android:textAlignment="center" />
+					
+					<Button
+							android:id="@+id/btn_write_review_2"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_marginHorizontal="@dimen/margin_large"
+							android:text="I have visited here\nWrite Review"
+							android:drawableLeft="@drawable/ic_baseline_comment_24"
+							android:drawableTint="@color/white" />
+				</LinearLayout>
 			</LinearLayout>
 		
 		</LinearLayout>

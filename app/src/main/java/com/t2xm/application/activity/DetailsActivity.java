@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,10 +34,39 @@ public class DetailsActivity extends AppCompatActivity {
     private Button btn_writeReview;
     private ImageButton btn_addToFavourite;
     private RecyclerView rv_reviews;
+    private LinearLayout ll_noReviewsContainer;
+    private Button btn_writeReview2;
 
     private Item item;
     private List<String> item_imageList;
     private List<Review> item_reviewList;
+
+    private View.OnClickListener viewMapLocationListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO set up location
+            Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
+            intent.putExtra("longitude", item.longitude);
+            intent.putExtra("latitude", item.latitude);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener writeReviewListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
+            intent.putExtra("itemId", itemId);
+            startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener addToFavouriteListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //TODO set up add to favourite items
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +80,8 @@ public class DetailsActivity extends AppCompatActivity {
         btn_writeReview = findViewById(R.id.btn_write_review);
         btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);
         rv_reviews = findViewById(R.id.rv_reviews);
+        ll_noReviewsContainer = findViewById(R.id.ll_no_reviews_container);
+        btn_writeReview2 = findViewById(R.id.btn_write_review_2);
 
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
@@ -81,39 +113,22 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemName.setText(item.itemName);
         tv_itemDescription.setText(item.description);
 
-        //TODO setup reviews
-        ReviewAdapter adapter = new ReviewAdapter(getApplicationContext(), item_reviewList);
-        rv_reviews.setAdapter(adapter);
-        rv_reviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        if (item_reviewList != null) {
+            rv_reviews.setVisibility(View.VISIBLE);
+            ll_noReviewsContainer.setVisibility(View.GONE);
+            ReviewAdapter adapter = new ReviewAdapter(getApplicationContext(), item_reviewList);
+            rv_reviews.setAdapter(adapter);
+            rv_reviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        } else {
+            rv_reviews.setVisibility(View.GONE);
+            ll_noReviewsContainer.setVisibility(View.VISIBLE);
+        }
     }
 
     private void setupOnClickListeners() {
-        btn_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO set up location
-                Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
-                intent.putExtra("longitude", item.longitude);
-                intent.putExtra("latitude", item.latitude);
-                startActivity(intent);
-            }
-        });
-
-        //TODO set up direct to review page
-        btn_writeReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
-                intent.putExtra("itemId", itemId);
-                startActivity(intent);
-            }
-        });
-
-        btn_addToFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO set up add to favourite items
-            }
-        });
+        btn_location.setOnClickListener(viewMapLocationListener);
+        btn_writeReview.setOnClickListener(writeReviewListener);
+        btn_addToFavourite.setOnClickListener(addToFavouriteListener);
+        btn_writeReview2.setOnClickListener(writeReviewListener);
     }
 }
