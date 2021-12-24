@@ -58,6 +58,7 @@
 					android:orientation="horizontal">
 				
 				<Button
+						android:id="@+id/btn_my_favourite"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:drawableTop="@drawable/ic_baseline_favorite_24"
@@ -68,6 +69,7 @@
 						style="@style/Widget.MaterialComponents.Button.TextButton" />
 				
 				<Button
+						android:id="@+id/btn_my_reviews"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:drawableTop="@drawable/ic_baseline_comment_24"
