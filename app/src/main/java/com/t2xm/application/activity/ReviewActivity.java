@@ -87,6 +87,9 @@ public class ReviewActivity extends AppCompatActivity {
                 tv_reviewCharacterCount.setText(et_reviewText.getText().length() + "/" + MAX_REVIEW_LENGTH);
             }
         });
+
+        //TODO upload image
+
         btn_submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
