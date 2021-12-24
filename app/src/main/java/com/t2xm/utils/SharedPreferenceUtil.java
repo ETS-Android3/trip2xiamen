@@ -4,14 +4,18 @@ import android.content.Context;
 
 public class SharedPreferenceUtil {
     private static final String FILE_NAME = "t2xm_sp";
-    private SharedPreferenceUtil(){}
+
+    private SharedPreferenceUtil() {
+    }
 
     public static void setUsername(String username, Context context) {
         context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).edit().putString("username", username);
     }
 
     public static String getUsername(Context context) {
-        return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString("username", null);
+        //TODO return username from sharedPreferences
+        //return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString("username", null);
+        return "testuser";
     }
 
     public static void removeUsername(Context context) {
