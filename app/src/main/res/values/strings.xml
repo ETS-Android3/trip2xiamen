@@ -1,3 +1,4 @@
 <resources>
 	<string name="app_name">trip2xiamen</string>
+	<string name="MAP_API_KEY">AIzaSyAEtMqqPSK4tMocM2Xfyoy7jueEhocZdJw</string>
 </resources>

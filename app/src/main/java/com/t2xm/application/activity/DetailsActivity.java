@@ -1,6 +1,7 @@
 package com.t2xm.application.activity;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -84,6 +85,7 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO set up location
+                startActivity(new Intent(getApplicationContext(), LocationActivity.class));
             }
         });
 
