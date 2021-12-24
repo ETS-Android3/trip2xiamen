@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import com.t2xm.R;
 import com.t2xm.application.activity.MyFavouriteActivity;
 import com.t2xm.application.activity.SettingsActivity;
+import com.t2xm.utils.SharedPreferenceUtil;
 
 public class ProfileFragment extends Fragment {
     @Nullable
@@ -25,6 +27,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String username = SharedPreferenceUtil.getUsername(getActivity().getApplicationContext());
+
+        //TODO set profile image
+        ((TextView)view.findViewById(R.id.tv_username)).setText(username);
 
         view.findViewById(R.id.btn_my_favourite).setOnClickListener(new View.OnClickListener() {
             @Override
