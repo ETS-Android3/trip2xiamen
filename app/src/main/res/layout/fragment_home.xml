@@ -32,15 +32,15 @@
 			
 			<FrameLayout
 					android:layout_width="match_parent"
-					android:layout_height="150dp"
-					android:paddingHorizontal="@dimen/padding_medium"
+					android:layout_height="200dp"
 					android:layout_marginBottom="@dimen/margin_large"
 					android:layout_weight="1">
 				
 				<ImageView
+						android:id="@+id/iv_home_animation"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:src="@drawable/t2xm" />
+						android:scaleType="centerCrop"/>
 			</FrameLayout>
 			
 			<LinearLayout

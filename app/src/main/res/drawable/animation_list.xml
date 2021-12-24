@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list
+		xmlns:android="http://schemas.android.com/apk/res/android"
+		android:oneshot="false">
+	<item
+			android:drawable="@drawable/do_fujiantulou_1"
+			android:duration="3000" />
+	<item
+			android:drawable="@drawable/do_gulangyu_island_1"
+			android:duration="3000" />
+	<item
+			android:drawable="@drawable/do_south_putuo_temple_1"
+			android:duration="3000" />
+	<item
+			android:drawable="@drawable/do_xiamen_botanical_garden_1"
+			android:duration="3000" />
+	<item
+			android:drawable="@drawable/do_xmu_1"
+			android:duration="3000" />
+	<item
+			android:drawable="@drawable/do_zhongshan_road_walking_street_1"
+			android:duration="3000" />
+</animation-list>

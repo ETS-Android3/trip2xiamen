@@ -1,9 +1,11 @@
 package com.t2xm.application.fragment;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,6 +43,16 @@ public class HomeFragment extends Fragment {
             rv_topPlaces.setAdapter(adapter1);
             rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         }
+
+        ImageView iv_homeAnimation = view.findViewById(R.id.iv_home_animation);
+        iv_homeAnimation.setBackgroundResource(R.drawable.animation_list);
+
+        // Get the background, which has been compiled to an AnimationDrawable object.
+        AnimationDrawable frameAnimation = (AnimationDrawable) iv_homeAnimation.getBackground();
+
+        // Start the animation (looped playback by default).
+        frameAnimation.start();
+
 
         List<Review> topReviewList = ReviewDao.get10LatestReview();
         if(topReviewList != null) {

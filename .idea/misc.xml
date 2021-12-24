@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/drawable/animation_list.xml" value="0.2703125" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_favourite.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_home.xml" value="0.24010416666666667" />
@@ -16,12 +17,13 @@
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_start.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_do.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_eat.xml" value="0.25416666666666665" />
-        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_home.xml" value="0.264" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_stay.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/list_item.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/list_top_place.xml" value="0.1" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/list_top_places.xml" value="0.25416666666666665" />
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/view_image.xml" value="0.1381340579710145" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/view_rating.xml" value="0.2418478260869565" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/xml/do_in_xiamen.xml" value="0.11197916666666667" />
