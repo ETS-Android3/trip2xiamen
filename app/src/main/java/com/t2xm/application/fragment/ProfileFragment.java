@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.t2xm.R;
 import com.t2xm.application.activity.MyFavouriteActivity;
+import com.t2xm.application.activity.SettingsActivity;
 
 public class ProfileFragment extends Fragment {
     @Nullable
@@ -25,11 +26,17 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button btn_myFavourite = view.findViewById(R.id.btn_my_favourite);
-        btn_myFavourite.setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.btn_my_favourite).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity().getApplicationContext(), MyFavouriteActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.btn_settings).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity().getApplicationContext(), SettingsActivity.class));
             }
         });
     }

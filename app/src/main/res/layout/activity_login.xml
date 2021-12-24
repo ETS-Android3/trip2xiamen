@@ -75,10 +75,23 @@
 		
 		</LinearLayout>
 		
+		
 		<Button
+				android:id="@+id/btn_login"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:text="Login"
+				android:textAllCaps="false"
+				android:textSize="@dimen/font_medium"
+				android:layout_marginHorizontal="@dimen/margin_large"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:paddingVertical="@dimen/padding_small" />
+		
+		<Button
+				android:id="@+id/btn_sign_up"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Sign Up"
 				android:textAllCaps="false"
 				android:textSize="@dimen/font_medium"
 				android:layout_marginHorizontal="@dimen/margin_large"

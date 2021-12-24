@@ -29,6 +29,13 @@ public class DoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        view.findViewById(R.id.btn_filter_by_rating).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO alert dialog with checkbox
+            }
+        });
+
         List<Item> itemList = ItemDao.getItemListByCategory(1);
         ListItemAdapter adapter = new ListItemAdapter(getContext(), itemList);
         RecyclerView recyclerView = view.findViewById(R.id.rv_todo_in_xiamen);

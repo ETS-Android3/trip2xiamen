@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
             rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         }
 
+        //TODO ViewPager
         ImageView iv_homeAnimation = view.findViewById(R.id.iv_home_animation);
         iv_homeAnimation.setBackgroundResource(R.drawable.animation_list);
 

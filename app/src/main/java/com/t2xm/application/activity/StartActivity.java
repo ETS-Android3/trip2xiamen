@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //TODO change activity to start to Login Activity
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         }, DELAY_TIME);
     }
