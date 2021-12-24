@@ -91,7 +91,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:id="@+id/et_password"
-						android:hint="Username"
+						android:hint="Password"
 						android:layout_margin="@dimen/margin_small"
 						android:layout_weight="1"
 						android:gravity="center" />
@@ -108,6 +108,7 @@
 						android:text="Confirm Password"
 						android:textSize="@dimen/font_medium"
 						android:layout_margin="@dimen/margin_small"
+						android:inputType="textPassword"
 						android:layout_weight="2"
 						android:gravity="center" />
 				
@@ -115,8 +116,9 @@
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
 						android:id="@+id/et_confirmPassword"
-						android:hint="Username"
+						android:hint="Confirm Password"
 						android:layout_margin="@dimen/margin_small"
+						android:inputType="textPassword"
 						android:layout_weight="1"
 						android:gravity="center" />
 			</LinearLayout>

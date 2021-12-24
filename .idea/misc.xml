@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/drawable/animation_list.xml" value="0.2703125" />
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_change_email.xml" value="0.21965579710144928" />
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_change_password.xml" value="0.21965579710144928" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_favourite.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_home.xml" value="0.24010416666666667" />
@@ -14,7 +16,7 @@
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_my_reviews.xml" value="0.24010416666666667" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_review.xml" value="0.24010416666666667" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_settings.xml" value="0.2" />
-        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
+        <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/activity_start.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_do.xml" value="0.25416666666666665" />
         <entry key="..\:/XMUM/SWE Y3/SWE Y3 S2/SWE311 Mobile Application System Design/FinalProject/trip2xiamen/app/src/main/res/layout/fragment_eat.xml" value="0.25416666666666665" />
