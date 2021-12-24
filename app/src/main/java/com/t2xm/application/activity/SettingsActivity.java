@@ -1,6 +1,7 @@
 package com.t2xm.application.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -59,14 +60,14 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btn_change_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO change password activity
+                startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
             }
         });
 
         findViewById(R.id.btn_change_email).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO change email activity
+                startActivity(new Intent(getApplicationContext(), ChangeEmailActivity.class));
             }
         });
 

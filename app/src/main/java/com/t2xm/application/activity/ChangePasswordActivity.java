@@ -7,6 +7,9 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
+import com.t2xm.dao.UserDao;
+import com.t2xm.utils.SharedPreferenceUtil;
+import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.ValidationUtil;
 
 public class ChangePasswordActivity extends AppCompatActivity {
@@ -24,6 +27,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        String username = SharedPreferenceUtil.getUsername(getApplicationContext());
+
         et_currentPassword = findViewById(R.id.et_current_password);
         et_newPassword = findViewById(R.id.et_new_password);
         et_confirmPassword = findViewById(R.id.et_new_password);
@@ -31,9 +36,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
         findViewById(R.id.btn_confirm_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO change password
-
-                //TODO check whether current password match with database
+                //TODO test
+                if(currentPassword.equals(UserDao.getUserPasswordByUsername(username))) {
+                    boolean result = false;
+                    if(validatePassword()) {
+                        result = UserDao.editUserEmailByUsername(username, newPassword);
+                    }
+                    if(result == true) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "Your password has been changed");
+                        onBackPressed();
+                        finish();
+                    }
+                }
             }
         });
     }

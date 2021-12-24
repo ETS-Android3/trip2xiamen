@@ -73,19 +73,34 @@ public class UserDao extends Dao {
         return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
     }
 
-    public static Boolean editUserPassword(User user) {
+    public static Boolean editUserPasswordByUsername(String username, String password) {
+        Integer userId = getUserIdByUsername(username);
         ContentValues cv = new ContentValues();
-        cv.put(PASSWORD, user.password);
-        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+        cv.put(PASSWORD, password);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(userId)}) > 0;
     }
 
-    public static Boolean editUserEmail(User user) {
+    public static Boolean editUserEmailByUsername(String username, String email) {
+        Integer userId = getUserIdByUsername(username);
         ContentValues cv = new ContentValues();
-        cv.put(EMAIL, user.email);
-        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+        cv.put(EMAIL, email);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(userId)}) > 0;
     }
 
-    public static Boolean deleteUser(User user) {
-        return database.delete(TABLE, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+    public static Boolean deleteUserByUsername(String username) {
+        Integer userId = getUserIdByUsername(username);
+        return database.delete(TABLE, "userId=?", new String[]{String.valueOf(userId)}) > 0;
+    }
+
+    public static String getUserEmailByUsername(String username) {
+        Integer userId = getUserIdByUsername(username);
+        Cursor cursor = database.rawQuery("select email from users where userid=?", new String[]{String.valueOf(userId)});
+        return cursor.moveToNext() ? cursor.getString(0) : "";
+    }
+
+    public static String getUserPasswordByUsername(String username) {
+        Integer userId = getUserIdByUsername(username);
+        Cursor cursor = database.rawQuery("select password from users where userid=?", new String[]{String.valueOf(userId)});
+        return cursor.moveToNext() ? cursor.getString(0) : "";
     }
 }
