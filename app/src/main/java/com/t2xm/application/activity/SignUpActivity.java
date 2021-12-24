@@ -8,6 +8,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
+import com.t2xm.dao.UserDao;
+import com.t2xm.entity.User;
+import com.t2xm.utils.ToastUtil;
+import com.t2xm.utils.ValidationUtil;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -35,13 +39,53 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO sign up
+                updateEditTextValues();
+                if(validateSignUpInput() == true) {
+                    if(password.equals(confirmPassword) == false) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "please enter same password");
+                    }
+                    else {
+                        User user = new User(null, username, email, password, null);
+                        boolean result = UserDao.insertUser(user) ;
+                        if(result == true) {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up success");
+                        }
+                        else {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up failed");
+                        }
+                    }
+                }
             }
         });
     }
 
     private boolean validateSignUpInput() {
         //TODo validate input
-        return false;
+        if(username.equals("")) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide username");
+            return false;
+        }
+        if (ValidationUtil.validateUsername(username) == false) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid username");
+            return false;
+        }
+        if(email.equals("")) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide email");
+            return false;
+        }
+        if(ValidationUtil.validateEmail(email) == false) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid email");
+            return false;
+        }
+        if(password.equals("")) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide password");
+            return false;
+        }
+        if(ValidationUtil.validatePassword(password) == false) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid password");
+            return false;
+        }
+        return true;
     }
 
     private void updateEditTextValues() {

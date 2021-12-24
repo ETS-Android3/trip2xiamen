@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO direct to signup page
+                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
             }
         });
     }
