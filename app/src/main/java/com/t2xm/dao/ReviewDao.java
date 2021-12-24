@@ -32,13 +32,15 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> getReviewListByItemId(Integer itemId) {
-        Cursor cursor = database.rawQuery("select userId, reviewtext from reviews where itemId=?",
-                new String[]{String.valueOf(itemId)});
-        List<Review> reviewList = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            Review review = new Review();
-            review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
-            review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+        Cursor cursor = database.rawQuery("select userId, reviewtext from reviews where itemId=?", new String[]{String.valueOf(itemId)});
+        List<Review> reviewList = null;
+        if (cursor.getCount() > 0) {
+            reviewList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                Review review = new Review();
+                review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
+                review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+            }
         }
         return reviewList;
     }
@@ -46,14 +48,17 @@ public class ReviewDao extends Dao {
     @SuppressLint("Range")
     public static List<Review> get10LatestReview() {
         Cursor cursor = database.rawQuery("select userId, itemId, reviewtext, rating from reviews order by time desc limit 10", null);
-        List<Review> reviewList = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            Review review = new Review();
-            review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
-            review.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
-            review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
-            review.rating = cursor.getInt(cursor.getColumnIndex(RATING));
-            reviewList.add(review);
+        List<Review> reviewList = null;
+        if (cursor.getCount() > 0) {
+            reviewList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                Review review = new Review();
+                review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
+                review.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
+                review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+                review.rating = cursor.getInt(cursor.getColumnIndex(RATING));
+                reviewList.add(review);
+            }
         }
         return reviewList;
     }

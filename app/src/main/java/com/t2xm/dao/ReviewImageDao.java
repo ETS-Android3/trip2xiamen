@@ -32,9 +32,12 @@ public class ReviewImageDao extends Dao {
 
     public static List<byte[]> getReviewImageByteListByReviewId(Integer reviewId) {
         Cursor cursor = database.rawQuery("select reviewImage from reviewImages where reviewId=?", new String[]{String.valueOf(reviewId)});
-        List<byte[]> imageList = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            imageList.add(cursor.getBlob(0));
+        List<byte[]> imageList = null;
+        if (cursor.getCount() > 0) {
+            imageList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                imageList.add(cursor.getBlob(0));
+            }
         }
         return imageList;
     }
