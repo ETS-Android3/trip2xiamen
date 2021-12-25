@@ -22,9 +22,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
-import com.t2xm.utils.JsonUtil;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.PermissionUtil;
-import com.t2xm.utils.RequestCode;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.ToastUtil;
 
 import java.util.ArrayList;

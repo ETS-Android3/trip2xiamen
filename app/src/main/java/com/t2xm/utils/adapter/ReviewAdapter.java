@@ -11,10 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
-import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.entity.User;
-import com.t2xm.utils.ImageUtil;
+import com.t2xm.utils.valuesConverter.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -18,7 +18,7 @@ import com.t2xm.dao.ItemDao;
 import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
-import com.t2xm.utils.JsonUtil;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
 
 import java.util.List;

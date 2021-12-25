@@ -15,7 +15,7 @@ import com.t2xm.R;
 import com.t2xm.application.activity.DetailsActivity;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
-import com.t2xm.utils.JsonUtil;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.t2xm.utils;
+package com.t2xm.utils.values;
 
 import android.Manifest;
 

@@ -1,4 +1,4 @@
-package com.t2xm.utils;
+package com.t2xm.utils.values;
 
 public class RequestCode {
     public static final Integer CAMERA = 11;

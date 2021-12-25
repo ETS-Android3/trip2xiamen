@@ -1,17 +1,14 @@
 package com.t2xm.utils;
 
 import android.content.res.XmlResourceParser;
-import android.util.Xml;
 
 import com.t2xm.entity.Item;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
-import java.io.StringReader;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
