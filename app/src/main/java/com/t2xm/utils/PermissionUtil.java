@@ -10,20 +10,20 @@ import com.t2xm.utils.values.PermissionString;
 import com.t2xm.utils.values.RequestCode;
 
 public class PermissionUtil {
-    public static boolean checkPermission(Context context, String permission) {
+    public static boolean permissionGranted(Context context, String permission) {
         return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static boolean checkCameraPermission(Context context) {
-        return checkPermission(context, PermissionString.CAMERA);
+    public static boolean cameraPermissionGranted(Context context) {
+        return permissionGranted(context, PermissionString.CAMERA);
     }
 
-    public static boolean checkReadExternalStoragePermission(Context context){
-        return checkPermission(context, PermissionString.READ_EXTERNAL_STORAGE);
+    public static boolean readExternalStoragePermissionGranted(Context context){
+        return permissionGranted(context, PermissionString.READ_EXTERNAL_STORAGE);
     }
 
-    public static boolean checkWriteExternalStoragePermission(Context context){
-        return checkPermission(context, PermissionString.WRITE_EXTERNAL_STORAGE);
+    public static boolean writeExternalStoragePermissionGranted(Context context){
+        return permissionGranted(context, PermissionString.WRITE_EXTERNAL_STORAGE);
     }
 
     public static void grantCameraPermission(Activity activity) {
