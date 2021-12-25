@@ -75,7 +75,7 @@ public class ReviewActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                if (!PermissionUtil.checkReadExternalStoragePermission(getApplicationContext())) {
+                                if (!PermissionUtil.readExternalStoragePermissionGranted(getApplicationContext())) {
                                     PermissionUtil.grantReadExternalStoragePermission(activity);
                                 }
                                 else {
@@ -83,7 +83,7 @@ public class ReviewActivity extends AppCompatActivity {
                                 }
                                 break;
                             case 1:
-                                if (!PermissionUtil.checkCameraPermission(getApplicationContext())) {
+                                if (!PermissionUtil.cameraPermissionGranted(getApplicationContext())) {
                                     PermissionUtil.grantCameraPermission(activity);
                                 }
                                 else {
