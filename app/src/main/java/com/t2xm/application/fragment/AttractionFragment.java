@@ -30,7 +30,7 @@ public class AttractionFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_do, container, false);
+        return inflater.inflate(R.layout.fragment_attractions, container, false);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class AttractionFragment extends Fragment {
         List<Item> itemList = ItemDao.getItemListByCategory(1);
         itemList.sort(ItemComparator.alphabetAsc);
         ListItemAdapter adapter = new ListItemAdapter(getContext(), itemList);
-        RecyclerView recyclerView = view.findViewById(R.id.rv_todo_in_xiamen);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_attractions_in_xiamen);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
