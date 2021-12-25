@@ -7,20 +7,15 @@
 			android:icon="@drawable/ic_baseline_home_24"
 			android:title="Home" />
 	<item
-			android:id="@+id/bn_do"
+			android:id="@+id/bn_recommend"
 			android:enabled="true"
 			android:icon="@drawable/ic_baseline_attractions_24"
-			android:title="Do" />
+			android:title="Recommend" />
 	<item
-			android:id="@+id/bn_stay"
+			android:id="@+id/bn_attraction"
 			android:enabled="true"
 			android:icon="@drawable/ic_baseline_hotel_24"
-			android:title="Stay" />
-	<item
-			android:id="@+id/bn_eat"
-			android:enabled="true"
-			android:icon="@drawable/ic_baseline_fastfood_24"
-			android:title="Eat" />
+			android:title="Attractions" />
 	<item
 			android:id="@+id/bn_profile"
 			android:enabled="true"

@@ -71,4 +71,45 @@
 		<latitude>24.454124844891414</latitude>
 		<longitude>118.07987853954057</longitude>
 	</Item>
+	
+	<!-- STAY -->
+	
+	<!-- EAT	-->
+	
+	<Item>
+		<itemName>Kaisa Western Restaurant</itemName>
+		<category>3</category>
+		<description>Zhongshan Road Pedestrian Street is a commercial street in Xiamen. Zhongshan Road is a symbol for Xiamen's prosperity. The buildings along Zhongshan Road are all verandas, popular in South China coastal regions. The verandas feature pink and creamy white as the main colors. With the passage of time, mottled walls and old wooden windows have imparted a special kind of quaintness on the buildings. At the same time, modern commercial buildings such as Paris Printemps are interspersed among them.
+		</description>
+		<images>
+			<image>do_zhongshan_road_walking_street_1</image>
+			<image>do_zhongshan_road_walking_street_2</image>
+		</images>
+		<latitude>24.454124844891414</latitude>
+		<longitude>118.07987853954057</longitude>
+	</Item>
+	<Item>
+		<itemName>Zhongshan Road Pedestrian Street</itemName>
+		<category>1</category>
+		<description>Zhongshan Road Pedestrian Street is a commercial street in Xiamen. Zhongshan Road is a symbol for Xiamen's prosperity. The buildings along Zhongshan Road are all verandas, popular in South China coastal regions. The verandas feature pink and creamy white as the main colors. With the passage of time, mottled walls and old wooden windows have imparted a special kind of quaintness on the buildings. At the same time, modern commercial buildings such as Paris Printemps are interspersed among them.
+		</description>
+		<images>
+			<image>do_zhongshan_road_walking_street_1</image>
+			<image>do_zhongshan_road_walking_street_2</image>
+		</images>
+		<latitude>24.454124844891414</latitude>
+		<longitude>118.07987853954057</longitude>
+	</Item>
+	<Item>
+		<itemName>Zhongshan Road Pedestrian Street</itemName>
+		<category>1</category>
+		<description>Zhongshan Road Pedestrian Street is a commercial street in Xiamen. Zhongshan Road is a symbol for Xiamen's prosperity. The buildings along Zhongshan Road are all verandas, popular in South China coastal regions. The verandas feature pink and creamy white as the main colors. With the passage of time, mottled walls and old wooden windows have imparted a special kind of quaintness on the buildings. At the same time, modern commercial buildings such as Paris Printemps are interspersed among them.
+		</description>
+		<images>
+			<image>do_zhongshan_road_walking_street_1</image>
+			<image>do_zhongshan_road_walking_street_2</image>
+		</images>
+		<latitude>24.454124844891414</latitude>
+		<longitude>118.07987853954057</longitude>
+	</Item>
 </Items>

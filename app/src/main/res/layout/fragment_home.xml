@@ -49,32 +49,23 @@
 					android:layout_marginHorizontal="@dimen/margin_medium"
 					android:orientation="vertical">
 				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginVertical="@dimen/margin_medium"
-						android:textSize="@dimen/font_large"
-						android:text="Top Places"
-						android:textStyle="bold" />
-				
-				
-				<androidx.recyclerview.widget.RecyclerView
-						android:id="@+id/rv_top_places"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"/>
 				
 				<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_marginVertical="@dimen/margin_medium"
 						android:textSize="@dimen/font_large"
-						android:text="Latest Reviews"
+						android:text="Where is Xiamen?"
+						android:textStyle="bold" />
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginVertical="@dimen/margin_medium"
+						android:textSize="@dimen/font_large"
+						android:text="Why visit Xiamen?"
 						android:textStyle="bold" />
 				
-				<androidx.recyclerview.widget.RecyclerView
-						android:id="@+id/rv_latest_reviews"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"/>
+				
 			</LinearLayout>
 		</LinearLayout>
 	</androidx.core.widget.NestedScrollView>

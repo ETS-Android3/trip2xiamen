@@ -21,7 +21,7 @@ import com.t2xm.utils.comparators.ItemComparator;
 
 import java.util.List;
 
-public class DoFragment extends Fragment {
+public class AttractionFragment extends Fragment {
 
     private AlertDialog.Builder builder;
     private String[] filter = {"A-Z", "Z-A", "High to Low Rating", "Low to High Rating"};

@@ -35,15 +35,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        List<Item> itemList = ItemDao.getItemListByCategory(1);
-
-        if(itemList != null) {
-            RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
-            TopPlacesAdapter adapter1 = new TopPlacesAdapter(getContext(), itemList);
-            rv_topPlaces.setAdapter(adapter1);
-            rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        }
-
         //TODO ViewPager
         ImageView iv_homeAnimation = view.findViewById(R.id.iv_home_animation);
         iv_homeAnimation.setBackgroundResource(R.drawable.animation_list);
@@ -53,23 +44,5 @@ public class HomeFragment extends Fragment {
 
         // Start the animation (looped playback by default).
         frameAnimation.start();
-
-
-        List<Review> topReviewList = ReviewDao.get10LatestReview();
-        if(topReviewList != null) {
-            List<Item> reviewItemList = new ArrayList<>();
-            for (Review review : topReviewList) {
-                Item item = ItemDao.getItemByItemId(review.itemId) ;
-                if(item != null) {
-                    reviewItemList.add(item);
-                }
-            }
-            if(reviewItemList.size() > 0) {
-                RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
-                HomeReviewAdapter adapter2 = new HomeReviewAdapter(getContext(), topReviewList, reviewItemList);
-                rv.setAdapter(adapter2);
-                rv.setLayoutManager(new LinearLayoutManager(getContext()));
-            }
-        }
     }
 }
