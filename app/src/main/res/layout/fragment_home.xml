@@ -81,41 +81,52 @@
 						android:layout_height="match_parent"
 						android:orientation="vertical">
 					
-					<TextView
+					<Button
+							android:id="@+id/btn_why_visit_xiamen_1"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
-							android:lineHeight="30dp"
+							style="@style/Widget.MaterialComponents.Button.TextButton"
+							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+							android:gravity="left"
+							android:textColor="@color/black"
+							android:backgroundTint="@color/primary_light_color"
 							android:text="@string/why_visit_1"
-							android:justificationMode="inter_word"
-							android:background="@color/primary_light_color"
 							android:paddingVertical="@dimen/padding_small"
 							android:layout_marginVertical="@dimen/margin_small"
 							android:paddingHorizontal="@dimen/padding_medium"
 							android:textSize="@dimen/font_medium" />
 					
-					<TextView
+					
+					<Button
+							android:id="@+id/btn_why_visit_xiamen_2"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
-							android:lineHeight="30dp"
+							style="@style/Widget.MaterialComponents.Button.TextButton"
+							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+							android:gravity="left"
+							android:textColor="@color/black"
+							android:backgroundTint="@color/primary_light_color"
 							android:text="@string/why_visit_2"
-							android:justificationMode="inter_word"
-							android:background="@color/primary_light_color"
 							android:paddingVertical="@dimen/padding_small"
 							android:layout_marginVertical="@dimen/margin_small"
 							android:paddingHorizontal="@dimen/padding_medium"
 							android:textSize="@dimen/font_medium" />
 					
-					<TextView
+					<Button
+							android:id="@+id/btn_why_visit_xiamen_3"
 							android:layout_width="match_parent"
 							android:layout_height="match_parent"
-							android:lineHeight="30dp"
+							style="@style/Widget.MaterialComponents.Button.TextButton"
+							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+							android:gravity="left"
+							android:textColor="@color/black"
+							android:backgroundTint="@color/primary_light_color"
 							android:text="@string/why_visit_3"
-							android:justificationMode="inter_word"
-							android:background="@color/primary_light_color"
 							android:paddingVertical="@dimen/padding_small"
 							android:layout_marginVertical="@dimen/margin_small"
 							android:paddingHorizontal="@dimen/padding_medium"
 							android:textSize="@dimen/font_medium" />
+				
 				
 				</LinearLayout>
 			
