@@ -31,6 +31,8 @@ public class AttractionFragment extends Fragment {
     private String[] filterByCategory = {"All", "To visit", "To eat", "To stay"};
     private Integer selectedCategory = 0;
 
+    private List<Item> itemList;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public class AttractionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        List<Item> itemList = ItemDao.getItemListByCategory(1);
+        itemList = ItemDao.getItemListByCategory(1);
         itemList.sort(ItemComparator.alphabetAsc);
         ListItemAdapter adapter = new ListItemAdapter(getContext(), itemList);
         RecyclerView recyclerView = view.findViewById(R.id.rv_attractions_in_xiamen);
@@ -54,27 +56,28 @@ public class AttractionFragment extends Fragment {
         view.findViewById(R.id.btn_filter_by_category).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filterByCategoryBuilder.setSingleChoiceItems(filterByCategory, 0, new DialogInterface.OnClickListener() {
+                filterByCategoryBuilder.setItems(filterByCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        selectedCategory = i;
-                    }
-                });
-                filterByCategoryBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (selectedCategory) {
-                            //TODO get new item list
-                            case 0:
-                                break;
-                            case 1:
-                                break;
-                            case 2:
-                                break;
-                            case 3:
-                                break;
-                        }
-                        adapter.notifyDataSetChanged();
+                            switch (selectedCategory) {
+                                case 1:
+                                    itemList = ItemDao.getItemListByCategory(1);
+                                    break;
+                                case 2:
+                                    itemList = ItemDao.getItemListByCategory(2);
+                                    break;
+                                case 3:
+                                    itemList = ItemDao.getItemListByCategory(3);
+                                    break;
+                                default:
+                                    itemList = ItemDao.getAllItemList();
+                            }
+                            if(itemList != null) {
+                                adapter.notifyDataSetChanged();
+                            }
+                            else {
+                                //TODO display no items message
+                            }
                     }
                 });
                 filterByCategoryBuilder.setNegativeButton("Cancel", null);
