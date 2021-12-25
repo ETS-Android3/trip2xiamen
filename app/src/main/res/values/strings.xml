@@ -1,4 +1,14 @@
 <resources>
 	<string name="app_name">Trip To Xiamen</string>
 	<string name="MAP_API_KEY">AIzaSyAEtMqqPSK4tMocM2Xfyoy7jueEhocZdJw</string>
+	
+	<string name="xiamen_introduction">Chinese Name: 厦门\nChinese Pinyin: Xià Mén\nEnglish IPA: [\'ʃjɑ:\'men]\nPopulation: 3.81 million\nLanguage: Mandarin &amp; Southern Fujian Dialect\nTel Code: 0592\nZip Code: 361000\nTime Zone: (UTC+8)</string>
+	
+	<string name="why_visit_1">Stunning Coastal Scenery with Pleasant Weather All Year Around</string>
+	<string name="why_visit_2">A Vital Witness and Story Teller of Modern Chinese History</string>
+	<string name="why_visit_3">Seafood Paradise</string>
+	
+	<string name="why_visit_1_long">Xiamen enjoys a pleasant weather all year around. It is neither too hot nor too cold there. Therefore, Xiamen always welcomes the global visitors with ever-blue sky, glittering beaches and abundant of outdoor activities like sunbathing, cycling, golf-playing, etc.</string>
+	<string name="why_visit_2_long">Xiamen once played a vital role in the wars and history of modern China. Its abundant colonial buildings and war relics, like Hulishan Fortress, are the best story tellers to introduce the modern history of this country. Whether you are a history lover or not, you will sample some Chinese history while visiting Xiamen!</string>
+	<string name="why_visit_3_long">Thanks to its unbeatable location of setting close to the sea, Xiamen is really a paradise for seafood. Here, you will find seafood snacks and dishes everywhere, including on the popular tourist streets on Gulangyu Island and also in some secret alleys. The smell of seafood will accompany you all the way. No specific plan is required to find something to eat in Xiamen, just make your stop at the restaurant or stall you are interested, and then you will be given yummy foods to satisfy your taste bud. Something you must-try includes Oyster Omelette, Rice Noodle Broth…</string>
 </resources>

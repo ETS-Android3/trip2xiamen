@@ -33,14 +33,13 @@
 			<FrameLayout
 					android:layout_width="match_parent"
 					android:layout_height="200dp"
-					android:layout_marginBottom="@dimen/margin_large"
 					android:layout_weight="1">
 				
 				<ImageView
 						android:id="@+id/iv_home_animation"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:scaleType="centerCrop"/>
+						android:scaleType="centerCrop" />
 			</FrameLayout>
 			
 			<LinearLayout
@@ -55,8 +54,20 @@
 						android:layout_height="wrap_content"
 						android:layout_marginVertical="@dimen/margin_medium"
 						android:textSize="@dimen/font_large"
-						android:text="Where is Xiamen?"
+						android:text="About Xiamen"
 						android:textStyle="bold" />
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:background="@color/primary_light_color"
+						android:lineHeight="30dp"
+						android:text="@string/xiamen_introduction"
+						android:justificationMode="inter_word"
+						android:paddingHorizontal="@dimen/padding_medium"
+						android:paddingVertical="@dimen/padding_small"
+						android:textSize="@dimen/font_medium" />
+				
 				<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
@@ -65,7 +76,50 @@
 						android:text="Why visit Xiamen?"
 						android:textStyle="bold" />
 				
+				<LinearLayout
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						android:orientation="vertical">
+					
+					<TextView
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:lineHeight="30dp"
+							android:text="@string/why_visit_1"
+							android:justificationMode="inter_word"
+							android:background="@color/primary_light_color"
+							android:paddingVertical="@dimen/padding_small"
+							android:layout_marginVertical="@dimen/margin_small"
+							android:paddingHorizontal="@dimen/padding_medium"
+							android:textSize="@dimen/font_medium" />
+					
+					<TextView
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:lineHeight="30dp"
+							android:text="@string/why_visit_2"
+							android:justificationMode="inter_word"
+							android:background="@color/primary_light_color"
+							android:paddingVertical="@dimen/padding_small"
+							android:layout_marginVertical="@dimen/margin_small"
+							android:paddingHorizontal="@dimen/padding_medium"
+							android:textSize="@dimen/font_medium" />
+					
+					<TextView
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:lineHeight="30dp"
+							android:text="@string/why_visit_3"
+							android:justificationMode="inter_word"
+							android:background="@color/primary_light_color"
+							android:paddingVertical="@dimen/padding_small"
+							android:layout_marginVertical="@dimen/margin_small"
+							android:paddingHorizontal="@dimen/padding_medium"
+							android:textSize="@dimen/font_medium" />
 				
+				</LinearLayout>
+			
+			
 			</LinearLayout>
 		</LinearLayout>
 	</androidx.core.widget.NestedScrollView>
