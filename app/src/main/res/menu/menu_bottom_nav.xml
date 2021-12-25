@@ -9,12 +9,12 @@
 	<item
 			android:id="@+id/bn_recommend"
 			android:enabled="true"
-			android:icon="@drawable/ic_baseline_attractions_24"
+			android:icon="@drawable/ic_baseline_thumb_up_24"
 			android:title="Recommend" />
 	<item
 			android:id="@+id/bn_attraction"
 			android:enabled="true"
-			android:icon="@drawable/ic_baseline_hotel_24"
+			android:icon="@drawable/ic_baseline_attractions_24"
 			android:title="Attractions" />
 	<item
 			android:id="@+id/bn_profile"
