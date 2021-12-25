@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
@@ -27,6 +28,7 @@ import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.ToastUtil;
+import com.t2xm.utils.adapter.ReviewImageAdapter;
 import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 
@@ -48,6 +50,7 @@ public class ReviewActivity extends AppCompatActivity {
 
     private Item item;
     private List<Bitmap> bitmapList;
+    private ReviewImageAdapter imageAdapter;
 
     private AlertDialog.Builder uploadImageBuilder;
     private String[] uploadImageItems = {"Select from gallery", "Take photo", "Cancel"};
@@ -61,12 +64,15 @@ public class ReviewActivity extends AppCompatActivity {
         tv_itemName = findViewById(R.id.tv_item_name);
         tv_reviewCharacterCount = findViewById(R.id.tv_review_character_count);
         et_reviewText = findViewById(R.id.et_review_text);
-        rv_uploadImage = findViewById(R.id.rv_reviews);
+        rv_uploadImage = findViewById(R.id.rv_upload_image);
         cb_recommend = findViewById(R.id.cb_recommend);
         btn_submitReview = findViewById(R.id.btn_submit_review);
 
         bitmapList = new ArrayList<>();
+        imageAdapter = new ReviewImageAdapter(getApplicationContext(), bitmapList);
         Activity activity = this;
+        rv_uploadImage.setAdapter(imageAdapter);
+        rv_uploadImage.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
 
         uploadImageBuilder = new AlertDialog.Builder(this)
                 .setTitle("Upload Image")
@@ -155,10 +161,23 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == RequestCode.USE_CAMERA) {
-            //TODO camera action
-        } else if (requestCode == RequestCode.READ_EXTERNAL_STORAGE) {
-            //TODO read external storage action
+        Bitmap bitmap = null;
+        if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
+            if (resultCode == RESULT_OK) {
+                bitmap = (Bitmap) data.getExtras().get("data");
+                bitmapList.add(bitmap);
+                imageAdapter.notifyDataSetChanged();
+            }
+        } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
+            if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
+                try {
+                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    bitmapList.add(bitmap);
+                    imageAdapter.notifyDataSetChanged();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
