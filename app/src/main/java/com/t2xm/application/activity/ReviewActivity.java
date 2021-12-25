@@ -1,7 +1,7 @@
 package com.t2xm.application.activity;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,14 +13,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.JsonUtil;
+import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -42,6 +43,9 @@ public class ReviewActivity extends AppCompatActivity {
     private Item item;
     private List<Bitmap> bitmapList;
 
+    private AlertDialog.Builder uploadImageBuilder;
+    private String[] uploadImageItems = {"Select from gallery", "Take photo", "Cancel"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,33 @@ public class ReviewActivity extends AppCompatActivity {
         btn_submitReview = findViewById(R.id.btn_submit_review);
 
         bitmapList = new ArrayList<>();
+        Activity activity = this;
+
+        uploadImageBuilder = new AlertDialog.Builder(this)
+                .setTitle("Upload Image")
+                .setItems(uploadImageItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                if(PermissionUtil.checkReadExternalStoragePermission(getApplicationContext())) {
+                                    //TODO grant read external storage
+                                    PermissionUtil.grantCameraPermission(activity);
+                                }
+                                //TODO access gallery
+                                break;
+                            case 1:
+                                if(PermissionUtil.checkCameraPermission(getApplicationContext())) {
+                                    PermissionUtil.grantCameraPermission(activity);
+                                }
+                                //TODO access camera
+                                break;
+                            default:
+                                dialogInterface.dismiss();
+                                break;
+                        }
+                    }
+                });
 
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
@@ -99,7 +130,7 @@ public class ReviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO upload image
+                uploadImageBuilder.create().show();
             }
         });
 
