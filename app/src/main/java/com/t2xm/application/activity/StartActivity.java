@@ -25,7 +25,6 @@ public class StartActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //TODO change activity to start to Login Activity
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
             }
         }, DELAY_TIME);

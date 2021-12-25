@@ -44,7 +44,6 @@ public class DetailsActivity extends AppCompatActivity {
     private View.OnClickListener viewMapLocationListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            //TODO set up location
             Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
             intent.putExtra("longitude", item.longitude);
             intent.putExtra("latitude", item.latitude);

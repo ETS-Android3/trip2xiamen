@@ -38,15 +38,19 @@ public class ChangeEmailActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //TODO test
                 if (currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
-                    //TODO check whether new email already exist
-                    boolean result = false;
-                    if (validateEmail()) {
-                        result = UserDao.editUserEmailByUsername(username, newEmail);
+                    if(UserDao.checkEmailExistence(newEmail)) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "New email already exist, please try other email");
                     }
-                    if (result == true) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "Your email has been changed");
-                        onBackPressed();
-                        finish();
+                    else {
+                        boolean result = false;
+                        if (validateEmail()) {
+                            result = UserDao.editUserEmailByUsername(username, newEmail);
+                        }
+                        if (result == true) {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Your email has been changed");
+                            onBackPressed();
+                            finish();
+                        }
                     }
                 }
             }

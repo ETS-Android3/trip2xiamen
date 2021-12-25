@@ -2,6 +2,7 @@ package com.t2xm.application.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +24,7 @@ import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.JsonUtil;
 import com.t2xm.utils.PermissionUtil;
+import com.t2xm.utils.RequestCode;
 import com.t2xm.utils.ToastUtil;
 
 import java.util.ArrayList;
@@ -70,8 +73,7 @@ public class ReviewActivity extends AppCompatActivity {
                         switch (i) {
                             case 0:
                                 if(PermissionUtil.checkReadExternalStoragePermission(getApplicationContext())) {
-                                    //TODO grant read external storage
-                                    PermissionUtil.grantCameraPermission(activity);
+                                    PermissionUtil.grantReadExternalStoragePermission(activity);
                                 }
                                 //TODO access gallery
                                 break;
@@ -140,5 +142,16 @@ public class ReviewActivity extends AppCompatActivity {
                 //TODO submit review
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RequestCode.CAMERA) {
+            //TODO camera action
+        } else if(requestCode == RequestCode.READ_EXTERNAL_STORAGE) {
+            //TODO read external storage action
+        }
     }
 }

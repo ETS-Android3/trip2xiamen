@@ -123,7 +123,6 @@ public class AttractionFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
         else {
-            //TODO display no items message
             recyclerView.setVisibility(View.GONE);
             tv_noItemsAvailable.setVisibility(View.VISIBLE);
         }

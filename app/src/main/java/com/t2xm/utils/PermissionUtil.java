@@ -13,19 +13,26 @@ public class PermissionUtil {
     }
 
     public static boolean checkCameraPermission(Context context) {
-        return checkPermission(context, Manifest.permission.CAMERA);
+        return checkPermission(context, PermissionString.CAMERA);
     }
 
     public static boolean checkReadExternalStoragePermission(Context context){
-        return checkPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+        return checkPermission(context, PermissionString.READ_EXTERNAL_STORAGE);
     }
 
     public static boolean checkWriteExternalStoragePermission(Context context){
-        return checkPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        return checkPermission(context, PermissionString.WRITE_EXTERNAL_STORAGE);
     }
 
     public static void grantCameraPermission(Activity activity) {
-        //TODO add request code to static class
-        ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 0);
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.CAMERA);
+    }
+
+    public static void grantReadExternalStoragePermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.READ_EXTERNAL_STORAGE}, RequestCode.READ_EXTERNAL_STORAGE);
+    }
+
+    public static void grantWriteExternalStoragePermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.WRITE_EXTERNAL_STORAGE}, RequestCode.WRITE_EXTERNAL_STORAGE);
     }
 }
