@@ -103,6 +103,12 @@
 						android:textStyle="bold"
 						android:text="Upload Image" />
 				
+				<Button
+						android:id="@+id/btn_upload_image"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="Upload" />
+				
 				<!--				TODO upload image	-->
 				<androidx.recyclerview.widget.RecyclerView
 						android:id="@+id/rv_upload_image"

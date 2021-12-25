@@ -1,5 +1,8 @@
 package com.t2xm.application.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
@@ -19,6 +23,7 @@ import com.t2xm.entity.Item;
 import com.t2xm.utils.JsonUtil;
 import com.t2xm.utils.ToastUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity {
@@ -35,6 +40,7 @@ public class ReviewActivity extends AppCompatActivity {
     private Button btn_submitReview;
 
     private Item item;
+    private List<Bitmap> bitmapList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,8 @@ public class ReviewActivity extends AppCompatActivity {
         rv_uploadImage = findViewById(R.id.rv_reviews);
         cb_recommend = findViewById(R.id.cb_recommend);
         btn_submitReview = findViewById(R.id.btn_submit_review);
+
+        bitmapList = new ArrayList<>();
 
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
@@ -88,7 +96,12 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
-        //TODO upload image
+        findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO upload image
+            }
+        });
 
         btn_submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
