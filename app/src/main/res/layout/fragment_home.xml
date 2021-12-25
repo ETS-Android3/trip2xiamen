@@ -60,7 +60,6 @@
 				<TextView
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:background="@color/primary_light_color"
 						android:lineHeight="30dp"
 						android:text="@string/xiamen_introduction"
 						android:justificationMode="inter_word"
@@ -71,9 +70,17 @@
 				<TextView
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginVertical="@dimen/margin_medium"
+						android:layout_marginTop="@dimen/margin_medium"
 						android:textSize="@dimen/font_large"
 						android:text="Why visit Xiamen?"
+						android:textStyle="bold" />
+				
+				<TextView
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:layout_marginBottom="@dimen/margin_medium"
+						android:textSize="@dimen/font_small"
+						android:text="(Click to read more)"
 						android:textStyle="bold" />
 				
 				<LinearLayout
