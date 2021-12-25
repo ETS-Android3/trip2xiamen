@@ -23,9 +23,13 @@ import java.util.List;
 
 public class AttractionFragment extends Fragment {
 
-    private AlertDialog.Builder builder;
-    private String[] filter = {"A-Z", "Z-A", "High to Low Rating", "Low to High Rating"};
-    private Integer selected = 0;
+    private AlertDialog.Builder filterByRatingBuilder;
+    private String[] filterByRating = {"A-Z", "Z-A", "High to Low Rating", "Low to High Rating"};
+    private Integer selectedRating = 0;
+
+    private AlertDialog.Builder filterByCategoryBuilder;
+    private String[] filterByCategory = {"All", "To visit", "To eat", "To stay"};
+    private Integer selectedCategory = 0;
 
     @Nullable
     @Override
@@ -44,22 +48,53 @@ public class AttractionFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        builder = new AlertDialog.Builder(view.getContext());
-        builder.setTitle("Filter items by rating");
+        filterByCategoryBuilder = new AlertDialog.Builder(view.getContext());
+        filterByCategoryBuilder.setTitle("Filter items by category");
+
+        view.findViewById(R.id.btn_filter_by_category).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                filterByCategoryBuilder.setSingleChoiceItems(filterByCategory, 0, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        selectedCategory = i;
+                    }
+                });
+                filterByCategoryBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (selectedCategory) {
+                            //TODO get new item list
+                            case 0:
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+                });
+                filterByCategoryBuilder.setNegativeButton("Cancel", null);
+                filterByCategoryBuilder.create().show();
+            }
+        });
 
         view.findViewById(R.id.btn_filter_by_rating).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                builder.setSingleChoiceItems(filter, 0, new DialogInterface.OnClickListener() {
+                filterByRatingBuilder.setSingleChoiceItems(filterByRating, 0, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        selected = i;
+                        selectedRating = i;
                     }
                 });
-                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                filterByRatingBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (selected) {
+                        switch (selectedRating) {
                             case 0:
                                 itemList.sort(ItemComparator.alphabetAsc);
                                 break;
@@ -76,8 +111,8 @@ public class AttractionFragment extends Fragment {
                         adapter.notifyDataSetChanged();
                     }
                 });
-                builder.setNegativeButton("Cancel", null);
-                builder.create().show();
+                filterByRatingBuilder.setNegativeButton("Cancel", null);
+                filterByRatingBuilder.create().show();
             }
         });
     }
