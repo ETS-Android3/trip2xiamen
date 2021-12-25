@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,11 +26,13 @@ public class AttractionFragment extends Fragment {
 
     private AlertDialog.Builder filterByRatingBuilder;
     private String[] filterByRating = {"A-Z", "Z-A", "High to Low Rating", "Low to High Rating"};
-    private Integer selectedRating = 0;
 
     private AlertDialog.Builder filterByCategoryBuilder;
     private String[] filterByCategory = {"All", "To visit", "To eat", "To stay"};
-    private Integer selectedCategory = 0;
+
+    private ListItemAdapter adapter;
+    private RecyclerView recyclerView;
+    private TextView tv_noItemsAvailable;
 
     private List<Item> itemList;
 
@@ -45,8 +48,10 @@ public class AttractionFragment extends Fragment {
 
         itemList = ItemDao.getItemListByCategory(1);
         itemList.sort(ItemComparator.alphabetAsc);
-        ListItemAdapter adapter = new ListItemAdapter(getContext(), itemList);
-        RecyclerView recyclerView = view.findViewById(R.id.rv_attractions_in_xiamen);
+
+        adapter = new ListItemAdapter(getContext(), itemList);
+        tv_noItemsAvailable = view.findViewById(R.id.tv_no_items_available);
+        recyclerView = view.findViewById(R.id.rv_attractions_in_xiamen);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
@@ -59,7 +64,7 @@ public class AttractionFragment extends Fragment {
                 filterByCategoryBuilder.setItems(filterByCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                            switch (selectedCategory) {
+                            switch (i) {
                                 case 1:
                                     itemList = ItemDao.getItemListByCategory(1);
                                     break;
@@ -72,12 +77,7 @@ public class AttractionFragment extends Fragment {
                                 default:
                                     itemList = ItemDao.getAllItemList();
                             }
-                            if(itemList != null) {
-                                adapter.notifyDataSetChanged();
-                            }
-                            else {
-                                //TODO display no items message
-                            }
+                            updateRecyclerView();
                     }
                 });
                 filterByCategoryBuilder.setNegativeButton("Cancel", null);
@@ -88,16 +88,10 @@ public class AttractionFragment extends Fragment {
         view.findViewById(R.id.btn_filter_by_rating).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                filterByRatingBuilder.setSingleChoiceItems(filterByRating, 0, new DialogInterface.OnClickListener() {
+                filterByRatingBuilder.setItems(filterByRating, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        selectedRating = i;
-                    }
-                });
-                filterByRatingBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (selectedRating) {
+                        switch (i) {
                             case 0:
                                 itemList.sort(ItemComparator.alphabetAsc);
                                 break;
@@ -111,12 +105,25 @@ public class AttractionFragment extends Fragment {
                                 itemList.sort(ItemComparator.ratingAsc.reversed());
                                 break;
                         }
-                        adapter.notifyDataSetChanged();
+                        updateRecyclerView();
                     }
                 });
                 filterByRatingBuilder.setNegativeButton("Cancel", null);
                 filterByRatingBuilder.create().show();
             }
         });
+    }
+
+    private void updateRecyclerView() {
+        if(itemList != null) {
+            recyclerView.setVisibility(View.VISIBLE);
+            tv_noItemsAvailable.setVisibility(View.GONE);
+            adapter.notifyDataSetChanged();
+        }
+        else {
+            //TODO display no items message
+            recyclerView.setVisibility(View.GONE);
+            tv_noItemsAvailable.setVisibility(View.VISIBLE);
+        }
     }
 }
