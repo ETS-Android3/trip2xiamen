@@ -25,7 +25,6 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
     private Context context;
     private List<Item> itemList;
 
-
     public TopPlacesAdapter(Context context, List<Item> itemList) {
         this.context = context;
         this.itemList = itemList;

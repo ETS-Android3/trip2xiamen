@@ -14,6 +14,8 @@ import com.t2xm.utils.ValidationUtil;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
+    private String username;
+
     private EditText et_currentPassword;
     private EditText et_newPassword;
     private EditText et_confirmPassword;
@@ -27,15 +29,36 @@ public class ChangePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        String username = SharedPreferenceUtil.getUsername(getApplicationContext());
+        username = SharedPreferenceUtil.getUsername(getApplicationContext());
 
+        setupActivityComponents();
+        setupActivityListeners();
+    }
+
+    private boolean validatePassword() {
+        if(ValidationUtil.validatePassword(newPassword)) {
+            return newPassword.equals(confirmPassword);
+        }
+        return false;
+    }
+
+    private void updateInputFields() {
+        currentPassword = String.valueOf(et_currentPassword.getText());
+        newPassword = String.valueOf(et_newPassword.getText());
+        confirmPassword = String.valueOf(et_confirmPassword.getText());
+    }
+
+    private void setupActivityComponents() {
         et_currentPassword = findViewById(R.id.et_current_password);
         et_newPassword = findViewById(R.id.et_new_password);
         et_confirmPassword = findViewById(R.id.et_new_password);
+    }
 
+    private void setupActivityListeners() {
         findViewById(R.id.btn_confirm_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                updateInputFields();
                 //TODO test
                 if(currentPassword.equals(UserDao.getUserPasswordByUsername(username))) {
                     boolean result = false;
@@ -50,18 +73,5 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private boolean validatePassword() {
-        if(ValidationUtil.validatePassword(newPassword)) {
-            return newPassword.equals(confirmPassword);
-        }
-        return false;
-    }
-
-    private void updateInputFields() {
-        currentPassword = String.valueOf(et_currentPassword.getText());
-        newPassword = String.valueOf(et_newPassword.getText());
-        confirmPassword = String.valueOf(et_confirmPassword.getText());
     }
 }

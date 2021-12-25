@@ -72,16 +72,10 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        iv_itemImage = findViewById(R.id.iv_item_image);
-        tv_itemName = findViewById(R.id.tv_item_name);
-        tv_itemDescription = findViewById(R.id.tv_item_description);
-        btn_location = findViewById(R.id.btn_location);
-        btn_writeReview = findViewById(R.id.btn_write_review);
-        btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);
-        rv_reviews = findViewById(R.id.rv_reviews);
-        ll_noReviewsContainer = findViewById(R.id.ll_no_reviews_container);
-        btn_writeReview2 = findViewById(R.id.btn_write_review_2);
+        setupActivityComponents();
+        setupOnClickListeners();
 
+        //get itemId from intent
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
             //TODO display error
@@ -89,6 +83,7 @@ public class DetailsActivity extends AppCompatActivity {
             return;
         }
 
+        //get item
         item = ItemDao.getItemByItemId(itemId);
         if (item == null) {
             //TODO display error if no item found
@@ -103,7 +98,6 @@ public class DetailsActivity extends AppCompatActivity {
         item_reviewList = ReviewDao.getReviewListByItemId(itemId);
 
         updateItemInformation();
-        setupOnClickListeners();
     }
 
     private void updateItemInformation() {
@@ -129,5 +123,17 @@ public class DetailsActivity extends AppCompatActivity {
         btn_writeReview.setOnClickListener(writeReviewListener);
         btn_addToFavourite.setOnClickListener(addToFavouriteListener);
         btn_writeReview2.setOnClickListener(writeReviewListener);
+    }
+
+    private void setupActivityComponents() {
+        iv_itemImage = findViewById(R.id.iv_item_image);
+        tv_itemName = findViewById(R.id.tv_item_name);
+        tv_itemDescription = findViewById(R.id.tv_item_description);
+        btn_location = findViewById(R.id.btn_location);
+        btn_writeReview = findViewById(R.id.btn_write_review);
+        btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);
+        rv_reviews = findViewById(R.id.rv_reviews);
+        ll_noReviewsContainer = findViewById(R.id.ll_no_reviews_container);
+        btn_writeReview2 = findViewById(R.id.btn_write_review_2);
     }
 }

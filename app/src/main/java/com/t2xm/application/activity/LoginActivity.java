@@ -23,25 +23,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        et_username = findViewById(R.id.et_username);
-        et_password = findViewById(R.id.et_password);
-
-        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO login function
-                //validate input
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
-            }
-        });
-
-        findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO direct to signup page
-                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
-            }
-        });
+        setupActivityComponents();
+        setupActivityListeners();
     }
 
     private boolean validateLoginInput() {
@@ -58,5 +41,29 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUsernameAndPassword() {
         username = String.valueOf(et_username.getText());
         password = String.valueOf(et_password.getText());
+    }
+
+    private void setupActivityComponents() {
+        et_username = findViewById(R.id.et_username);
+        et_password = findViewById(R.id.et_password);
+    }
+
+    private void setupActivityListeners() {
+        findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO login function
+                //TODO validate input
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO direct to signup page
+                startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+            }
+        });
     }
 }

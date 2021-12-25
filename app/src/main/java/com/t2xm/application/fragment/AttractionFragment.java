@@ -46,6 +46,23 @@ public class AttractionFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setupFragmentComponents(view);
+        setupFragmentListeners(view);
+    }
+
+    private void updateRecyclerView() {
+        if(itemList != null) {
+            recyclerView.setVisibility(View.VISIBLE);
+            tv_noItemsAvailable.setVisibility(View.GONE);
+            adapter.notifyDataSetChanged();
+        }
+        else {
+            recyclerView.setVisibility(View.GONE);
+            tv_noItemsAvailable.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void setupFragmentComponents(View view) {
         itemList = ItemDao.getItemListByCategory(1);
         itemList.sort(ItemComparator.alphabetAsc);
 
@@ -59,27 +76,29 @@ public class AttractionFragment extends Fragment {
         filterByCategoryBuilder.setTitle("Filter items by category");
         filterByRatingBuilder = new AlertDialog.Builder(view.getContext());
         filterByRatingBuilder.setTitle("Filter items by category");
+    }
 
+    private void setupFragmentListeners(View view) {
         view.findViewById(R.id.btn_filter_by_category).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 filterByCategoryBuilder.setItems(filterByCategory, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                            switch (i) {
-                                case 1:
-                                    itemList = ItemDao.getItemListByCategory(1);
-                                    break;
-                                case 2:
-                                    itemList = ItemDao.getItemListByCategory(2);
-                                    break;
-                                case 3:
-                                    itemList = ItemDao.getItemListByCategory(3);
-                                    break;
-                                default:
-                                    itemList = ItemDao.getAllItemList();
-                            }
-                            updateRecyclerView();
+                        switch (i) {
+                            case 1:
+                                itemList = ItemDao.getItemListByCategory(1);
+                                break;
+                            case 2:
+                                itemList = ItemDao.getItemListByCategory(2);
+                                break;
+                            case 3:
+                                itemList = ItemDao.getItemListByCategory(3);
+                                break;
+                            default:
+                                itemList = ItemDao.getAllItemList();
+                        }
+                        updateRecyclerView();
                     }
                 });
                 filterByCategoryBuilder.setNegativeButton("Cancel", null);
@@ -114,17 +133,5 @@ public class AttractionFragment extends Fragment {
                 filterByRatingBuilder.create().show();
             }
         });
-    }
-
-    private void updateRecyclerView() {
-        if(itemList != null) {
-            recyclerView.setVisibility(View.VISIBLE);
-            tv_noItemsAvailable.setVisibility(View.GONE);
-            adapter.notifyDataSetChanged();
-        }
-        else {
-            recyclerView.setVisibility(View.GONE);
-            tv_noItemsAvailable.setVisibility(View.VISIBLE);
-        }
     }
 }

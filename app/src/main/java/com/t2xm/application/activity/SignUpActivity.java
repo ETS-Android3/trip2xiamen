@@ -30,33 +30,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        et_username = findViewById(R.id.et_username);
-        et_email = findViewById(R.id.et_email);
-        et_password = findViewById(R.id.et_password);
-        et_confirmPassword = findViewById(R.id.et_confirmPassword);
-
-        findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO sign up
-                updateEditTextValues();
-                if(validateSignUpInput() == true) {
-                    if(password.equals(confirmPassword) == false) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "please enter same password");
-                    }
-                    else {
-                        User user = new User(null, username, email, password, null);
-                        boolean result = UserDao.insertUser(user) ;
-                        if(result == true) {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up success");
-                        }
-                        else {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up failed");
-                        }
-                    }
-                }
-            }
-        });
+        setupActivityComponents();
+        setupActivityListeners();
     }
 
     private boolean validateSignUpInput() {
@@ -93,5 +68,37 @@ public class SignUpActivity extends AppCompatActivity {
         email = String.valueOf(et_email.getText());
         password = String.valueOf(et_password.getText());
         confirmPassword = String.valueOf(et_confirmPassword.getText());
+    }
+
+    private void setupActivityComponents() {
+        et_username = findViewById(R.id.et_username);
+        et_email = findViewById(R.id.et_email);
+        et_password = findViewById(R.id.et_password);
+        et_confirmPassword = findViewById(R.id.et_confirmPassword);
+    }
+
+    private void setupActivityListeners() {
+        findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO sign up
+                updateEditTextValues();
+                if(validateSignUpInput() == true) {
+                    if(password.equals(confirmPassword) == false) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "please enter same password");
+                    }
+                    else {
+                        User user = new User(null, username, email, password, null);
+                        boolean result = UserDao.insertUser(user) ;
+                        if(result == true) {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up success");
+                        }
+                        else {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up failed");
+                        }
+                    }
+                }
+            }
+        });
     }
 }

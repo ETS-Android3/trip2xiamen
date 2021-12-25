@@ -59,102 +59,9 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
-
-        iv_itemImage = findViewById(R.id.iv_item_image);
-        tv_itemName = findViewById(R.id.tv_item_name);
-        tv_reviewCharacterCount = findViewById(R.id.tv_review_character_count);
-        et_reviewText = findViewById(R.id.et_review_text);
-        rv_uploadImage = findViewById(R.id.rv_upload_image);
-        cb_recommend = findViewById(R.id.cb_recommend);
-        btn_submitReview = findViewById(R.id.btn_submit_review);
-
-        bitmapList = new ArrayList<>();
-        imageAdapter = new ReviewImageAdapter(getApplicationContext(), bitmapList);
-        Activity activity = this;
-        rv_uploadImage.setAdapter(imageAdapter);
-        rv_uploadImage.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
-
-        uploadImageBuilder = new AlertDialog.Builder(this)
-                .setTitle("Upload Image")
-                .setItems(uploadImageItems, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        switch (i) {
-                            case 0:
-                                if (!PermissionUtil.readExternalStoragePermissionGranted(getApplicationContext())) {
-                                    PermissionUtil.grantReadExternalStoragePermission(activity);
-                                }
-                                else {
-                                    startGalleryIntent();
-                                }
-                                break;
-                            case 1:
-                                if (!PermissionUtil.cameraPermissionGranted(getApplicationContext())) {
-                                    PermissionUtil.grantCameraPermission(activity);
-                                }
-                                else {
-                                    startCameraIntent();
-                                }
-                                break;
-                            default:
-                                dialogInterface.dismiss();
-                                break;
-                        }
-                    }
-                });
-
-        itemId = getIntent().getIntExtra("itemId", 0);
-        if (itemId <= 0) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
-            onBackPressed();
-            return;
-        }
-
-        //set item attributes
-        item = ItemDao.getItemByItemId(itemId);
-        if (item == null) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
-            onBackPressed();
-            return;
-        }
-        try {
-            String img = String.valueOf(JsonUtil.mapJsonToObject(item.image, List.class).get(0));
-            int resource = getResources().getIdentifier(img, "drawable", getPackageName());
-            iv_itemImage.setImageResource(resource);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        tv_itemName.setText(item.itemName);
-
-        //set listeners
-        et_reviewText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                tv_reviewCharacterCount.setText(et_reviewText.getText().length() + "/" + MAX_REVIEW_LENGTH);
-            }
-        });
-
-        findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                uploadImageBuilder.create().show();
-            }
-        });
-
-        btn_submitReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO submit review
-            }
-        });
+        setupActivityComponents();
+        setupActivityListeners();
+        setupItemAttributes();
     }
 
     @Override
@@ -204,5 +111,106 @@ public class ReviewActivity extends AppCompatActivity {
     private void startCameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, RequestCode.SNAP_PHOTO_FROM_CAMERA);
+    }
+
+    private void setupItemAttributes() {
+        //get itemId from intent
+        itemId = getIntent().getIntExtra("itemId", 0);
+        if (itemId <= 0) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
+            onBackPressed();
+            return;
+        }
+
+        //set item attributes
+        item = ItemDao.getItemByItemId(itemId);
+        tv_itemName.setText(item.itemName);
+        if (item == null) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
+            onBackPressed();
+            return;
+        }
+        try {
+            //set item image
+            String img = String.valueOf(JsonUtil.mapJsonToObject(item.image, List.class).get(0));
+            int resource = getResources().getIdentifier(img, "drawable", getPackageName());
+            iv_itemImage.setImageResource(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setupActivityComponents() {
+        iv_itemImage = findViewById(R.id.iv_item_image);
+        tv_itemName = findViewById(R.id.tv_item_name);
+        tv_reviewCharacterCount = findViewById(R.id.tv_review_character_count);
+        et_reviewText = findViewById(R.id.et_review_text);
+        rv_uploadImage = findViewById(R.id.rv_upload_image);
+        cb_recommend = findViewById(R.id.cb_recommend);
+        btn_submitReview = findViewById(R.id.btn_submit_review);
+
+        bitmapList = new ArrayList<>();
+        imageAdapter = new ReviewImageAdapter(getApplicationContext(), bitmapList);
+        Activity activity = this;
+        rv_uploadImage.setAdapter(imageAdapter);
+        rv_uploadImage.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        uploadImageBuilder = new AlertDialog.Builder(this)
+                .setTitle("Upload Image")
+                .setItems(uploadImageItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        switch (i) {
+                            case 0:
+                                if (!PermissionUtil.readExternalStoragePermissionGranted(getApplicationContext())) {
+                                    PermissionUtil.grantReadExternalStoragePermission(activity);
+                                } else {
+                                    startGalleryIntent();
+                                }
+                                break;
+                            case 1:
+                                if (!PermissionUtil.cameraPermissionGranted(getApplicationContext())) {
+                                    PermissionUtil.grantCameraPermission(activity);
+                                } else {
+                                    startCameraIntent();
+                                }
+                                break;
+                            default:
+                                dialogInterface.dismiss();
+                                break;
+                        }
+                    }
+                });
+    }
+
+    private void setupActivityListeners() {
+        et_reviewText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                tv_reviewCharacterCount.setText(et_reviewText.getText().length() + "/" + MAX_REVIEW_LENGTH);
+            }
+        });
+
+        findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                uploadImageBuilder.create().show();
+            }
+        });
+
+        btn_submitReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO submit review
+            }
+        });
     }
 }

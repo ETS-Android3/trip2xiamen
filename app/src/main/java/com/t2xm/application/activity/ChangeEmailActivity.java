@@ -14,6 +14,8 @@ import com.t2xm.utils.ValidationUtil;
 
 public class ChangeEmailActivity extends AppCompatActivity {
 
+    private String username;
+
     private EditText et_currentEmail;
     private EditText et_newEmail;
     private EditText et_confirmEmail;
@@ -27,34 +29,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_email);
 
-        String username = SharedPreferenceUtil.getUsername(getApplicationContext());
+        username = SharedPreferenceUtil.getUsername(getApplicationContext());
 
-        et_currentEmail = findViewById(R.id.et_current_email);
-        et_newEmail = findViewById(R.id.et_new_email);
-        et_confirmEmail = findViewById(R.id.et_confirm_email);
-
-        findViewById(R.id.btn_confirm_change).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //TODO test
-                if (currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
-                    if(UserDao.checkEmailExistence(newEmail)) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "New email already exist, please try other email");
-                    }
-                    else {
-                        boolean result = false;
-                        if (validateEmail()) {
-                            result = UserDao.editUserEmailByUsername(username, newEmail);
-                        }
-                        if (result == true) {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "Your email has been changed");
-                            onBackPressed();
-                            finish();
-                        }
-                    }
-                }
-            }
-        });
+        setupActivityComponents();
+        setupActivityListeners();
     }
 
     private boolean validateEmail() {
@@ -73,5 +51,36 @@ public class ChangeEmailActivity extends AppCompatActivity {
         currentEmail = String.valueOf(et_currentEmail.getText());
         newEmail = String.valueOf(et_newEmail.getText());
         confirmEmail = String.valueOf(et_confirmEmail.getText());
+    }
+
+    private void setupActivityComponents() {
+        et_currentEmail = findViewById(R.id.et_current_email);
+        et_newEmail = findViewById(R.id.et_new_email);
+        et_confirmEmail = findViewById(R.id.et_confirm_email);
+    }
+
+    private void setupActivityListeners() {
+        findViewById(R.id.btn_confirm_change).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO test
+                updateInputFields();
+                if (currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
+                    if (UserDao.checkEmailExistence(newEmail)) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "New email already exist, please try other email");
+                    } else {
+                        boolean result = false;
+                        if (validateEmail()) {
+                            result = UserDao.editUserEmailByUsername(username, newEmail);
+                        }
+                        if (result == true) {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Your email has been changed");
+                            onBackPressed();
+                            finish();
+                        }
+                    }
+                }
+            }
+        });
     }
 }
