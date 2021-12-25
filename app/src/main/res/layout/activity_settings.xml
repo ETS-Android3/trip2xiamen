@@ -43,7 +43,6 @@
 						android:id="@+id/iv_profile_image"
 						android:layout_width="200dp"
 						android:layout_height="200dp"
-						android:src="@drawable/t2xm"
 						android:padding="@dimen/padding_large" />
 				
 				<ImageView

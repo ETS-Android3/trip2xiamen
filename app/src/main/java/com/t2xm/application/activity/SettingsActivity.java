@@ -17,6 +17,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
+import com.t2xm.dao.UserDao;
+import com.t2xm.entity.User;
 import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.values.RequestCode;
@@ -95,6 +97,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         String username = SharedPreferenceUtil.getUsername(getApplicationContext());
         ((TextView) findViewById(R.id.tv_username)).setText(username);
+        User user = UserDao.getUserInfoByUsername(username);
+        if (user.profileImg != null) {
+            iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
+        } else {
+            iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
+            iv_profileImage.setColorFilter(R.color.black);
+        }
 
         iv_profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
