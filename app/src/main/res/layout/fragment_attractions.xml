@@ -63,6 +63,7 @@
 					android:layout_height="match_parent"
 					android:text="Sorry, no items belong\nto this category"
 					android:textSize="@dimen/font_large"
+					android:visibility="gone"
 					android:textAlignment="center"
 					android:lineHeight="35dp"/>
 		</LinearLayout>
