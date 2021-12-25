@@ -57,6 +57,8 @@ public class AttractionFragment extends Fragment {
 
         filterByCategoryBuilder = new AlertDialog.Builder(view.getContext());
         filterByCategoryBuilder.setTitle("Filter items by category");
+        filterByRatingBuilder = new AlertDialog.Builder(view.getContext());
+        filterByRatingBuilder.setTitle("Filter items by category");
 
         view.findViewById(R.id.btn_filter_by_category).setOnClickListener(new View.OnClickListener() {
             @Override
