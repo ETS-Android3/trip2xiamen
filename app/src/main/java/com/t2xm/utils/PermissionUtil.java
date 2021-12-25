@@ -27,7 +27,7 @@ public class PermissionUtil {
     }
 
     public static void grantCameraPermission(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.CAMERA);
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.USE_CAMERA);
     }
 
     public static void grantReadExternalStoragePermission(Activity activity) {

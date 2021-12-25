@@ -3,8 +3,10 @@ package com.t2xm.application.activity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,10 +25,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
-import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.PermissionUtil;
-import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.ToastUtil;
+import com.t2xm.utils.values.RequestCode;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,16 +75,20 @@ public class ReviewActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                if(PermissionUtil.checkReadExternalStoragePermission(getApplicationContext())) {
+                                if (!PermissionUtil.checkReadExternalStoragePermission(getApplicationContext())) {
                                     PermissionUtil.grantReadExternalStoragePermission(activity);
                                 }
-                                //TODO access gallery
+                                else {
+                                    startGalleryIntent();
+                                }
                                 break;
                             case 1:
-                                if(PermissionUtil.checkCameraPermission(getApplicationContext())) {
+                                if (!PermissionUtil.checkCameraPermission(getApplicationContext())) {
                                     PermissionUtil.grantCameraPermission(activity);
                                 }
-                                //TODO access camera
+                                else {
+                                    startCameraIntent();
+                                }
                                 break;
                             default:
                                 dialogInterface.dismiss();
@@ -148,10 +155,35 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RequestCode.CAMERA) {
+        if (requestCode == RequestCode.USE_CAMERA) {
             //TODO camera action
-        } else if(requestCode == RequestCode.READ_EXTERNAL_STORAGE) {
+        } else if (requestCode == RequestCode.READ_EXTERNAL_STORAGE) {
             //TODO read external storage action
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        for (int i = 0; i < grantResults.length; i++) {
+            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                new AlertDialog.Builder(getApplicationContext()).setMessage("Denying some access may affect some functions of this application");
+                return;
+            }
+        }
+        if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
+            startGalleryIntent();
+        }
+    }
+
+    private void startGalleryIntent() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, RequestCode.PICK_IMAGE_FROM_GALLERY);
+    }
+
+    private void startCameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, RequestCode.SNAP_PHOTO_FROM_CAMERA);
     }
 }
