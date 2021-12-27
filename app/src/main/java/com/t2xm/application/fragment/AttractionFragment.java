@@ -63,8 +63,8 @@ public class AttractionFragment extends Fragment {
     }
 
     private void setupFragmentComponents(View view) {
-        itemList = ItemDao.getItemListByCategory(1);
-        itemList.sort(ItemComparator.alphabetAsc);
+        itemList = ItemDao.getAllItemList();
+        itemList.sort(ItemComparator.ratingAsc.reversed());
 
         adapter = new ListItemAdapter(getContext(), itemList);
         tv_noItemsAvailable = view.findViewById(R.id.tv_no_items_available);
