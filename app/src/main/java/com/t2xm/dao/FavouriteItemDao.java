@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.t2xm.entity.FavouriteItem;
 import com.t2xm.entity.Item;
 
 import java.util.ArrayList;
@@ -16,15 +15,16 @@ public class FavouriteItemDao extends Dao {
     public static final String USERID = "userId";
     public static final String ITEMID = "itemId";
 
-    public static boolean insertFavouriteItem(FavouriteItem item) {
+    public static boolean insertFavouriteItem(String username, Integer itemId) {
+        Integer userId = UserDao.getUserIdByUsername(username);
         ContentValues cv = new ContentValues();
-        cv.put(USERID, item.userId);
-        cv.put(ITEMID, item.itemId);
+        cv.put(USERID, userId);
+        cv.put(ITEMID, itemId);
         return database.insert(TABLE, null, cv) > 0;
     }
 
-    public static boolean deleteFavouriteItem(Integer itemId) {
-        return database.delete(TABLE, "itemId=?", new String[]{String.valueOf(itemId)}) > 0;
+    public static boolean deleteFavouriteItem(String username, Integer itemId) {
+        return database.delete(TABLE, "userId=? and itemId=?", new String[]{String.valueOf(UserDao.getUserIdByUsername(username)), String.valueOf(itemId)}) > 0;
     }
 
     @SuppressLint("Range")
@@ -47,5 +47,10 @@ public class FavouriteItemDao extends Dao {
             }
         }
         return itemList;
+    }
+
+    public static boolean getIsInUserFavouriteItem(String username, Integer itemId) {
+        Cursor cursor = database.rawQuery("select itemId favouriteId from favouriteItems t1 left join users t2 on t1.userId=t2.userId where t2.username=? and itemId=?", new String[]{username, String.valueOf(itemId)});
+        return cursor.getCount() > 0;
     }
 }

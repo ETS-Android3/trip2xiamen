@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,18 +15,21 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
+import com.t2xm.dao.FavouriteItemDao;
 import com.t2xm.dao.ItemDao;
 import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
-import com.t2xm.utils.valuesConverter.JsonUtil;
+import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
+import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
 
     private Integer itemId;
+    private String username;
 
     private ImageView iv_itemImage;
     private TextView tv_itemName;
@@ -61,12 +65,23 @@ public class DetailsActivity extends AppCompatActivity {
     };
 
     private View.OnClickListener addToFavouriteListener = new View.OnClickListener() {
+        @SuppressLint("ResourceAsColor")
         @Override
         public void onClick(View view) {
-            //TODO set up add to favourite items
+            if(FavouriteItemDao.getIsInUserFavouriteItem(username, itemId)) {
+                if(FavouriteItemDao.deleteFavouriteItem(username, itemId)) {
+                    btn_addToFavourite.setColorFilter(getColor(R.color.gray));
+                }
+            }
+            else {
+                if(FavouriteItemDao.insertFavouriteItem(username, itemId)) {
+                    btn_addToFavourite.setColorFilter(getColor(R.color.red));
+                }
+            }
         }
     };
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +89,8 @@ public class DetailsActivity extends AppCompatActivity {
 
         setupActivityComponents();
         setupOnClickListeners();
+
+        username = SharedPreferenceUtil.getUsername(getApplicationContext());
 
         //get itemId from intent
         itemId = getIntent().getIntExtra("itemId", 0);
@@ -98,6 +115,14 @@ public class DetailsActivity extends AppCompatActivity {
         item_reviewList = ReviewDao.getReviewListByItemId(itemId);
 
         updateItemInformation();
+
+        //update favourite button
+        if(FavouriteItemDao.getIsInUserFavouriteItem(SharedPreferenceUtil.getUsername(getApplicationContext()), itemId)) {
+            btn_addToFavourite.setColorFilter(getColor(R.color.red));
+        }
+        else {
+            btn_addToFavourite.setColorFilter(getColor(R.color.gray));
+        }
     }
 
     private void updateItemInformation() {
