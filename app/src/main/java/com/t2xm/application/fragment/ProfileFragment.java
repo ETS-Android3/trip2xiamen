@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.t2xm.R;
 import com.t2xm.application.activity.MyFavouriteActivity;
+import com.t2xm.application.activity.MyReviewsActivity;
 import com.t2xm.application.activity.SettingsActivity;
 import com.t2xm.dao.UserDao;
 import com.t2xm.entity.User;
@@ -47,6 +48,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity().getApplicationContext(), MyFavouriteActivity.class));
+            }
+        });
+
+        view.findViewById(R.id.btn_my_reviews).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity().getApplicationContext(), MyReviewsActivity.class));
             }
         });
 

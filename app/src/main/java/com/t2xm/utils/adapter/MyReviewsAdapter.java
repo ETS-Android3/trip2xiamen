@@ -87,7 +87,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return itemList != null ? itemList.size() : 0;
     }
 
     private Item getItemByPosition(int position) {

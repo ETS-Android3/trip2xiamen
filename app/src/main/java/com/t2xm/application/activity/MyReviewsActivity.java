@@ -31,12 +31,14 @@ public class MyReviewsActivity extends AppCompatActivity {
         rv_myReviews = findViewById(R.id.rv_my_reviews);
 
         List<Review> reviewList = ReviewDao.getReviewsByUsername(SharedPreferenceUtil.getUsername(getApplicationContext()));
-        List<Item> itemList = new ArrayList<>();
-        for (int i = 0; i < reviewList.size(); i++) {
-            itemList.add(ItemDao.getItemByItemId(reviewList.get(i).itemId));
+        if (reviewList != null) {
+            List<Item> itemList = new ArrayList<>();
+            for (int i = 0; i < reviewList.size(); i++) {
+                itemList.add(ItemDao.getItemByItemId(reviewList.get(i).itemId));
+            }
+            adapter = new MyReviewsAdapter(getApplicationContext(), reviewList, itemList);
+            rv_myReviews.setAdapter(adapter);
+            rv_myReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         }
-        adapter = new MyReviewsAdapter(getApplicationContext(), reviewList, itemList);
-        rv_myReviews.setAdapter(adapter);
-        rv_myReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     }
 }
