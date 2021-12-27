@@ -50,13 +50,16 @@
 				android:exported="true" />
 		<activity
 				android:name=".application.activity.LoginActivity"
-				android:exported="true" />
+				android:exported="true"
+				android:theme="@style/Theme.Trip2xiamen.NoActionBar"/>
 		<activity
 				android:name=".application.activity.SignUpActivity"
-				android:exported="true" />
+				android:exported="true"
+				android:theme="@style/Theme.Trip2xiamen.NoActionBar"/>
 		<activity
 				android:name=".application.activity.StartActivity"
-				android:exported="true">
+				android:exported="true"
+				android:theme="@style/Theme.Trip2xiamen.NoActionBar">
 			<intent-filter>
 				<category android:name="android.intent.category.LAUNCHER" />
 				
