@@ -29,9 +29,7 @@ public class SharedPreferenceUtil {
     }
 
     public static String getUsername(Context context) {
-        //TODO return username from sharedPreferences
-//        return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString(LOGGED_IN_USERNAME, null);
-        return "testuser";
+        return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).getString(LOGGED_IN_USERNAME, null);
     }
 
     public static void removeUsername(Context context) {

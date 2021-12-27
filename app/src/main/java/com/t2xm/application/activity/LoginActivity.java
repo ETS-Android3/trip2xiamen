@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
+import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity {
@@ -63,10 +64,10 @@ public class LoginActivity extends AppCompatActivity {
                     } else {
                         if (UserDao.validateUserAccount(username, password) == true) {
                             ToastUtil.createAndShowToast(getApplicationContext(), "Login successful");
+                            SharedPreferenceUtil.setUsername(username, getApplicationContext());
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 }
                             }, 1000);
