@@ -11,6 +11,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:src="@drawable/t2xm"
+			android:layout_marginVertical="@dimen/margin_medium"
 			android:layout_marginHorizontal="@dimen/margin_extralarge" />
 	
 	<LinearLayout
@@ -20,109 +21,60 @@
 			android:layout_below="@+id/iv_logo"
 			android:layout_marginHorizontal="@dimen/margin_large">
 		
-		<LinearLayout
+		<com.google.android.material.textfield.TextInputLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:orientation="vertical">
+				android:hint="Username"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				android:layout_marginVertical="@dimen/margin_small">
 			
-			<LinearLayout
+			<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/et_username"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal">
-				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:text="Username"
-						android:textSize="@dimen/font_medium"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="2"
-						android:gravity="center" />
-				
-				<EditText
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:id="@+id/et_username"
-						android:hint="Username"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="1"
-						android:gravity="center" />
-			</LinearLayout>
+					android:layout_height="wrap_content" />
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Email"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				android:layout_marginVertical="@dimen/margin_small">
 			
-			<LinearLayout
+			<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/et_email"
+					android:inputType="textPassword"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal">
-				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:text="Email"
-						android:textSize="@dimen/font_medium"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="2"
-						android:gravity="center" />
-				
-				<EditText
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:id="@+id/et_email"
-						android:hint="Email"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="1"
-						android:gravity="center" />
-			</LinearLayout>
+					android:layout_height="wrap_content" />
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Password"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				android:layout_marginVertical="@dimen/margin_small">
 			
-			<LinearLayout
+			<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/et_password"
+					android:inputType="textPassword"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal">
-				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:text="Password"
-						android:textSize="@dimen/font_medium"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="2"
-						android:gravity="center" />
-				
-				<EditText
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:id="@+id/et_password"
-						android:hint="Password"
-						android:layout_margin="@dimen/margin_small"
-						android:layout_weight="1"
-						android:gravity="center" />
-			</LinearLayout>
+					android:layout_height="wrap_content" />
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:hint="Confirm Password"
+				style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+				android:layout_marginVertical="@dimen/margin_small">
 			
-			<LinearLayout
+			<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/et_confirm_password"
+					android:inputType="textPassword"
 					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal">
-				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:text="Confirm Password"
-						android:textSize="@dimen/font_medium"
-						android:layout_margin="@dimen/margin_small"
-						android:inputType="textPassword"
-						android:layout_weight="2"
-						android:gravity="center" />
-				
-				<EditText
-						android:layout_width="match_parent"
-						android:layout_height="match_parent"
-						android:id="@+id/et_confirmPassword"
-						android:hint="Confirm Password"
-						android:layout_margin="@dimen/margin_small"
-						android:inputType="textPassword"
-						android:layout_weight="1"
-						android:gravity="center" />
-			</LinearLayout>
-		</LinearLayout>
+					android:layout_height="wrap_content" />
+		</com.google.android.material.textfield.TextInputLayout>
 		
 		<Button
 				android:id="@+id/btn_sign_up"

@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
 import com.t2xm.utils.SharedPreferenceUtil;
@@ -16,9 +17,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private String username;
 
-    private EditText et_currentPassword;
-    private EditText et_newPassword;
-    private EditText et_confirmPassword;
+    private TextInputEditText et_currentPassword;
+    private TextInputEditText et_newPassword;
+    private TextInputEditText et_confirmPassword;
 
     private String currentPassword;
     private String newPassword;

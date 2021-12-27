@@ -7,13 +7,14 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
 import com.t2xm.utils.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText et_username;
-    private EditText et_password;
+    private TextInputEditText et_username;
+    private TextInputEditText et_password;
 
     private String username;
     private String password;

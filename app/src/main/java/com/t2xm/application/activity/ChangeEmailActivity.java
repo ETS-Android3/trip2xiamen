@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
 import com.t2xm.utils.SharedPreferenceUtil;
@@ -16,9 +17,9 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
     private String username;
 
-    private EditText et_currentEmail;
-    private EditText et_newEmail;
-    private EditText et_confirmEmail;
+    private TextInputEditText et_currentEmail;
+    private TextInputEditText et_newEmail;
+    private TextInputEditText et_confirmEmail;
 
     private String currentEmail;
     private String newEmail;

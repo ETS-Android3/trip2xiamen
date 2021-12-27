@@ -7,18 +7,21 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
 import com.t2xm.entity.User;
 import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.ValidationUtil;
 
+import org.w3c.dom.Text;
+
 public class SignUpActivity extends AppCompatActivity {
 
-    private EditText et_username;
-    private EditText et_email;
-    private EditText et_password;
-    private EditText et_confirmPassword;
+    private TextInputEditText et_username;
+    private TextInputEditText et_email;
+    private TextInputEditText et_password;
+    private TextInputEditText et_confirmPassword;
 
     private String username;
     private String email;
@@ -74,7 +77,7 @@ public class SignUpActivity extends AppCompatActivity {
         et_username = findViewById(R.id.et_username);
         et_email = findViewById(R.id.et_email);
         et_password = findViewById(R.id.et_password);
-        et_confirmPassword = findViewById(R.id.et_confirmPassword);
+        et_confirmPassword = findViewById(R.id.et_confirm_password);
     }
 
     private void setupActivityListeners() {
