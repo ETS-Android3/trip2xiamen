@@ -57,6 +57,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("itemId", item.itemId);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
