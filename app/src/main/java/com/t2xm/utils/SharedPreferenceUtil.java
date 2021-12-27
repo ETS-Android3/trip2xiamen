@@ -24,7 +24,7 @@ public class SharedPreferenceUtil {
 
     public static boolean hasLoggedIn(Context context) {
         String username = getUsername(context);
-        return username != null || !username.equals("");
+        return !(username == null || username.equals(""));
     }
 
     public static void setUsername(String username, Context context) {
@@ -38,9 +38,8 @@ public class SharedPreferenceUtil {
     }
 
     public static void removeUsername(Context context) {
-        context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).edit().remove(LOGGED_IN_USERNAME);
+        context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).edit().remove(LOGGED_IN_USERNAME).commit();
     }
-
 
     private static android.content.SharedPreferences.Editor getEditor(Context context) {
         return context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE).edit();

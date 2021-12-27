@@ -28,8 +28,23 @@ public class SettingsActivity extends AppCompatActivity {
 
     private ImageView iv_profileImage;
 
-    private DialogInterface.OnClickListener logoutOnClickListener;
-    private DialogInterface.OnClickListener deleteAccountOnClickListener;
+    private DialogInterface.OnClickListener logoutOnClickListener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            //TODO logout
+            SharedPreferenceUtil.removeUsername(getApplicationContext());
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
+    };
+    private DialogInterface.OnClickListener deleteAccountOnClickListener =
+            new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialogInterface, int i) {
+            //TODO delete account
+        }
+    };
+
     private AlertDialog.Builder logoutBuilder;
     private AlertDialog.Builder deleteAccountBuilder;
 
@@ -82,18 +97,7 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-        logoutOnClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO logout
-            }
-        };
-        deleteAccountOnClickListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO delete account
-            }
-        };
+
 
         String username = SharedPreferenceUtil.getUsername(getApplicationContext());
         ((TextView) findViewById(R.id.tv_username)).setText(username);

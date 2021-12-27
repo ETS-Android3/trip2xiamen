@@ -1,10 +1,12 @@
 package com.t2xm.application.activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -86,5 +88,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AppCompatActivity activity = this;
+        new AlertDialog.Builder(activity)
+                .setTitle("Exit the application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //close application
+                        activity.finishAffinity();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .create().show();
     }
 }
