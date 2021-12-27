@@ -21,6 +21,7 @@ import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.SharedPreferenceUtil;
+import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.valuesConverter.NumberFormatUtil;
@@ -98,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
         //get itemId from intent
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
-            //TODO display error
+            ToastUtil.createAndShowToast(getApplicationContext(), "Error: Please try again");
             onBackPressed();
             return;
         }
@@ -106,7 +107,7 @@ public class DetailsActivity extends AppCompatActivity {
         //get item
         item = ItemDao.getItemByItemId(itemId);
         if (item == null) {
-            //TODO display error if no item found
+            ToastUtil.createAndShowToast(getApplicationContext(), "Error: Please try again");
             onBackPressed();
             return;
         }
