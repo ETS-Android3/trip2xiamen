@@ -23,7 +23,9 @@ import com.t2xm.entity.Review;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
 import com.t2xm.utils.valuesConverter.JsonUtil;
+import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -35,6 +37,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv_itemName;
     private TextView tv_itemDescription;
     private ImageButton btn_location;
+    private List<ImageView> iv_starList;
+    private TextView tv_itemRating;
     private Button btn_writeReview;
     private ImageButton btn_addToFavourite;
     private RecyclerView rv_reviews;
@@ -68,13 +72,12 @@ public class DetailsActivity extends AppCompatActivity {
         @SuppressLint("ResourceAsColor")
         @Override
         public void onClick(View view) {
-            if(FavouriteItemDao.getIsInUserFavouriteItem(username, itemId)) {
-                if(FavouriteItemDao.deleteFavouriteItem(username, itemId)) {
+            if (FavouriteItemDao.getIsInUserFavouriteItem(username, itemId)) {
+                if (FavouriteItemDao.deleteFavouriteItem(username, itemId)) {
                     btn_addToFavourite.setColorFilter(getColor(R.color.gray));
                 }
-            }
-            else {
-                if(FavouriteItemDao.insertFavouriteItem(username, itemId)) {
+            } else {
+                if (FavouriteItemDao.insertFavouriteItem(username, itemId)) {
                     btn_addToFavourite.setColorFilter(getColor(R.color.red));
                 }
             }
@@ -117,10 +120,9 @@ public class DetailsActivity extends AppCompatActivity {
         updateItemInformation();
 
         //update favourite button
-        if(FavouriteItemDao.getIsInUserFavouriteItem(SharedPreferenceUtil.getUsername(getApplicationContext()), itemId)) {
+        if (FavouriteItemDao.getIsInUserFavouriteItem(SharedPreferenceUtil.getUsername(getApplicationContext()), itemId)) {
             btn_addToFavourite.setColorFilter(getColor(R.color.red));
-        }
-        else {
+        } else {
             btn_addToFavourite.setColorFilter(getColor(R.color.gray));
         }
     }
@@ -129,6 +131,8 @@ public class DetailsActivity extends AppCompatActivity {
         int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
         iv_itemImage.setImageResource(resource);
         tv_itemName.setText(item.itemName);
+        tv_itemRating.setText(String.valueOf(item.avgRating));
+        updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
 
         if (item_reviewList != null) {
@@ -155,10 +159,35 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemName = findViewById(R.id.tv_item_name);
         tv_itemDescription = findViewById(R.id.tv_item_description);
         btn_location = findViewById(R.id.btn_location);
+        tv_itemRating = findViewById(R.id.tv_item_rating);
         btn_writeReview = findViewById(R.id.btn_write_review);
         btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);
         rv_reviews = findViewById(R.id.rv_reviews);
         ll_noReviewsContainer = findViewById(R.id.ll_no_reviews_container);
         btn_writeReview2 = findViewById(R.id.btn_write_review_2);
+
+        iv_starList = new ArrayList<>();
+        iv_starList.add(findViewById(R.id.iv_star_1));
+        iv_starList.add(findViewById(R.id.iv_star_2));
+        iv_starList.add(findViewById(R.id.iv_star_3));
+        iv_starList.add(findViewById(R.id.iv_star_4));
+        iv_starList.add(findViewById(R.id.iv_star_5));
+    }
+
+    private void updateRatingStars(Double rating) {
+        int index = 0;
+        while (index < 5) {
+            if (rating >= 1) {
+                iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_24);
+                rating -= 1;
+            } else if (rating >= 0.5) {
+                iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_half_24);
+                rating = Math.floor(rating);
+            } else {
+                iv_starList.get(index).setImageResource(R.drawable.ic_baseline_star_border_24);
+                rating = Math.floor(rating);
+            }
+            index++;
+        }
     }
 }
