@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -121,7 +122,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
         public TextView tv_itemRating;
         public TextView tv_itemContent;
         public List<ImageView> iv_starList = new ArrayList<>();
-        public Button btn_delete;
+        public ImageButton btn_delete;
 
         public ViewHolder(View view) {
             super(view);
