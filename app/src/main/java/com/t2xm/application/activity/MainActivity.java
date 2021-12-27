@@ -1,9 +1,11 @@
 package com.t2xm.application.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
@@ -55,5 +57,21 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AppCompatActivity activity = this;
+        new AlertDialog.Builder(activity)
+                .setTitle("Exit the application?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //close application
+                        activity.finishAffinity();
+                    }
+                })
+                .setNegativeButton("No", null)
+                .create().show();
     }
 }
