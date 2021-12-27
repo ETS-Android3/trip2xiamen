@@ -76,10 +76,12 @@ public class DetailsActivity extends AppCompatActivity {
             if (FavouriteItemDao.getIsInUserFavouriteItem(username, itemId)) {
                 if (FavouriteItemDao.deleteFavouriteItem(username, itemId)) {
                     btn_addToFavourite.setColorFilter(getColor(R.color.gray));
+                    ToastUtil.createAndShowToast(getApplicationContext(), item.itemName + " has been removed from your favourite list");
                 }
             } else {
                 if (FavouriteItemDao.insertFavouriteItem(username, itemId)) {
                     btn_addToFavourite.setColorFilter(getColor(R.color.red));
+                    ToastUtil.createAndShowToast(getApplicationContext(), item.itemName + " has been added to your favourite list");
                 }
             }
         }
