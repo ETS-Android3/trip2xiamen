@@ -31,9 +31,11 @@ public class MyFavouriteActivity extends AppCompatActivity {
 
         List<Item> itemList = FavouriteItemDao.getFavouriteItemListByUsername(SharedPreferenceUtil.getUsername(this));
 
-        adapter = new ListItemAdapter(getApplicationContext(), itemList);
-        rv_favouriteItem.setAdapter(adapter);
-        rv_favouriteItem.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        if(itemList != null) {
+            adapter = new ListItemAdapter(getApplicationContext(), itemList);
+            rv_favouriteItem.setAdapter(adapter);
+            rv_favouriteItem.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        }
 
         tl_favourite_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
