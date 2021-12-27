@@ -73,6 +73,11 @@ public class UserDao extends Dao {
         return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
     }
 
+    public static Boolean validateUserAccount(String username, String password) {
+        Cursor cursor = database.rawQuery("select userId from users where username=? and password=?", new String[]{username, password});
+        return cursor.getCount() > 0;
+    }
+
     public static Boolean editUserPasswordByUsername(String username, String password) {
         Integer userId = getUserIdByUsername(username);
         ContentValues cv = new ContentValues();

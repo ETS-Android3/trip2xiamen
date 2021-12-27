@@ -2,13 +2,14 @@ package com.t2xm.application.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.t2xm.R;
+import com.t2xm.dao.UserDao;
 import com.t2xm.utils.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity {
@@ -29,12 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validateLoginInput() {
-        if(username.trim().equals("")) {
+        //TODO prompt error
+        if (username.trim().equals("")) {
             ToastUtil.createAndShowToast(getApplicationContext(), "Please enter your username");
             return false;
         }
-        if(password.trim().equals("")) {
+        if (password.trim().equals("")) {
             ToastUtil.createAndShowToast(getApplicationContext(), "Please enter your password");
+            return false;
         }
         return true;
     }
@@ -53,16 +56,32 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_login).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO login function
-                //TODO validate input
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                updateUsernameAndPassword();
+                if (validateLoginInput() == true) {
+                    if (UserDao.checkUsernameExistence(username) == false) {
+                        ToastUtil.createAndShowToast(getApplicationContext(), "Account with the provided username does not exist");
+                    } else {
+                        if (UserDao.validateUserAccount(username, password) == true) {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Login successful");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                }
+                            }, 1000);
+
+                        } else {
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Wrong username or password");
+                        }
+                    }
+                }
             }
         });
 
         findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO direct to signup page
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
             }
         });
