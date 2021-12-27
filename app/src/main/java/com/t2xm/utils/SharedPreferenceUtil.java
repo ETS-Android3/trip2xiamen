@@ -22,6 +22,11 @@ public class SharedPreferenceUtil {
         editor.commit();
     }
 
+    public static boolean hasLoggedIn(Context context) {
+        String username = getUsername(context);
+        return username != null || !username.equals("");
+    }
+
     public static void setUsername(String username, Context context) {
         SharedPreferences.Editor editor = getEditor(context);
         editor.putString(LOGGED_IN_USERNAME, username);

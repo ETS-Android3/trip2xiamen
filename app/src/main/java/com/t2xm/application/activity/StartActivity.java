@@ -12,7 +12,6 @@ import com.t2xm.entity.Item;
 import com.t2xm.utils.DatabaseOpenHelper;
 import com.t2xm.utils.ItemXmlParser;
 import com.t2xm.utils.SharedPreferenceUtil;
-import com.t2xm.utils.ToastUtil;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -27,10 +26,10 @@ public class StartActivity extends AppCompatActivity {
         //open database
         DatabaseOpenHelper.getDatabase(getApplicationContext());
 
-        if(SharedPreferenceUtil.getIsFirstStartup(this)) {
+        if (SharedPreferenceUtil.getIsFirstStartup(this)) {
             boolean result = false;
             try {
-                for(Item item : ItemXmlParser.parseItems(getResources().getXml(R.xml.items))) {
+                for (Item item : ItemXmlParser.parseItems(getResources().getXml(R.xml.items))) {
                     result = ItemDao.insertItem(item);
                 }
                 SharedPreferenceUtil.setIsFirstStartup(false, this);
@@ -42,7 +41,11 @@ public class StartActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                if (SharedPreferenceUtil.hasLoggedIn(getApplicationContext()) == true) {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                }
             }
         }, DELAY_TIME);
     }
