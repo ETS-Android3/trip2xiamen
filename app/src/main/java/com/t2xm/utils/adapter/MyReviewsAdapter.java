@@ -19,6 +19,7 @@ import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.valuesConverter.JsonUtil;
+import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,10 +58,8 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
             e.printStackTrace();
         }
         viewHolder.tv_itemName.setText(item.itemName);
-        //TODO get item rating
-        Double rand = new Random().nextDouble() * 10 % 5d;
-        viewHolder.tv_itemRating.setText(rand.toString());
-        updateRatingStars(viewHolder, rand);
+        viewHolder.tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
+        updateRatingStars(viewHolder, item.avgRating);
         viewHolder.tv_itemContent.setText(review.reviewText);
 
         viewHolder.ll_container.setOnClickListener(new View.OnClickListener() {

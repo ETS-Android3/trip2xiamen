@@ -32,7 +32,8 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> getReviewListByItemId(Integer itemId) {
-        Cursor cursor = database.rawQuery("select userId, reviewtext from reviews where itemId=?", new String[]{String.valueOf(itemId)});
+        Cursor cursor = database.rawQuery("select userId, reviewtext, rating from reviews where itemId=?",
+                new String[]{String.valueOf(itemId)});
         List<Review> reviewList = null;
         if (cursor.getCount() > 0) {
             reviewList = new ArrayList<>();
@@ -40,6 +41,7 @@ public class ReviewDao extends Dao {
                 Review review = new Review();
                 review.userId = cursor.getInt(cursor.getColumnIndex(USERID));
                 review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
+                review.rating = cursor.getInt(cursor.getColumnIndex(RATING));
                 reviewList.add(review);
             }
         }

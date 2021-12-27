@@ -14,6 +14,7 @@ import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Review;
 import com.t2xm.entity.User;
 import com.t2xm.utils.valuesConverter.ImageUtil;
+import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,8 +46,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         viewHolder.iv_user_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
         viewHolder.tv_username.setText(user.username);
-        //TODO requires rating
-//        updateRatingStars(viewHolder, Double.valueOf(review.rating));
+        updateRatingStars(viewHolder, Double.valueOf(review.rating));
         viewHolder.tv_reviewText.setText(review.reviewText);
     }
 
