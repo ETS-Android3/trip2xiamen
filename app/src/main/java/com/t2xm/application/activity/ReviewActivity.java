@@ -49,8 +49,8 @@ public class ReviewActivity extends AppCompatActivity {
     private Button btn_submitReview;
 
     private Item item;
-    private List<Bitmap> bitmapList;
-    private ReviewImageAdapter imageAdapter;
+    public List<Bitmap> bitmapList;
+    public ReviewImageAdapter imageAdapter;
 
     private AlertDialog.Builder uploadImageBuilder;
     private String[] uploadImageItems = {"Select from gallery", "Take photo", "Cancel"};
@@ -101,6 +101,7 @@ public class ReviewActivity extends AppCompatActivity {
         if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
             startGalleryIntent();
         }
+        //TODO camera
     }
 
     private void startGalleryIntent() {
@@ -131,7 +132,7 @@ public class ReviewActivity extends AppCompatActivity {
             return;
         }
         try {
-            //set item image
+            //TODO set multiple item image
             String img = String.valueOf(JsonUtil.mapJsonToObject(item.image, List.class).get(0));
             int resource = getResources().getIdentifier(img, "drawable", getPackageName());
             iv_itemImage.setImageResource(resource);
@@ -150,7 +151,7 @@ public class ReviewActivity extends AppCompatActivity {
         btn_submitReview = findViewById(R.id.btn_submit_review);
 
         bitmapList = new ArrayList<>();
-        imageAdapter = new ReviewImageAdapter(getApplicationContext(), bitmapList);
+        imageAdapter = new ReviewImageAdapter(ReviewActivity.this, bitmapList);
         Activity activity = this;
         rv_uploadImage.setAdapter(imageAdapter);
         rv_uploadImage.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));

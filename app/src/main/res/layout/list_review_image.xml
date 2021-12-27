@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
-		android:id="@+id/iv_image"
-		android:layout_width="100dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:layout_height="100dp"
-		android:layout_margin="@dimen/margin_small"
-		android:scaleType="centerCrop">
-</ImageView>
+		android:layout_width="100dp"
+		android:layout_margin="@dimen/margin_small">
+	
+	<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+			android:id="@+id/iv_image"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:scaleType="centerCrop" />
+	
+	<ImageView
+			android:id="@+id/iv_delete"
+			android:layout_width="30dp"
+			android:layout_height="30dp"
+			android:scaleType="fitCenter"
+			android:layout_alignParentRight="true"
+			android:layout_alignParentTop="true"
+			android:src="@drawable/ic_baseline_clear_24"
+			android:background="@drawable/ic_baseline_circle_24"
+			android:backgroundTint="@color/red"
+			app:tint="@color/white" />
+</RelativeLayout>
+
