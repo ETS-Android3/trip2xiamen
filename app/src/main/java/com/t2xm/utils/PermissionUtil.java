@@ -27,11 +27,12 @@ public class PermissionUtil {
     }
 
     public static void grantCameraPermission(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.USE_CAMERA);
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.USE_CAMERA_PERMISSION);
     }
 
     public static void grantReadExternalStoragePermission(Activity activity) {
-        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.READ_EXTERNAL_STORAGE}, RequestCode.READ_EXTERNAL_STORAGE);
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.READ_EXTERNAL_STORAGE},
+                RequestCode.READ_EXTERNAL_STORAGE_PERMISSION);
     }
 
     public static void grantWriteExternalStoragePermission(Activity activity) {

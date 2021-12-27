@@ -10,4 +10,8 @@ public class RequestCode {
     //Application action
     public static final Integer PICK_IMAGE_FROM_GALLERY = 31;
     public static final Integer SNAP_PHOTO_FROM_CAMERA = 32;
+
+    //Permission
+    public static final Integer USE_CAMERA_PERMISSION = 101;
+    public static final Integer READ_EXTERNAL_STORAGE_PERMISSION = 102;
 }

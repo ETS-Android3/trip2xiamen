@@ -91,17 +91,15 @@ public class ReviewActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        for (int i = 0; i < grantResults.length; i++) {
-            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(getApplicationContext()).setMessage("Denying some access may affect some functions of this application");
-                return;
+        if (requestCode == RequestCode.USE_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startCameraIntent();
+            }
+        } else if (requestCode == RequestCode.READ_EXTERNAL_STORAGE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startGalleryIntent();
             }
         }
-        if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
-            startGalleryIntent();
-        }
-        //TODO camera
     }
 
     private void startGalleryIntent() {

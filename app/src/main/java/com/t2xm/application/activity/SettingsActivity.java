@@ -39,11 +39,11 @@ public class SettingsActivity extends AppCompatActivity {
     };
     private DialogInterface.OnClickListener deleteAccountOnClickListener =
             new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialogInterface, int i) {
-            //TODO delete account
-        }
-    };
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //TODO delete account
+                }
+            };
 
     private AlertDialog.Builder logoutBuilder;
     private AlertDialog.Builder deleteAccountBuilder;
@@ -96,7 +96,6 @@ public class SettingsActivity extends AppCompatActivity {
                         }
                     }
                 });
-
 
 
         String username = SharedPreferenceUtil.getUsername(getApplicationContext());
@@ -174,15 +173,14 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        for (int i = 0; i < grantResults.length; i++) {
-            if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(getApplicationContext()).setMessage("Denying some access may affect some functions of this application");
-                return;
+        if (requestCode == RequestCode.USE_CAMERA_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startCameraIntent();
             }
-        }
-        if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
-            startGalleryIntent();
+        } else if (requestCode == RequestCode.READ_EXTERNAL_STORAGE_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startGalleryIntent();
+            }
         }
     }
 
