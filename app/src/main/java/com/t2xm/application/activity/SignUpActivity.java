@@ -1,9 +1,11 @@
 package com.t2xm.application.activity;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -38,29 +40,41 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private boolean validateSignUpInput() {
-        //TODo validate input
+        //TODO provide errors
         if(username.equals("")) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide username");
-            return false;
-        }
-        if (ValidationUtil.validateUsername(username) == false) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid username");
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide your username");
             return false;
         }
         if(email.equals("")) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide email");
-            return false;
-        }
-        if(ValidationUtil.validateEmail(email) == false) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid email");
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide your email");
             return false;
         }
         if(password.equals("")) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide password");
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide your password");
+            return false;
+        }
+        if(confirmPassword.equals("")) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please confirm your password");
+            return false;
+        }
+        if (ValidationUtil.validateUsername(username) == false) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide valid username");
+            return false;
+        }
+        if(ValidationUtil.validateEmail(email) == false) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide valid email");
             return false;
         }
         if(ValidationUtil.validatePassword(password) == false) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "please provide valid password");
+            ToastUtil.createAndShowToast(getApplicationContext(), "Please provide valid password");
+            return false;
+        }
+        if(UserDao.checkUsernameExistence(username) == true) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "An account with the provided username already exist, please try other username");
+            return false;
+        }
+        if(UserDao.checkEmailExistence(email) == true) {
+            ToastUtil.createAndShowToast(getApplicationContext(), "An account with the provided email already exist, please try other email");
             return false;
         }
         return true;
@@ -84,20 +98,26 @@ public class SignUpActivity extends AppCompatActivity {
         findViewById(R.id.btn_sign_up).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO sign up
                 updateEditTextValues();
                 if(validateSignUpInput() == true) {
                     if(password.equals(confirmPassword) == false) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "please enter same password");
+                        ToastUtil.createAndShowToast(getApplicationContext(), "The provided password and confirm password do not match");
                     }
                     else {
                         User user = new User(null, username, email, password, null);
                         boolean result = UserDao.insertUser(user) ;
                         if(result == true) {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up success");
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Sign up successful");
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    onBackPressed(); //go back to login page
+                                    finish();
+                                }
+                            }, 1000);
                         }
                         else {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "sign up failed");
+                            ToastUtil.createAndShowToast(getApplicationContext(), "Sign up failed");
                         }
                     }
                 }
