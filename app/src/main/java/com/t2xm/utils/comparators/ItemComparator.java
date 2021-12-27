@@ -19,6 +19,6 @@ class SortItemAlphabeticalAsc implements Comparator<Item> {
 class SortItemRatingAsc implements Comparator<Item> {
     @Override
     public int compare(Item item1, Item item2) {
-        return 0;
+        return item1.avgRating.compareTo(item2.avgRating);
     }
 }

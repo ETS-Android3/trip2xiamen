@@ -120,10 +120,10 @@ public class AttractionFragment extends Fragment {
                                 itemList.sort(ItemComparator.alphabetAsc.reversed());
                                 break;
                             case 2:
-                                itemList.sort(ItemComparator.ratingAsc);
+                                itemList.sort(ItemComparator.ratingAsc.reversed());
                                 break;
                             case 3:
-                                itemList.sort(ItemComparator.ratingAsc.reversed());
+                                itemList.sort(ItemComparator.ratingAsc);
                                 break;
                         }
                         updateRecyclerView();
