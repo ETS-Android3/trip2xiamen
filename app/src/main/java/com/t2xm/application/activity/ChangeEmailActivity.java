@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +15,8 @@ import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.ValidationUtil;
 
 public class ChangeEmailActivity extends AppCompatActivity {
+
+    private Activity activity;
 
     private String username;
 
@@ -30,22 +33,16 @@ public class ChangeEmailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_email);
 
-        username = SharedPreferenceUtil.getUsername(getApplicationContext());
+        activity = this;
+
+        username = SharedPreferenceUtil.getUsername(activity);
 
         setupActivityComponents();
         setupActivityListeners();
     }
 
     private boolean validateEmail() {
-        if (ValidationUtil.validateEmail(newEmail)) {
-            if (newEmail.equals(confirmEmail)) {
-                return true;
-            }
-            ToastUtil.createToast(this, "New email and confirm email do not match");
-            return false;
-        }
-        ToastUtil.createToast(this, "The email does not fulfil email format");
-        return false;
+        return ValidationUtil.validateEmail(newEmail) ;
     }
 
     private void updateInputFields() {
@@ -64,22 +61,32 @@ public class ChangeEmailActivity extends AppCompatActivity {
         findViewById(R.id.btn_confirm_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO test
                 updateInputFields();
-                if (currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
-                    if (UserDao.checkEmailExistence(newEmail)) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "New email already exist, please try other email");
-                    } else {
-                        boolean result = false;
-                        if (validateEmail()) {
-                            result = UserDao.editUserEmailByUsername(username, newEmail);
-                        }
-                        if (result == true) {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "Your email has been changed");
+                if (currentEmail.equals("") || newEmail.equals("") || confirmEmail.equals("")) {
+                    ToastUtil.createAndShowToast(activity, "Please fill up all fields");
+                    return;
+                }
+
+                if (currentEmail.equals(newEmail)) {
+                    ToastUtil.createAndShowToast(activity, "Current email and new email cannot be the same");
+                } else if(UserDao.checkEmailExistence(newEmail)) {
+                    ToastUtil.createAndShowToast(activity, "An account with the provided new email already exist");
+                }
+                else if (validateEmail() == true) {
+                    if(newEmail.equals(confirmEmail)) {
+                        if (UserDao.editUserEmailByUsername(username, newEmail)) {
+                            ToastUtil.createAndShowToast(activity, "Your email has been updated");
                             onBackPressed();
                             finish();
+                        } else {
+                            ToastUtil.createAndShowToast(activity, "Error: Please try again");
                         }
                     }
+                    else {
+                        ToastUtil.createAndShowToast(activity, "New Email and Confirm Email do not match");
+                    }
+                } else {
+                    ToastUtil.createAndShowToast(activity, "Please provide valid email");
                 }
             }
         });
