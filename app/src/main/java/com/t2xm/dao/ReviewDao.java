@@ -27,7 +27,9 @@ public class ReviewDao extends Dao {
         cv.put(REVIEWTEXT, review.reviewText);
         cv.put(RECOMMEND, review.recommend == true ? 1 : 0);
         cv.put(TIME, review.time);
-        return database.insert(TABLE, null, cv);
+        long result = database.insert(TABLE, null, cv);
+        ItemDao.updateItemAvgRating(review.itemId);
+        return result;
     }
 
     public static boolean insertReview(Review review) {
@@ -36,8 +38,7 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> getReviewListByItemId(Integer itemId) {
-        Cursor cursor = database.rawQuery("select userId, reviewtext, rating from reviews where itemId=?",
-                new String[]{String.valueOf(itemId)});
+        Cursor cursor = database.rawQuery("select userId, reviewtext, rating from reviews where itemId=?", new String[]{String.valueOf(itemId)});
         List<Review> reviewList = null;
         if (cursor.getCount() > 0) {
             reviewList = new ArrayList<>();
@@ -71,7 +72,15 @@ public class ReviewDao extends Dao {
     }
 
     public static boolean deleteReviewByReviewId(Integer reviewId) {
-        return database.delete(TABLE, "reviewId=?", new String[]{String.valueOf(reviewId)}) > 0;
+        Integer itemId = getItemIdByReviewId(reviewId);
+        boolean result = database.delete(TABLE, "reviewId=?", new String[]{String.valueOf(reviewId)}) > 0;
+        ItemDao.updateItemAvgRating(itemId);
+        return result;
+    }
+
+    public static Integer getItemIdByReviewId(Integer reviewId) {
+        Cursor cursor = database.rawQuery("select itemId from reviews where reviewId=?", new String[]{String.valueOf(reviewId)});
+        return cursor.moveToNext() ? cursor.getInt(0) : 0;
     }
 
     @SuppressLint("Range")
@@ -89,5 +98,11 @@ public class ReviewDao extends Dao {
             }
         }
         return reviewList;
+    }
+
+    public static Double getAvgRatingByItemId(Integer itemId) {
+        Cursor cursor = database.rawQuery("select avg(rating) from reviews where itemId=?",
+                new String[]{String.valueOf(itemId)});
+        return cursor.moveToNext() ? cursor.getDouble(0) : 0d;
     }
 }

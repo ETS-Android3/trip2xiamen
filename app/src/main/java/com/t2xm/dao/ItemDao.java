@@ -35,9 +35,10 @@ public class ItemDao extends Dao {
         return insertItemAndGetItemId(item) > 0;
     }
 
-    public static double getItemAvgRating(Integer itemId) {
-        Cursor cursor = database.rawQuery("select avg(rating) from items where itemId=?", new String[]{String.valueOf(itemId)});
-        return cursor.moveToNext() ? cursor.getDouble(0) : 0d;
+    public static void updateItemAvgRating(Integer itemId) {
+        ContentValues cv = new ContentValues() ;
+        cv.put(AVGRATING, ReviewDao.getAvgRatingByItemId(itemId)) ;
+        database.update(TABLE, cv, "itemId=?", new String[]{String.valueOf(itemId)});
     }
 
     @SuppressLint("Range")
