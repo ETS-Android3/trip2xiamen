@@ -2,6 +2,8 @@ package com.t2xm.application.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,6 +26,7 @@ public class MyReviewsActivity extends AppCompatActivity {
 
     private MyReviewsAdapter adapter;
     private RecyclerView rv_myReviews;
+    private RelativeLayout rl_noReviews;
 
     private List<Review> reviewList;
     private List<Item> itemList;
@@ -37,12 +40,15 @@ public class MyReviewsActivity extends AppCompatActivity {
         activity = this;
 
         rv_myReviews = findViewById(R.id.rv_my_reviews);
+        rl_noReviews = findViewById(R.id.rl_no_reviews);
         updateRecyclerView();
     }
 
     public void updateRecyclerView() {
         reviewList = ReviewDao.getReviewsByUsername(SharedPreferenceUtil.getUsername(activity));
         if (reviewList != null) {
+            rv_myReviews.setVisibility(View.VISIBLE);
+            rl_noReviews.setVisibility(View.GONE);
             itemList = new ArrayList<>();
             for (int i = 0; i < reviewList.size(); i++) {
                 itemList.add(ItemDao.getItemByItemId(reviewList.get(i).itemId));
@@ -50,9 +56,9 @@ public class MyReviewsActivity extends AppCompatActivity {
             adapter = new MyReviewsAdapter(activity, reviewList, itemList);
             rv_myReviews.setAdapter(adapter);
             rv_myReviews.setLayoutManager(new LinearLayoutManager(activity));
-        }
-        else {
-            //TODO display no items screen
+        } else {
+            rv_myReviews.setVisibility(View.GONE);
+            rl_noReviews.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -10,5 +10,21 @@
 			android:id="@+id/rv_my_reviews"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content" />
+	
+	<RelativeLayout
+			android:visibility="gone"
+			android:id="@+id/rl_no_reviews"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+		
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentBottom="true"
+				android:gravity="center"
+				android:text="You have not write any review"
+				android:textSize="@dimen/font_large" />
+	</RelativeLayout>
 
 </LinearLayout>
