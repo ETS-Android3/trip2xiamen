@@ -52,6 +52,8 @@ public class ReviewActivity extends AppCompatActivity {
 
     private ImageView iv_itemImage;
     private TextView tv_itemName;
+    private Integer rating;
+    private List<ImageView> iv_starList;
     private TextView tv_reviewCharacterCount;
     private EditText et_reviewText;
     private RecyclerView rv_uploadImage;
@@ -161,6 +163,13 @@ public class ReviewActivity extends AppCompatActivity {
         cb_recommend = findViewById(R.id.cb_recommend);
         btn_submitReview = findViewById(R.id.btn_submit_review);
 
+        iv_starList = new ArrayList<>();
+        iv_starList.add(findViewById(R.id.iv_star_1));
+        iv_starList.add(findViewById(R.id.iv_star_2));
+        iv_starList.add(findViewById(R.id.iv_star_3));
+        iv_starList.add(findViewById(R.id.iv_star_4));
+        iv_starList.add(findViewById(R.id.iv_star_5));
+
         bitmapList = new ArrayList<>();
         imageAdapter = new ReviewImageAdapter(ReviewActivity.this, bitmapList);
         Activity activity = this;
@@ -211,6 +220,25 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
+        for(int i = 0; i < 5; i++) {
+            final int final_i = i;
+            ImageView iv_star = iv_starList.get(i);
+            iv_star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rating = final_i + 1;
+                    for(int j = 0; j < 5; j++) {
+                        if(j <= final_i) {
+                            iv_starList.get(j).setImageDrawable(getDrawable(R.drawable.ic_baseline_star_24));
+                        }
+                        else {
+                            iv_starList.get(j).setImageDrawable(getDrawable(R.drawable.ic_baseline_star_border_24));
+                        }
+                    }
+                }
+            });
+        }
+
         findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -226,8 +254,6 @@ public class ReviewActivity extends AppCompatActivity {
                 }
 
                 Integer userId = UserDao.getUserIdByUsername(SharedPreferenceUtil.getUsername(activity));
-                //TODO rating
-                Integer rating = 4;
                 String reviewText = String.valueOf(et_reviewText.getText());
                 Boolean recommend = cb_recommend.isChecked();
 
