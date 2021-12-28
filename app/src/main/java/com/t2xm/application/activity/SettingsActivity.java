@@ -126,7 +126,6 @@ public class SettingsActivity extends AppCompatActivity {
         iv_profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO upload image from gallery or camera
                 uploadProfileImageBuilder.create().show();
             }
         });
@@ -169,7 +168,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 iv_profileImage.setImageBitmap(bitmap);
                 iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                //TODO upload to database
+                UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
@@ -177,7 +176,7 @@ public class SettingsActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     iv_profileImage.setImageBitmap(bitmap);
                     iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    //TODO upload to database
+                    UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

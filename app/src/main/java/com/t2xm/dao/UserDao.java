@@ -69,10 +69,10 @@ public class UserDao extends Dao {
         return user;
     }
 
-    public static Boolean editUserProfileImage(User user) {
+    public static Boolean editUserProfileImage(String username, byte[] profileImg) {
         ContentValues cv = new ContentValues();
-        cv.put(PROFILE_IMG, user.profileImg);
-        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(user.userId)}) > 0;
+        cv.put(PROFILE_IMG, profileImg);
+        return database.update(TABLE, cv, "userId=?", new String[]{String.valueOf(getUserIdByUsername(username))}) > 0;
     }
 
     public static Boolean validateUserAccount(String username, String password) {
