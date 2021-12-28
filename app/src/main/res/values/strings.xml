@@ -18,6 +18,7 @@
 	<string name="error_email_exist">An account with the provided email exist</string>
 	<string name="error_password_not_match">Password and Confirm password do not match</string>
 	<string name="error_same_password">Current password and new password cannot be same</string>
+	<string name="error_wrong_password">Current password is incorrect</string>
 	<string name="no_error"></string>
 	
 	<string name="username_format">Username must consist of 6 to 12 characters</string>
