@@ -16,6 +16,7 @@
 	<string name="error_username_not_exist">The provided username does not exist</string>
 	<string name="error_username_exist">An account with the provided username exist</string>
 	<string name="error_email_exist">An account with the provided email exist</string>
+	<string name="error_password_not_match">Password and Confirm password do not match</string>
 	<string name="no_error"></string>
 	
 	<string name="username_format">Username must consist of 6 to 12 characters</string>
