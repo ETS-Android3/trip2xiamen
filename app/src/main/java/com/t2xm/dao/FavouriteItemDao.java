@@ -54,4 +54,9 @@ public class FavouriteItemDao extends Dao {
         Cursor cursor = database.rawQuery("select itemId favouriteId from favouriteItems t1 left join users t2 on t1.userId=t2.userId where t2.username=? and itemId=?", new String[]{username, String.valueOf(itemId)});
         return cursor.getCount() > 0;
     }
+
+    public static boolean deleteFavouriteItemsByUserId(Integer userId) {
+        long result = database.delete(TABLE, "userId=?", new String[]{String.valueOf(userId)});
+        return result > 0;
+    }
 }

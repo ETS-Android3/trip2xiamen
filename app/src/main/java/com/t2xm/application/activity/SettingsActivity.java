@@ -17,6 +17,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
+import com.t2xm.dao.FavouriteItemDao;
 import com.t2xm.dao.UserDao;
 import com.t2xm.entity.User;
 import com.t2xm.utils.PermissionUtil;
@@ -42,10 +43,13 @@ public class SettingsActivity extends AppCompatActivity {
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    if(UserDao.deleteUserByUsername(SharedPreferenceUtil.getUsername(activity)) == true) {
+                    String username = SharedPreferenceUtil.getUsername(activity) ;
+                    Integer userId = UserDao.getUserIdByUsername(username);
+                    if(UserDao.deleteUserByUsername(username) == true) {
+                        FavouriteItemDao.deleteFavouriteItemsByUserId(userId);
+                        SharedPreferenceUtil.removeUsername(activity);
                         ToastUtil.createAndShowToast(activity, "Your account has been deleted");
                         startActivity(new Intent(activity, LoginActivity.class));
-                        //TODO remove favourite items
                         finish();
                     }
                     else {
