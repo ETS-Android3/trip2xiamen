@@ -20,7 +20,7 @@ public class ReviewImageDao extends Dao {
 
     public static long insertReviewImageAndGetImageId(ReviewImage reviewImage) {
         ContentValues cv = new ContentValues();
-        cv.put(REVIEWID, reviewImage.imageId);
+        cv.put(REVIEWID, reviewImage.reviewId);
         cv.put(REVIEWIMAGE, reviewImage.reviewImage);
         return database.insert(TABLE, null, cv);
     }

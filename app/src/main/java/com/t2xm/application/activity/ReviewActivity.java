@@ -25,17 +25,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
+import com.t2xm.dao.ReviewDao;
+import com.t2xm.dao.ReviewImageDao;
+import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Item;
+import com.t2xm.entity.Review;
+import com.t2xm.entity.ReviewImage;
 import com.t2xm.utils.PermissionUtil;
+import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.adapter.ReviewImageAdapter;
 import com.t2xm.utils.values.RequestCode;
+import com.t2xm.utils.valuesConverter.DateUtil;
+import com.t2xm.utils.valuesConverter.ImageUtil;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity {
+
+    private Activity activity;
 
     private final Integer MAX_REVIEW_LENGTH = 500;
     private Integer itemId;
@@ -59,6 +69,9 @@ public class ReviewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
+
+        activity = this;
+
         setupActivityComponents();
         setupActivityListeners();
         setupItemAttributes();
@@ -116,7 +129,7 @@ public class ReviewActivity extends AppCompatActivity {
         //get itemId from intent
         itemId = getIntent().getIntExtra("itemId", 0);
         if (itemId <= 0) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
+            ToastUtil.createAndShowToast(activity, "Error");
             onBackPressed();
             return;
         }
@@ -125,7 +138,7 @@ public class ReviewActivity extends AppCompatActivity {
         item = ItemDao.getItemByItemId(itemId);
         tv_itemName.setText(item.itemName);
         if (item == null) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Error");
+            ToastUtil.createAndShowToast(activity, "Error");
             onBackPressed();
             return;
         }
@@ -152,7 +165,7 @@ public class ReviewActivity extends AppCompatActivity {
         imageAdapter = new ReviewImageAdapter(ReviewActivity.this, bitmapList);
         Activity activity = this;
         rv_uploadImage.setAdapter(imageAdapter);
-        rv_uploadImage.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
+        rv_uploadImage.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
 
         uploadImageBuilder = new AlertDialog.Builder(this)
                 .setTitle("Upload Image")
@@ -161,14 +174,14 @@ public class ReviewActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                if (!PermissionUtil.readExternalStoragePermissionGranted(getApplicationContext())) {
+                                if (!PermissionUtil.readExternalStoragePermissionGranted(activity)) {
                                     PermissionUtil.grantReadExternalStoragePermission(activity);
                                 } else {
                                     startGalleryIntent();
                                 }
                                 break;
                             case 1:
-                                if (!PermissionUtil.cameraPermissionGranted(getApplicationContext())) {
+                                if (!PermissionUtil.cameraPermissionGranted(activity)) {
                                     PermissionUtil.grantCameraPermission(activity);
                                 } else {
                                     startCameraIntent();
@@ -209,6 +222,26 @@ public class ReviewActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO submit review
+                Integer userId = UserDao.getUserIdByUsername(SharedPreferenceUtil.getUsername(activity));
+                //TODO rating
+                Integer rating = 4;
+                String reviewText = String.valueOf(et_reviewText.getText());
+
+                Review review = new Review(null, itemId, userId, reviewText, rating, DateUtil.getCurrentTimestamp());
+                long reviewId = ReviewDao.insertReviewAndGetReviewId(review);
+
+                //TODO upload image
+                if (bitmapList != null && bitmapList.size() > 0) {
+                    for (Bitmap bitmap : bitmapList) {
+                        ReviewImage reviewImage = new ReviewImage(null, Math.toIntExact(reviewId), ImageUtil.bitmapToByteArray(bitmap));
+                        if (!ReviewImageDao.insertReviewImage(reviewImage)) {
+                            ToastUtil.createAndShowToast(activity, "Error: some image was not uploaded successfully");
+                        }
+                    }
+                }
+                ToastUtil.createAndShowToast(activity, "Your review has been posted");
+                onBackPressed();
+                finish();
             }
         });
     }

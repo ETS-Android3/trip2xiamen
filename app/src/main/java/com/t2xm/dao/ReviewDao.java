@@ -22,7 +22,9 @@ public class ReviewDao extends Dao {
         ContentValues cv = new ContentValues();
         cv.put(USERID, review.userId);
         cv.put(ITEMID, review.itemId);
+        cv.put(RATING, review.rating);
         cv.put(REVIEWTEXT, review.reviewText);
+        cv.put(TIME, review.time);
         return database.insert(TABLE, null, cv);
     }
 
