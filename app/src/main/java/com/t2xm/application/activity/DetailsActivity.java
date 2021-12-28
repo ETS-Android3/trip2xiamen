@@ -170,7 +170,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void startCallPhoneActivity() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
-        intent.setData(Uri.parse("tel:" + "123"));
+        intent.setData(Uri.parse("tel:" + item.phoneNumber));
         startActivity(intent);
     }
 

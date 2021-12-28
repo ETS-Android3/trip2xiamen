@@ -24,39 +24,32 @@ public class ItemXmlParser {
                 case XmlPullParser.START_DOCUMENT:
                     break;
                 case XmlPullParser.START_TAG:
-                    if(parser.getName().equals("Items")) {
+                    if (parser.getName().equals("Items")) {
                         break;
-                    }
-                    else if(parser.getName().equals("Item")) {
+                    } else if (parser.getName().equals("Item")) {
                         item = new Item();
-                    }
-                    else if(parser.getName().equals("itemName")) {
-                        item.itemName = parser.nextText() ;
-                    }
-                    else if(parser.getName().equals("category")) {
+                    } else if (parser.getName().equals("itemName")) {
+                        item.itemName = parser.nextText();
+                    } else if (parser.getName().equals("category")) {
                         item.category = Integer.valueOf(parser.nextText());
-                    }
-                    else if(parser.getName().equals("description")) {
+                    } else if (parser.getName().equals("description")) {
                         item.description = parser.nextText();
-                    }
-                    else if(parser.getName().equals("images")) {
+                    } else if (parser.getName().equals("phoneNumber")) {
+                        item.phoneNumber = parser.nextText();
+                    } else if (parser.getName().equals("images")) {
                         imageNameList = new ArrayList<>();
-                    }
-                    else if(parser.getName().equals("image")) {
-                        imageNameList.add(parser.nextText()) ;
-                    }
-                    else if(parser.getName().equals("longitude")) {
+                    } else if (parser.getName().equals("image")) {
+                        imageNameList.add(parser.nextText());
+                    } else if (parser.getName().equals("longitude")) {
                         item.longitude = Double.valueOf(parser.nextText());
-                    }
-                    else if(parser.getName().equals("latitude")) {
+                    } else if (parser.getName().equals("latitude")) {
                         item.latitude = Double.valueOf(parser.nextText());
                     }
                     break;
                 case XmlPullParser.END_TAG:
-                    if(parser.getName().equals("Item")) {
+                    if (parser.getName().equals("Item")) {
                         itemList.add(item);
-                    }
-                    else if(parser.getName().equals("images")) {
+                    } else if (parser.getName().equals("images")) {
                         item.image = JsonUtil.mapObjectToJson(imageNameList);
                     }
                     break;

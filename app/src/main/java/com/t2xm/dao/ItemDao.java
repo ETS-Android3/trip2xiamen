@@ -15,6 +15,7 @@ public class ItemDao extends Dao {
     public static final String ITEMNAME = "itemName";
     public static final String CATEGORY = "category";
     public static final String DESCRIPTION = "description";
+    public static final String PHONENUMBER = "phoneNumber";
     public static final String IMAGE = "image";
     public static final String AVGRATING = "avgRating";
     public static final String LONGITUDE = "longitude";
@@ -25,6 +26,7 @@ public class ItemDao extends Dao {
         cv.put(ITEMNAME, item.itemName);
         cv.put(CATEGORY, item.category);
         cv.put(DESCRIPTION, item.description);
+        cv.put(PHONENUMBER, item.phoneNumber);
         cv.put(IMAGE, item.image);
         cv.put(LONGITUDE, item.longitude);
         cv.put(LATITUDE, item.latitude);
@@ -36,45 +38,47 @@ public class ItemDao extends Dao {
     }
 
     public static void updateItemAvgRating(Integer itemId) {
-        ContentValues cv = new ContentValues() ;
-        cv.put(AVGRATING, ReviewDao.getAvgRatingByItemId(itemId)) ;
+        ContentValues cv = new ContentValues();
+        cv.put(AVGRATING, ReviewDao.getAvgRatingByItemId(itemId));
         database.update(TABLE, cv, "itemId=?", new String[]{String.valueOf(itemId)});
     }
 
     @SuppressLint("Range")
     public static Item getItemByItemId(Integer itemId) {
-        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating, longitude, latitude from items where itemId=?", new String[]{String.valueOf(itemId)});
+        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, phoneNumber, image, avgRating, longitude, latitude from items where itemId=?", new String[]{String.valueOf(itemId)});
         Item item = null;
         if (cursor.moveToNext()) {
-            item = new Item() ;
-            item.itemId = cursor.getInt(cursor.getColumnIndex("itemId"));
-            item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
-            item.category = cursor.getInt(cursor.getColumnIndex("category"));
-            item.description = cursor.getString(cursor.getColumnIndex("description"));
-            item.image = cursor.getString(cursor.getColumnIndex("image"));
-            item.avgRating = cursor.getDouble(cursor.getColumnIndex("avgRating"));
-            item.longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
-            item.latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
+            item = new Item();
+            item.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
+            item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
+            item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
+            item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
+            item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
+            item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
+            item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
+            item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
+            item.latitude = cursor.getDouble(cursor.getColumnIndex(LATITUDE));
         }
         return item;
     }
 
     @SuppressLint("Range")
     public static List<Item> getItemListByCategory(Integer category) {
-        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating, longitude, latitude from items where category=?", new String[]{String.valueOf(category)});
+        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, phoneNumber, image, avgRating, longitude, latitude from items where category=?", new String[]{String.valueOf(category)});
         List<Item> itemList = null;
-        if(cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {
             itemList = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Item item = new Item();
-                item.itemId = cursor.getInt(cursor.getColumnIndex("itemId"));
-                item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
-                item.category = cursor.getInt(cursor.getColumnIndex("category"));
-                item.description = cursor.getString(cursor.getColumnIndex("description"));
-                item.image = cursor.getString(cursor.getColumnIndex("image"));
-                item.avgRating = cursor.getDouble(cursor.getColumnIndex("avgRating"));
-                item.longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
-                item.latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
+                item.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
+                item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
+                item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
+                item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
+                item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
+                item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
+                item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
+                item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
+                item.latitude = cursor.getDouble(cursor.getColumnIndex(LATITUDE));
                 itemList.add(item);
             }
         }
@@ -83,20 +87,21 @@ public class ItemDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Item> getAllItemList() {
-        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating, longitude, latitude from items", null);
+        Cursor cursor = database.rawQuery("select itemId, itemName, category, description, image, avgRating from items", null);
         List<Item> itemList = null;
-        if(cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {
             itemList = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Item item = new Item();
-                item.itemId = cursor.getInt(cursor.getColumnIndex("itemId"));
-                item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
-                item.category = cursor.getInt(cursor.getColumnIndex("category"));
-                item.description = cursor.getString(cursor.getColumnIndex("description"));
-                item.image = cursor.getString(cursor.getColumnIndex("image"));
-                item.avgRating = cursor.getDouble(cursor.getColumnIndex("avgRating"));
-                item.longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
-                item.latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
+                item.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
+                item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
+                item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
+                item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
+                item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
+                item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
+                item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
+                item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
+                item.latitude = cursor.getDouble(cursor.getColumnIndex(LATITUDE));
                 itemList.add(item);
             }
         }

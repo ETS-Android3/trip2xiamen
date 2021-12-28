@@ -7,7 +7,7 @@ public class Item {
     public String itemName;
     public Integer category;
     public String description;
-    //add json
+    public String phoneNumber;
     public String image;
     public Double avgRating;
     public Double longitude;
@@ -16,12 +16,12 @@ public class Item {
     public Item() {
     }
 
-    public Item(@Nullable Integer itemId, String itemName, Integer category, String description, String image,
-                Double avgRating, Double longitude, Double latitude) {
+    public Item(@Nullable Integer itemId, String itemName, Integer category, String description, String phoneNumber, String image, Double avgRating, Double longitude, Double latitude) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.category = category;
         this.description = description;
+        this.phoneNumber = phoneNumber;
         this.image = image;
         this.avgRating = avgRating;
         this.longitude = longitude;
@@ -35,6 +35,7 @@ public class Item {
                 ", itemName='" + itemName + '\'' +
                 ", category=" + category +
                 ", description='" + description + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", image='" + image + '\'' +
                 ", avgRating=" + avgRating +
                 ", longitude=" + longitude +
