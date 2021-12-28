@@ -134,7 +134,7 @@ public class DetailsActivity extends AppCompatActivity {
         int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
         iv_itemImage.setImageResource(resource);
         tv_itemName.setText(item.itemName);
-        tv_itemRating.setText(String.valueOf(item.avgRating));
+        tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
         updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
 
