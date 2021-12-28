@@ -50,6 +50,29 @@ public class FavouriteItemDao extends Dao {
         return itemList;
     }
 
+    @SuppressLint("Range")
+    public static List<Item> getItemListByUsernameAndCategory(String username, Integer category) {
+        Integer userId = UserDao.getUserIdByUsername(username) ;
+        Cursor cursor = database.rawQuery("select t1.itemId, itemName, category, description, image, avgRating, longitude, latitude from favouriteItems t1 left join items t2 on t1.itemId=t2.itemId where userId=? and t2.category=?", new String[]{String.valueOf(userId),String.valueOf(category)});
+        List<Item> itemList = null;
+        if(cursor.getCount() > 0) {
+            itemList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                Item item = new Item();
+                item.itemId = cursor.getInt(cursor.getColumnIndex("itemId"));
+                item.itemName = cursor.getString(cursor.getColumnIndex("itemName"));
+                item.category = cursor.getInt(cursor.getColumnIndex("category"));
+                item.description = cursor.getString(cursor.getColumnIndex("description"));
+                item.image = cursor.getString(cursor.getColumnIndex("image"));
+                item.avgRating = cursor.getDouble(cursor.getColumnIndex("avgRating"));
+                item.longitude = cursor.getDouble(cursor.getColumnIndex("longitude"));
+                item.latitude = cursor.getDouble(cursor.getColumnIndex("latitude"));
+                itemList.add(item);
+            }
+        }
+        return itemList;
+    }
+
     public static boolean getIsInUserFavouriteItem(String username, Integer itemId) {
         Cursor cursor = database.rawQuery("select itemId favouriteId from favouriteItems t1 left join users t2 on t1.userId=t2.userId where t2.username=? and itemId=?", new String[]{username, String.valueOf(itemId)});
         return cursor.getCount() > 0;

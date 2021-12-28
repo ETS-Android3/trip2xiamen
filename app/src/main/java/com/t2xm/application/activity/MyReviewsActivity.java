@@ -31,7 +31,6 @@ public class MyReviewsActivity extends AppCompatActivity {
     private List<Review> reviewList;
     private List<Item> itemList;
 
-    //TODO test
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
