@@ -8,6 +8,7 @@ public class Item {
     public Integer category;
     public String description;
     public String phoneNumber;
+    public String website;
     public String image;
     public Double avgRating;
     public Double longitude;
@@ -16,12 +17,14 @@ public class Item {
     public Item() {
     }
 
-    public Item(@Nullable Integer itemId, String itemName, Integer category, String description, String phoneNumber, String image, Double avgRating, Double longitude, Double latitude) {
+    public Item(@Nullable Integer itemId, String itemName, Integer category, String description, String phoneNumber,
+                String website, String image, Double avgRating, Double longitude, Double latitude) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.category = category;
         this.description = description;
         this.phoneNumber = phoneNumber;
+        this.website = website;
         this.image = image;
         this.avgRating = avgRating;
         this.longitude = longitude;
@@ -36,6 +39,7 @@ public class Item {
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
+                ", website='" + website + '\'' +
                 ", image='" + image + '\'' +
                 ", avgRating=" + avgRating +
                 ", longitude=" + longitude +
