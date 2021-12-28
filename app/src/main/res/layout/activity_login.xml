@@ -3,6 +3,7 @@
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:gravity="center"
 		tools:context=".application.activity.LoginActivity">
 	
@@ -26,9 +27,11 @@
 				android:orientation="vertical">
 			
 			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/lay_username"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Username"
+					app:errorEnabled="true"
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 				
 				<com.google.android.material.textfield.TextInputEditText
@@ -38,9 +41,11 @@
 			</com.google.android.material.textfield.TextInputLayout>
 			
 			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/lay_password"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Password"
+					app:errorEnabled="true"
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 				
 				<com.google.android.material.textfield.TextInputEditText
@@ -56,7 +61,7 @@
 				android:id="@+id/btn_login"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Login"
+				android:text="@string/btn_login"
 				android:textAllCaps="false"
 				android:textSize="@dimen/font_medium"
 				android:layout_marginHorizontal="@dimen/margin_large"
@@ -67,7 +72,7 @@
 				android:id="@+id/btn_sign_up"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Sign Up"
+				android:text="@string/btn_signup"
 				android:textAllCaps="false"
 				android:textSize="@dimen/font_medium"
 				android:layout_marginHorizontal="@dimen/margin_large"

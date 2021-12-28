@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
 import com.t2xm.utils.SharedPreferenceUtil;
@@ -17,6 +18,8 @@ import com.t2xm.utils.ToastUtil;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextInputLayout lay_username;
+    private TextInputLayout lay_password;
     private TextInputEditText et_username;
     private TextInputEditText et_password;
 
@@ -33,16 +36,23 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validateLoginInput() {
-        //TODO prompt error
+        boolean valid = true;
         if (username.trim().equals("")) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Please enter your username");
-            return false;
+            lay_username.setError(getString(R.string.error_username_empty));
+            valid = valid && false;
         }
+        else {
+            lay_username.setError(getString(R.string.no_error));
+        }
+
         if (password.trim().equals("")) {
-            ToastUtil.createAndShowToast(getApplicationContext(), "Please enter your password");
-            return false;
+            lay_password.setError(getString(R.string.error_password_empty));
+            valid = valid && false;
         }
-        return true;
+        else {
+            lay_password.setError(getString(R.string.no_error));
+        }
+        return valid;
     }
 
     private void updateUsernameAndPassword() {
@@ -51,6 +61,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setupActivityComponents() {
+        lay_username = findViewById(R.id.lay_username);
+        lay_password = findViewById(R.id.lay_password);
         et_username = findViewById(R.id.et_username);
         et_password = findViewById(R.id.et_password);
     }
@@ -62,8 +74,9 @@ public class LoginActivity extends AppCompatActivity {
                 updateUsernameAndPassword();
                 if (validateLoginInput() == true) {
                     if (UserDao.checkUsernameExistence(username) == false) {
-                        ToastUtil.createAndShowToast(getApplicationContext(), "Account with the provided username does not exist");
+                        lay_username.setError(getString(R.string.error_username_empty));
                     } else {
+                        lay_username.setError(getString(R.string.no_error));
                         if (UserDao.validateUserAccount(username, password) == true) {
                             ToastUtil.createAndShowToast(getApplicationContext(), "Login successful");
                             SharedPreferenceUtil.setUsername(username, getApplicationContext());
@@ -73,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                 }
                             }, 1000);
-
                         } else {
                             ToastUtil.createAndShowToast(getApplicationContext(), "Wrong username or password");
                         }
