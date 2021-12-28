@@ -221,16 +221,20 @@ public class ReviewActivity extends AppCompatActivity {
         btn_submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO submit review
+                if (String.valueOf(et_reviewText.getText()).trim().equals("") || bitmapList.size() <= 0) {
+                    ToastUtil.createAndShowToast(activity, "Please provide some contents before submitting your review");
+                }
+
                 Integer userId = UserDao.getUserIdByUsername(SharedPreferenceUtil.getUsername(activity));
                 //TODO rating
                 Integer rating = 4;
                 String reviewText = String.valueOf(et_reviewText.getText());
+                Boolean recommend = cb_recommend.isChecked();
 
-                Review review = new Review(null, itemId, userId, reviewText, rating, DateUtil.getCurrentTimestamp());
+                Review review = new Review(null, itemId, userId, reviewText, rating,
+                        recommend, DateUtil.getCurrentTimestamp());
                 long reviewId = ReviewDao.insertReviewAndGetReviewId(review);
 
-                //TODO upload image
                 if (bitmapList != null && bitmapList.size() > 0) {
                     for (Bitmap bitmap : bitmapList) {
                         ReviewImage reviewImage = new ReviewImage(null, Math.toIntExact(reviewId), ImageUtil.bitmapToByteArray(bitmap));

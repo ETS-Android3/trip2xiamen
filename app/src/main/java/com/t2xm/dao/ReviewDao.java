@@ -16,6 +16,7 @@ public class ReviewDao extends Dao {
     private static final String USERID = "userId";
     private static final String REVIEWTEXT = "reviewText";
     private static final String RATING = "rating";
+    private static final String RECOMMEND = "recommend";
     private static final String TIME = "time";
 
     public static long insertReviewAndGetReviewId(Review review) {
@@ -24,6 +25,7 @@ public class ReviewDao extends Dao {
         cv.put(ITEMID, review.itemId);
         cv.put(RATING, review.rating);
         cv.put(REVIEWTEXT, review.reviewText);
+        cv.put(RECOMMEND, review.recommend == true ? 1 : 0);
         cv.put(TIME, review.time);
         return database.insert(TABLE, null, cv);
     }
