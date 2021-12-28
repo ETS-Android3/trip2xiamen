@@ -143,6 +143,7 @@
 						android:layout_height="wrap_content"
 						android:layout_marginVertical="@dimen/margin_small"
 						android:textSize="@dimen/font_medium"
+						android:buttonTint="@color/primary_color"
 						android:text="I recommend this" />
 			
 			</LinearLayout>
