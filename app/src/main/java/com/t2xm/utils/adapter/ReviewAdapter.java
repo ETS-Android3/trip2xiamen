@@ -71,7 +71,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
                 bitmapList.add(ImageUtil.byteArrayToBitmap(bytes));
             }
         }
-        ReviewImageAdapter reviewImageAdapter = new ReviewImageAdapter(context, bitmapList) ;
+        ReviewImageViewAdapter reviewImageAdapter = new ReviewImageViewAdapter(context, bitmapList) ;
         viewHolder.rv_reviewImages.setAdapter(reviewImageAdapter);
         viewHolder.rv_reviewImages.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
     }
