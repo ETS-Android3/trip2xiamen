@@ -56,16 +56,18 @@ public class UserDao extends Dao {
         return getUserInfoByUserId(getUserIdByUsername(username));
     }
 
-   @SuppressLint("Range")
-   public static User getUserInfoByUserId(Integer userId) {
-       Cursor cursor = database.rawQuery("select username, email, profileImg from users where userId=?", new String[]{String.valueOf(userId)});User user = new User();
-       if (cursor.moveToNext()) {
-           user.username = cursor.getString(cursor.getColumnIndex("username"));
-           user.email = cursor.getString(cursor.getColumnIndex("email"));
-           user.profileImg = cursor.getBlob(cursor.getColumnIndex("profileImg"));
-       }
-       return user;
-   }
+    @SuppressLint("Range")
+    public static User getUserInfoByUserId(Integer userId) {
+        Cursor cursor = database.rawQuery("select username, email, profileImg from users where userId=?", new String[]{String.valueOf(userId)});
+        User user = null;
+        if (cursor.moveToNext()) {
+            user = new User();
+            user.username = cursor.getString(cursor.getColumnIndex("username"));
+            user.email = cursor.getString(cursor.getColumnIndex("email"));
+            user.profileImg = cursor.getBlob(cursor.getColumnIndex("profileImg"));
+        }
+        return user;
+    }
 
     public static Boolean editUserProfileImage(User user) {
         ContentValues cv = new ContentValues();

@@ -44,8 +44,22 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         Review review = getReviewByPosition(position);
         User user = UserDao.getUserInfoByUserId(review.userId);
 
-        viewHolder.iv_user_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
-        viewHolder.tv_username.setText(user.username);
+        if(user != null) {
+            if(user.profileImg != null && user.profileImg.length > 0) {
+                viewHolder.iv_user_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
+            }
+            else {
+                viewHolder.iv_user_profileImage.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_person_24));
+                viewHolder.iv_user_profileImage.setColorFilter(context.getColor(R.color.primary_color));
+            }
+            viewHolder.tv_username.setText(user.username);
+        }
+        else {
+            viewHolder.iv_user_profileImage.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_person_24));
+            viewHolder.tv_username.setText("-deleted-");
+            viewHolder.iv_user_profileImage.setColorFilter(context.getColor(R.color.gray));
+        }
+
         updateRatingStars(viewHolder, Double.valueOf(review.rating));
         viewHolder.tv_reviewText.setText(review.reviewText);
     }
