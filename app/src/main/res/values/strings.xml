@@ -2,6 +2,23 @@
 	<string name="app_name">Trip To Xiamen</string>
 	<string name="MAP_API_KEY">AIzaSyAEtMqqPSK4tMocM2Xfyoy7jueEhocZdJw</string>
 	
+	<string name="username">Username</string>
+	<string name="password">Password</string>
+	<string name="email">Email</string>
+	<string name="confirmPassword">Confirm Password</string>
+	<string name="confirmEmail">Confirm Email</string>
+	
+	<string name="error_empty">Please fill in</string>
+	
+	<string name="username_format">Username must consist of 6 to 12 characters</string>
+	<string name="password_format">Password must consist of at least 6 characters including lower case character, upper case character, and number</string>
+	<string name="email_format">Email must consist of @ and .</string>
+	
+	<string name="btn_login">Login</string>
+	<string name="btn_signup">Sign Up</string>
+	<string name="btn_logout">Logout</string>
+	<string name="btn_delete_account">Delete Account</string>
+	
 	<string name="xiamen_introduction">Chinese Name: 厦门\nChinese Pinyin: Xià Mén\nEnglish IPA: [\'ʃjɑ:\'men]\nPopulation: 3.81 million\nLanguage: Mandarin &amp; Southern Fujian Dialect\nTel Code: 0592\nZip Code: 361000\nTime Zone: (UTC+8)</string>
 	
 	<string name="why_visit_1">Stunning Coastal Scenery with Pleasant Weather All Year Around</string>
