@@ -1,20 +1,22 @@
 package com.t2xm.utils.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
+import com.t2xm.dao.ReviewImageDao;
 import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Review;
 import com.t2xm.entity.User;
 import com.t2xm.utils.valuesConverter.ImageUtil;
-import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,17 +46,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         Review review = getReviewByPosition(position);
         User user = UserDao.getUserInfoByUserId(review.userId);
 
-        if(user != null) {
-            if(user.profileImg != null && user.profileImg.length > 0) {
+        if (user != null) {
+            if (user.profileImg != null && user.profileImg.length > 0) {
                 viewHolder.iv_user_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
-            }
-            else {
+            } else {
                 viewHolder.iv_user_profileImage.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_person_24));
                 viewHolder.iv_user_profileImage.setColorFilter(context.getColor(R.color.primary_color));
             }
             viewHolder.tv_username.setText(user.username);
-        }
-        else {
+        } else {
             viewHolder.iv_user_profileImage.setImageDrawable(context.getDrawable(R.drawable.ic_baseline_person_24));
             viewHolder.tv_username.setText("-deleted-");
             viewHolder.iv_user_profileImage.setColorFilter(context.getColor(R.color.gray));
@@ -62,6 +62,18 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         updateRatingStars(viewHolder, Double.valueOf(review.rating));
         viewHolder.tv_reviewText.setText(review.reviewText);
+
+        List<byte[]> imageBytesList = ReviewImageDao.getReviewImageByteListByReviewId(review.reviewId);
+        List<Bitmap> bitmapList = null;
+        if(imageBytesList != null && imageBytesList.size() > 0) {
+            bitmapList = new ArrayList<>();
+            for(byte[] bytes:imageBytesList) {
+                bitmapList.add(ImageUtil.byteArrayToBitmap(bytes));
+            }
+        }
+        ReviewImageAdapter reviewImageAdapter = new ReviewImageAdapter(context, bitmapList) ;
+        viewHolder.rv_reviewImages.setAdapter(reviewImageAdapter);
+        viewHolder.rv_reviewImages.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
     }
 
     @Override
@@ -95,6 +107,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         public TextView tv_username;
         public List<ImageView> iv_starList = new ArrayList<>();
         public TextView tv_reviewText;
+        public RecyclerView rv_reviewImages;
 
         public ViewHolder(View view) {
             super(view);
@@ -106,6 +119,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
             iv_starList.add(view.findViewById(R.id.iv_star_4));
             iv_starList.add(view.findViewById(R.id.iv_star_5));
             tv_reviewText = view.findViewById(R.id.tv_review_text);
+            rv_reviewImages = view.findViewById(R.id.rv_review_images);
         }
     }
 }

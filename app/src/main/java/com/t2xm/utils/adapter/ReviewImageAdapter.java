@@ -63,7 +63,7 @@ public class ReviewImageAdapter extends RecyclerView.Adapter<ReviewImageAdapter.
 
     @Override
     public int getItemCount() {
-        return bitmapList.size();
+        return bitmapList != null ? bitmapList.size() : 0;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
