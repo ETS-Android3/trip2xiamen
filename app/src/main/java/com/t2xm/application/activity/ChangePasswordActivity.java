@@ -62,21 +62,21 @@ public class ChangePasswordActivity extends AppCompatActivity {
             public void onClick(View view) {
                 updateInputFields();
                 if (currentPassword.equals("") || newPassword.equals("") || confirmPassword.equals("")) {
-                    ToastUtil.createAndShowToast(getApplicationContext(), "Please fill up all fields");
+                    ToastUtil.createAndShowToast(activity, "Please fill up all fields");
                     return;
                 }
 
                 if (currentPassword.equals(newPassword)) {
-                    ToastUtil.createAndShowToast(getApplicationContext(), "Current password and new password cannot be " +
+                    ToastUtil.createAndShowToast(activity, "Current password and new password cannot be " +
                             "the same");
                 } else if (validatePassword() == true) {
                     if(newPassword.equals(confirmPassword)) {
                         if (UserDao.editUserPasswordByUsername(username, newPassword)) {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "Your password has been updated");
+                            ToastUtil.createAndShowToast(activity, "Your password has been updated");
                             onBackPressed();
                             finish();
                         } else {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "Error: Please try again");
+                            ToastUtil.createAndShowToast(activity, "Error: Please try again");
                         }
                     }
                     else {
