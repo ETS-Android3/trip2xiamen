@@ -21,19 +21,20 @@ import com.t2xm.dao.UserDao;
 import com.t2xm.entity.User;
 import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.SharedPreferenceUtil;
+import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.ImageUtil;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private Activity activity;
     private ImageView iv_profileImage;
 
     private DialogInterface.OnClickListener logoutOnClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
-            //TODO logout
-            SharedPreferenceUtil.removeUsername(getApplicationContext());
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            SharedPreferenceUtil.removeUsername(activity);
+            startActivity(new Intent(activity, LoginActivity.class));
             finish();
         }
     };
@@ -41,7 +42,15 @@ public class SettingsActivity extends AppCompatActivity {
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //TODO delete account
+                    if(UserDao.deleteUserByUsername(SharedPreferenceUtil.getUsername(activity)) == true) {
+                        ToastUtil.createAndShowToast(activity, "Your account has been deleted");
+                        startActivity(new Intent(activity, LoginActivity.class));
+                        //TODO remove favourite items
+                        finish();
+                    }
+                    else {
+                        ToastUtil.createAndShowToast(activity, "Error: Please try again");
+                    }
                 }
             };
 
@@ -55,6 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        activity = this;
 
         iv_profileImage = findViewById(R.id.iv_profile_image);
 
@@ -77,14 +88,14 @@ public class SettingsActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         switch (i) {
                             case 0:
-                                if (!PermissionUtil.readExternalStoragePermissionGranted(getApplicationContext())) {
+                                if (!PermissionUtil.readExternalStoragePermissionGranted(activity)) {
                                     PermissionUtil.grantReadExternalStoragePermission(activity);
                                 } else {
                                     startGalleryIntent();
                                 }
                                 break;
                             case 1:
-                                if (!PermissionUtil.cameraPermissionGranted(getApplicationContext())) {
+                                if (!PermissionUtil.cameraPermissionGranted(activity)) {
                                     PermissionUtil.grantCameraPermission(activity);
                                 } else {
                                     startCameraIntent();
@@ -98,7 +109,7 @@ public class SettingsActivity extends AppCompatActivity {
                 });
 
 
-        String username = SharedPreferenceUtil.getUsername(getApplicationContext());
+        String username = SharedPreferenceUtil.getUsername(activity);
         ((TextView) findViewById(R.id.tv_username)).setText(username);
         User user = UserDao.getUserInfoByUsername(username);
         if (user.profileImg != null) {
@@ -119,14 +130,14 @@ public class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btn_change_password).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ChangePasswordActivity.class));
+                startActivity(new Intent(activity, ChangePasswordActivity.class));
             }
         });
 
         findViewById(R.id.btn_change_email).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), ChangeEmailActivity.class));
+                startActivity(new Intent(activity, ChangeEmailActivity.class));
             }
         });
 
