@@ -56,6 +56,12 @@ public class DetailsActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), LocationActivity.class);
             intent.putExtra("longitude", item.longitude);
             intent.putExtra("latitude", item.latitude);
+            intent.putExtra("locationName", item.itemName);
+            try {
+                intent.putExtra("image", (String) JsonUtil.mapJsonToObject(item.image, List.class).get(0));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             startActivity(intent);
         }
     };
