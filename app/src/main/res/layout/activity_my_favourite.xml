@@ -39,6 +39,22 @@
 	<androidx.recyclerview.widget.RecyclerView
 			android:id="@+id/rv_favourite_item"
 			android:layout_width="match_parent"
-			android:layout_height="wrap_content"/>
+			android:layout_height="wrap_content" />
+	
+	<RelativeLayout
+			android:id="@+id/rl_no_items"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+		
+		<TextView
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_alignParentTop="true"
+				android:layout_alignParentBottom="true"
+				android:gravity="center"
+				android:text="You have not add anything to this category"
+				android:layout_marginHorizontal="@dimen/margin_large"
+				android:textSize="@dimen/font_large" />
+	</RelativeLayout>
 
 </LinearLayout>
