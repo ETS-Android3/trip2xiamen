@@ -54,7 +54,8 @@ public class AttractionFragment extends Fragment {
         if (itemList != null) {
             recyclerView.setVisibility(View.VISIBLE);
             tv_noItemsAvailable.setVisibility(View.GONE);
-            adapter.notifyDataSetChanged();
+            adapter = new ListItemAdapter(getActivity(), itemList);
+            recyclerView.setAdapter(adapter);
         } else {
             recyclerView.setVisibility(View.GONE);
             tv_noItemsAvailable.setVisibility(View.VISIBLE);
