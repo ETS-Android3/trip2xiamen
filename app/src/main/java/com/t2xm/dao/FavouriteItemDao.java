@@ -52,10 +52,10 @@ public class FavouriteItemDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Item> getItemListByUsernameAndCategory(String username, Integer category) {
-        Integer userId = UserDao.getUserIdByUsername(username) ;
-        Cursor cursor = database.rawQuery("select t1.itemId, itemName, category, description, image, avgRating, longitude, latitude from favouriteItems t1 left join items t2 on t1.itemId=t2.itemId where userId=? and t2.category=?", new String[]{String.valueOf(userId),String.valueOf(category)});
+        Integer userId = UserDao.getUserIdByUsername(username);
+        Cursor cursor = database.rawQuery("select t1.itemId, itemName, category, description, image, avgRating, longitude, latitude from favouriteItems t1 left join items t2 on t1.itemId=t2.itemId where userId=? and t2.category=?", new String[]{String.valueOf(userId), String.valueOf(category)});
         List<Item> itemList = null;
-        if(cursor.getCount() > 0) {
+        if (cursor.getCount() > 0) {
             itemList = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Item item = new Item();

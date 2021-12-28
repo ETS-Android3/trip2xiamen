@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -43,16 +44,15 @@ public class SettingsActivity extends AppCompatActivity {
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    String username = SharedPreferenceUtil.getUsername(activity) ;
+                    String username = SharedPreferenceUtil.getUsername(activity);
                     Integer userId = UserDao.getUserIdByUsername(username);
-                    if(UserDao.deleteUserByUsername(username) == true) {
+                    if (UserDao.deleteUserByUsername(username) == true) {
                         FavouriteItemDao.deleteFavouriteItemsByUserId(userId);
                         SharedPreferenceUtil.removeUsername(activity);
                         ToastUtil.createAndShowToast(activity, "Your account has been deleted");
                         startActivity(new Intent(activity, LoginActivity.class));
                         finish();
-                    }
-                    else {
+                    } else {
                         ToastUtil.createAndShowToast(activity, "Error: Please try again");
                     }
                 }
@@ -64,6 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
     private AlertDialog.Builder uploadProfileImageBuilder;
     private String[] uploadProfileImage = {"Select from gallery", "Take photo", "Cancel"};
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

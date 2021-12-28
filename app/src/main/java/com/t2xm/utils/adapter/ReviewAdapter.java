@@ -65,13 +65,13 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
 
         List<byte[]> imageBytesList = ReviewImageDao.getReviewImageByteListByReviewId(review.reviewId);
         List<Bitmap> bitmapList = null;
-        if(imageBytesList != null && imageBytesList.size() > 0) {
+        if (imageBytesList != null && imageBytesList.size() > 0) {
             bitmapList = new ArrayList<>();
-            for(byte[] bytes:imageBytesList) {
+            for (byte[] bytes : imageBytesList) {
                 bitmapList.add(ImageUtil.byteArrayToBitmap(bytes));
             }
         }
-        ReviewImageViewAdapter reviewImageAdapter = new ReviewImageViewAdapter(context, bitmapList) ;
+        ReviewImageViewAdapter reviewImageAdapter = new ReviewImageViewAdapter(context, bitmapList);
         viewHolder.rv_reviewImages.setAdapter(reviewImageAdapter);
         viewHolder.rv_reviewImages.setLayoutManager(new LinearLayoutManager(context, RecyclerView.HORIZONTAL, false));
     }

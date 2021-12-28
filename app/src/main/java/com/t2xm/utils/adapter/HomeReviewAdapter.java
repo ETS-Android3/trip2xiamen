@@ -20,7 +20,6 @@ import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class HomeReviewAdapter extends RecyclerView.Adapter<HomeReviewAdapter.ViewHolder> {

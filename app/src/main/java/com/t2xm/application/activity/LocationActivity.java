@@ -1,6 +1,5 @@
 package com.t2xm.application.activity;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +16,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.t2xm.R;
-import com.t2xm.utils.valuesConverter.ImageUtil;
 
 public class LocationActivity extends AppCompatActivity implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -43,7 +41,7 @@ public class LocationActivity extends AppCompatActivity implements OnMapReadyCal
         latitude = getIntent().getDoubleExtra("latitude", -1000d);
         longitude = getIntent().getDoubleExtra("longitude", -1000d);
         locationName = getIntent().getStringExtra("locationName");
-        itemImageName = getIntent().getStringExtra("image") ;
+        itemImageName = getIntent().getStringExtra("image");
         latLng = new LatLng(latitude, longitude);
         markerOptions = new MarkerOptions().position(latLng).title(locationName);
 

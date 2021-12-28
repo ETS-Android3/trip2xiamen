@@ -53,7 +53,7 @@ public class ItemDao extends Dao {
             item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
             item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
             item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
-            item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
+            item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER));
             item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
             item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
             item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
@@ -74,7 +74,7 @@ public class ItemDao extends Dao {
                 item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
                 item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
                 item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
-                item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
+                item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER));
                 item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
                 item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
                 item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
@@ -97,11 +97,8 @@ public class ItemDao extends Dao {
                 item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
                 item.category = cursor.getInt(cursor.getColumnIndex(CATEGORY));
                 item.description = cursor.getString(cursor.getColumnIndex(DESCRIPTION));
-                item.phoneNumber = cursor.getString(cursor.getColumnIndex(PHONENUMBER)) ;
                 item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
                 item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
-                item.longitude = cursor.getDouble(cursor.getColumnIndex(LONGITUDE));
-                item.latitude = cursor.getDouble(cursor.getColumnIndex(LATITUDE));
                 itemList.add(item);
             }
         }

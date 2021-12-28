@@ -5,5 +5,5 @@ import android.database.sqlite.SQLiteDatabase;
 import com.t2xm.utils.DatabaseUtil;
 
 public class DaoTest {
-   protected SQLiteDatabase database = DatabaseUtil.getTestDatabase();
+    protected SQLiteDatabase database = DatabaseUtil.getTestDatabase();
 }

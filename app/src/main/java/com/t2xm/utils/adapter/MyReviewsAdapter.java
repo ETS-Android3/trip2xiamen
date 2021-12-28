@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,7 +24,6 @@ import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 
 public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.ViewHolder> {
@@ -80,7 +78,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
                 boolean result = ReviewDao.deleteReviewByReviewId(review.reviewId);
                 if (result) {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Review has been deleted");
-                    ((MyReviewsActivity)context).updateRecyclerView();
+                    ((MyReviewsActivity) context).updateRecyclerView();
                 } else {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Error: Please try again");
                 }

@@ -18,11 +18,11 @@ public class PermissionUtil {
         return permissionGranted(context, PermissionString.CAMERA);
     }
 
-    public static boolean readExternalStoragePermissionGranted(Context context){
+    public static boolean readExternalStoragePermissionGranted(Context context) {
         return permissionGranted(context, PermissionString.READ_EXTERNAL_STORAGE);
     }
 
-    public static boolean writeExternalStoragePermissionGranted(Context context){
+    public static boolean writeExternalStoragePermissionGranted(Context context) {
         return permissionGranted(context, PermissionString.WRITE_EXTERNAL_STORAGE);
     }
 

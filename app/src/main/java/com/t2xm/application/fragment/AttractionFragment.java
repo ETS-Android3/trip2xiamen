@@ -51,12 +51,11 @@ public class AttractionFragment extends Fragment {
     }
 
     private void updateRecyclerView() {
-        if(itemList != null) {
+        if (itemList != null) {
             recyclerView.setVisibility(View.VISIBLE);
             tv_noItemsAvailable.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
-        }
-        else {
+        } else {
             recyclerView.setVisibility(View.GONE);
             tv_noItemsAvailable.setVisibility(View.VISIBLE);
         }

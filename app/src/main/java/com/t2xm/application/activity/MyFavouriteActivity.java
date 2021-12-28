@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.tabs.TabLayout;
 import com.t2xm.R;
 import com.t2xm.dao.FavouriteItemDao;
-import com.t2xm.dao.ItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.ListItemAdapter;
@@ -69,12 +68,11 @@ public class MyFavouriteActivity extends AppCompatActivity {
                 } else if (tab.getText().equals("Eat")) {
                     itemList = FavouriteItemDao.getItemListByUsernameAndCategory(username, 3);
                 }
-                if(itemList != null && itemList.size() > 0) {
+                if (itemList != null && itemList.size() > 0) {
                     rv_favouriteItem.setVisibility(View.VISIBLE);
                     rl_noItems.setVisibility(View.GONE);
                     rv_favouriteItem.setAdapter(new ListItemAdapter(activity, itemList));
-                }
-                else {
+                } else {
                     rv_favouriteItem.setVisibility(View.GONE);
                     rl_noItems.setVisibility(View.VISIBLE);
                 }

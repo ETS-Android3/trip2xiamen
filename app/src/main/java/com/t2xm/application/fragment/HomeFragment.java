@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         Integer resourceId = getResources().getIdentifier("why_visit_long_arr", "array", getActivity().getPackageName());
         resource_whyVisitXiamenLong = Arrays.asList(getResources().getStringArray(resourceId));
 
-        for(int i = 0 ; i < btnList_whyVisitXiamen.size() ; i++) {
+        for (int i = 0; i < btnList_whyVisitXiamen.size(); i++) {
             int finalI = i;
             btnList_whyVisitXiamen.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override

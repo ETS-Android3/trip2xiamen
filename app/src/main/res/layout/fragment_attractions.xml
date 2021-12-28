@@ -49,7 +49,7 @@
 					android:textSize="@dimen/font_large"
 					android:visibility="gone"
 					android:textAlignment="center"
-					android:lineHeight="35dp"/>
+					android:lineHeight="35dp" />
 		</LinearLayout>
 	</ScrollView>
 </RelativeLayout>

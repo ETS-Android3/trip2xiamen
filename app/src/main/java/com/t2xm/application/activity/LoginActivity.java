@@ -40,16 +40,14 @@ public class LoginActivity extends AppCompatActivity {
         if (username.trim().equals("")) {
             lay_username.setError(getString(R.string.error_username_empty));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_username.setError(getString(R.string.no_error));
         }
 
         if (password.trim().equals("")) {
             lay_password.setError(getString(R.string.error_password_empty));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_password.setError(getString(R.string.no_error));
         }
         return valid;

@@ -27,7 +27,6 @@ import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
-import com.t2xm.utils.values.PermissionString;
 import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.valuesConverter.NumberFormatUtil;
@@ -78,10 +77,9 @@ public class DetailsActivity extends AppCompatActivity {
     private View.OnClickListener phoneCallListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(PermissionUtil.phoneCallPermissionGranted(activity)) {
+            if (PermissionUtil.phoneCallPermissionGranted(activity)) {
                 startCallPhoneActivity();
-            }
-            else {
+            } else {
                 PermissionUtil.grantCallPhonePermission(activity);
             }
         }
@@ -163,7 +161,7 @@ public class DetailsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if(requestCode == RequestCode.CALL_PHONE_PERMISSION) {
+        if (requestCode == RequestCode.CALL_PHONE_PERMISSION) {
             startCallPhoneActivity();
         }
     }

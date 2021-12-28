@@ -1,11 +1,9 @@
 package com.t2xm.application.fragment;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +35,7 @@ public class RecommendFragment extends Fragment {
 
         List<Item> itemList = ItemDao.getItemListByCategory(1);
 
-        if(itemList != null) {
+        if (itemList != null) {
             RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
             TopPlacesAdapter adapter1 = new TopPlacesAdapter(getContext(), itemList);
             rv_topPlaces.setAdapter(adapter1);
@@ -45,15 +43,15 @@ public class RecommendFragment extends Fragment {
         }
 
         List<Review> topReviewList = ReviewDao.get10LatestReview();
-        if(topReviewList != null) {
+        if (topReviewList != null) {
             List<Item> reviewItemList = new ArrayList<>();
             for (Review review : topReviewList) {
-                Item item = ItemDao.getItemByItemId(review.itemId) ;
-                if(item != null) {
+                Item item = ItemDao.getItemByItemId(review.itemId);
+                if (item != null) {
                     reviewItemList.add(item);
                 }
             }
-            if(reviewItemList.size() > 0) {
+            if (reviewItemList.size() > 0) {
                 RecyclerView rv = view.findViewById(R.id.rv_latest_reviews);
                 HomeReviewAdapter adapter2 = new HomeReviewAdapter(getContext(), topReviewList, reviewItemList);
                 rv.setAdapter(adapter2);

@@ -3,7 +3,6 @@ package com.t2xm.application.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,7 +41,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
     }
 
     private boolean validateEmail() {
-        return ValidationUtil.validateEmail(newEmail) ;
+        return ValidationUtil.validateEmail(newEmail);
     }
 
     private void updateInputFields() {
@@ -69,11 +68,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
 
                 if (currentEmail.equals(newEmail)) {
                     ToastUtil.createAndShowToast(activity, "Current email and new email cannot be the same");
-                } else if(UserDao.checkEmailExistence(newEmail)) {
+                } else if (UserDao.checkEmailExistence(newEmail)) {
                     ToastUtil.createAndShowToast(activity, "An account with the provided new email already exist");
-                }
-                else if (validateEmail() == true) {
-                    if(newEmail.equals(confirmEmail)) {
+                } else if (validateEmail() == true) {
+                    if (newEmail.equals(confirmEmail)) {
                         if (UserDao.editUserEmailByUsername(username, newEmail)) {
                             ToastUtil.createAndShowToast(activity, "Your email has been updated");
                             onBackPressed();
@@ -81,8 +79,7 @@ public class ChangeEmailActivity extends AppCompatActivity {
                         } else {
                             ToastUtil.createAndShowToast(activity, "Error: Please try again");
                         }
-                    }
-                    else {
+                    } else {
                         ToastUtil.createAndShowToast(activity, "New Email and Confirm Email do not match");
                     }
                 } else {

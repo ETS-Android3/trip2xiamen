@@ -47,16 +47,13 @@ public class SignUpActivity extends AppCompatActivity {
         if (username.equals("")) {
             lay_username.setError(getString(R.string.error_username_empty));
             valid = valid && false;
-        }
-        else if (ValidationUtil.validateUsername(username) == false) {
+        } else if (ValidationUtil.validateUsername(username) == false) {
             lay_username.setError(getString(R.string.username_format));
             valid = valid && false;
-        }
-        else if (UserDao.checkUsernameExistence(username) == true) {
+        } else if (UserDao.checkUsernameExistence(username) == true) {
             lay_username.setError(getString(R.string.error_username_exist));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_username.setError(getString(R.string.no_error));
         }
 
@@ -64,16 +61,13 @@ public class SignUpActivity extends AppCompatActivity {
         if (email.equals("")) {
             lay_email.setError(getString(R.string.error_email_empty));
             valid = valid && false;
-        }
-        else if (ValidationUtil.validateEmail(email) == false) {
+        } else if (ValidationUtil.validateEmail(email) == false) {
             lay_email.setError(getString(R.string.email_format));
             valid = valid && false;
-        }
-        else if (UserDao.checkEmailExistence(email) == true) {
+        } else if (UserDao.checkEmailExistence(email) == true) {
             lay_email.setError(getString(R.string.error_email_exist));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_email.setError(getString(R.string.no_error));
         }
 
@@ -81,12 +75,10 @@ public class SignUpActivity extends AppCompatActivity {
         if (password.equals("")) {
             lay_password.setError(getString(R.string.error_password_empty));
             valid = valid && false;
-        }
-        else if (ValidationUtil.validatePassword(password) == false) {
+        } else if (ValidationUtil.validatePassword(password) == false) {
             lay_password.setError(getString(R.string.password_format));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_password.setError(getString(R.string.no_error));
         }
 
@@ -94,12 +86,10 @@ public class SignUpActivity extends AppCompatActivity {
         if (confirmPassword.equals("")) {
             lay_confirmPassword.setError(getString(R.string.error_confirm_password_empty));
             valid = valid && false;
-        }
-        else if(!confirmPassword.equals(password)) {
+        } else if (!confirmPassword.equals(password)) {
             lay_confirmPassword.setError(getString(R.string.error_password_not_match));
             valid = valid && false;
-        }
-        else {
+        } else {
             lay_confirmPassword.setError(getString(R.string.no_error));
         }
 

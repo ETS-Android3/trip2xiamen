@@ -45,11 +45,11 @@ import java.util.List;
 
 public class ReviewActivity extends AppCompatActivity {
 
-    private Activity activity;
-
     private final Integer MAX_REVIEW_LENGTH = 500;
+    public List<Bitmap> bitmapList;
+    public ReviewImageAdapter imageAdapter;
+    private Activity activity;
     private Integer itemId;
-
     private ImageView iv_itemImage;
     private TextView tv_itemName;
     private Integer rating;
@@ -60,11 +60,7 @@ public class ReviewActivity extends AppCompatActivity {
     private RecyclerView rv_uploadImage;
     private CheckBox cb_recommend;
     private Button btn_submitReview;
-
     private Item item;
-    public List<Bitmap> bitmapList;
-    public ReviewImageAdapter imageAdapter;
-
     private AlertDialog.Builder uploadImageBuilder;
     private String[] uploadImageItems = {"Select from gallery", "Take photo", "Cancel"};
 
@@ -247,10 +243,9 @@ public class ReviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(numberOfImages >= 5) {
+                if (numberOfImages >= 5) {
                     ToastUtil.createAndShowToast(activity, "You have uploaded the maximum number of images");
-                }
-                else {
+                } else {
                     uploadImageBuilder.create().show();
                 }
             }
