@@ -8,15 +8,16 @@
 	<string name="confirmPassword">Confirm Password</string>
 	<string name="confirmEmail">Confirm Email</string>
 	
-	<string name="error_username_empty">Please fill in your username</string>
-	<string name="error_password_empty">Please fill in your password</string>
-	<string name="error_email_empty">Please fill in your email</string>
-	<string name="error_confirm_password_empty">Please confirm your password</string>
-	<string name="error_confirm_email_empty">Please confirm your Email</string>
+	<string name="error_username_empty">Please fill in username</string>
+	<string name="error_password_empty">Please fill in password</string>
+	<string name="error_email_empty">Please fill in email</string>
+	<string name="error_confirm_password_empty">Please confirm password</string>
+	<string name="error_confirm_email_empty">Please confirm Email</string>
 	<string name="error_username_not_exist">The provided username does not exist</string>
 	<string name="error_username_exist">An account with the provided username exist</string>
 	<string name="error_email_exist">An account with the provided email exist</string>
 	<string name="error_password_not_match">Password and Confirm password do not match</string>
+	<string name="error_same_password">Current password and new password cannot be same</string>
 	<string name="no_error"></string>
 	
 	<string name="username_format">Username must consist of 6 to 12 characters</string>
