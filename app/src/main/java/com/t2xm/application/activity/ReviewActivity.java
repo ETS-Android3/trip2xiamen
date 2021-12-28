@@ -56,6 +56,7 @@ public class ReviewActivity extends AppCompatActivity {
     private List<ImageView> iv_starList;
     private TextView tv_reviewCharacterCount;
     private EditText et_reviewText;
+    private TextView tv_numberOfImages;
     private RecyclerView rv_uploadImage;
     private CheckBox cb_recommend;
     private Button btn_submitReview;
@@ -66,6 +67,8 @@ public class ReviewActivity extends AppCompatActivity {
 
     private AlertDialog.Builder uploadImageBuilder;
     private String[] uploadImageItems = {"Select from gallery", "Take photo", "Cancel"};
+
+    private Integer numberOfImages = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,7 @@ public class ReviewActivity extends AppCompatActivity {
                 bitmap = (Bitmap) data.getExtras().get("data");
                 bitmapList.add(bitmap);
                 imageAdapter.notifyDataSetChanged();
+                increaseNumberOfImages();
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
@@ -96,6 +100,7 @@ public class ReviewActivity extends AppCompatActivity {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     bitmapList.add(bitmap);
                     imageAdapter.notifyDataSetChanged();
+                    increaseNumberOfImages();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -160,6 +165,7 @@ public class ReviewActivity extends AppCompatActivity {
         tv_reviewCharacterCount = findViewById(R.id.tv_review_character_count);
         et_reviewText = findViewById(R.id.et_review_text);
         rv_uploadImage = findViewById(R.id.rv_upload_image);
+        tv_numberOfImages = findViewById(R.id.tv_number_of_images);
         cb_recommend = findViewById(R.id.cb_recommend);
         btn_submitReview = findViewById(R.id.btn_submit_review);
 
@@ -220,18 +226,17 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             final int final_i = i;
             ImageView iv_star = iv_starList.get(i);
             iv_star.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     rating = final_i + 1;
-                    for(int j = 0; j < 5; j++) {
-                        if(j <= final_i) {
+                    for (int j = 0; j < 5; j++) {
+                        if (j <= final_i) {
                             iv_starList.get(j).setImageDrawable(getDrawable(R.drawable.ic_baseline_star_24));
-                        }
-                        else {
+                        } else {
                             iv_starList.get(j).setImageDrawable(getDrawable(R.drawable.ic_baseline_star_border_24));
                         }
                     }
@@ -242,7 +247,12 @@ public class ReviewActivity extends AppCompatActivity {
         findViewById(R.id.btn_upload_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                uploadImageBuilder.create().show();
+                if(numberOfImages >= 5) {
+                    ToastUtil.createAndShowToast(activity, "You have uploaded the maximum number of images");
+                }
+                else {
+                    uploadImageBuilder.create().show();
+                }
             }
         });
 
@@ -274,5 +284,19 @@ public class ReviewActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    public void increaseNumberOfImages() {
+        numberOfImages += 1;
+        updateNumberOfImagesText();
+    }
+
+    public void reduceNumberOfImages() {
+        numberOfImages -= 1;
+        updateNumberOfImagesText();
+    }
+
+    private void updateNumberOfImagesText() {
+        tv_numberOfImages.setText(numberOfImages + "/5 images");
     }
 }

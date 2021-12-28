@@ -53,6 +53,7 @@ public class ReviewImageAdapter extends RecyclerView.Adapter<ReviewImageAdapter.
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ReviewActivity a = ((ReviewActivity) context);
                         a.bitmapList.remove(position);
+                        a.reduceNumberOfImages();
                         a.imageAdapter.notifyDataSetChanged();
                     }
                 }).create().show();
