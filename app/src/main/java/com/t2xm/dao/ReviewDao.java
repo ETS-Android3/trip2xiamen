@@ -85,12 +85,13 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> getReviewsByUsername(String username) {
-        Cursor cursor = database.rawQuery("select itemId, reviewtext, rating from reviews where userId=? order by time", new String[]{String.valueOf(UserDao.getUserIdByUsername(username))});
+        Cursor cursor = database.rawQuery("select reviewId, itemId, reviewtext, rating from reviews where userId=? order by time", new String[]{String.valueOf(UserDao.getUserIdByUsername(username))});
         List<Review> reviewList = null;
         if (cursor.getCount() > 0) {
             reviewList = new ArrayList<>();
             while (cursor.moveToNext()) {
                 Review review = new Review();
+                review.reviewId = cursor.getInt(cursor.getColumnIndex(REVIEWID));
                 review.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
                 review.reviewText = cursor.getString(cursor.getColumnIndex(REVIEWTEXT));
                 review.rating = cursor.getInt(cursor.getColumnIndex(RATING));

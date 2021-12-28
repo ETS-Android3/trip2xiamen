@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.application.activity.DetailsActivity;
+import com.t2xm.application.activity.MyReviewsActivity;
 import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
@@ -79,6 +80,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
                 boolean result = ReviewDao.deleteReviewByReviewId(review.reviewId);
                 if (result) {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Review has been deleted");
+                    ((MyReviewsActivity)context).updateRecyclerView();
                 } else {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Error: Please try again");
                 }

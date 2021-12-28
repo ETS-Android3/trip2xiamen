@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +20,13 @@ import java.util.List;
 
 public class MyReviewsActivity extends AppCompatActivity {
 
+    private Activity activity;
+
     private MyReviewsAdapter adapter;
     private RecyclerView rv_myReviews;
+
+    private List<Review> reviewList;
+    private List<Item> itemList;
 
     //TODO test
     @Override
@@ -28,17 +34,25 @@ public class MyReviewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_reviews);
 
-        rv_myReviews = findViewById(R.id.rv_my_reviews);
+        activity = this;
 
-        List<Review> reviewList = ReviewDao.getReviewsByUsername(SharedPreferenceUtil.getUsername(getApplicationContext()));
+        rv_myReviews = findViewById(R.id.rv_my_reviews);
+        updateRecyclerView();
+    }
+
+    public void updateRecyclerView() {
+        reviewList = ReviewDao.getReviewsByUsername(SharedPreferenceUtil.getUsername(activity));
         if (reviewList != null) {
-            List<Item> itemList = new ArrayList<>();
+            itemList = new ArrayList<>();
             for (int i = 0; i < reviewList.size(); i++) {
                 itemList.add(ItemDao.getItemByItemId(reviewList.get(i).itemId));
             }
-            adapter = new MyReviewsAdapter(getApplicationContext(), reviewList, itemList);
+            adapter = new MyReviewsAdapter(activity, reviewList, itemList);
             rv_myReviews.setAdapter(adapter);
-            rv_myReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+            rv_myReviews.setLayoutManager(new LinearLayoutManager(activity));
+        }
+        else {
+            //TODO display no items screen
         }
     }
 }
