@@ -26,6 +26,10 @@ public class PermissionUtil {
         return permissionGranted(context, PermissionString.WRITE_EXTERNAL_STORAGE);
     }
 
+    public static boolean phoneCallPermissionGranted(Context context) {
+        return permissionGranted(context, PermissionString.CALL_PHONE);
+    }
+
     public static void grantCameraPermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CAMERA}, RequestCode.USE_CAMERA_PERMISSION);
     }
@@ -37,5 +41,9 @@ public class PermissionUtil {
 
     public static void grantWriteExternalStoragePermission(Activity activity) {
         ActivityCompat.requestPermissions(activity, new String[]{PermissionString.WRITE_EXTERNAL_STORAGE}, RequestCode.WRITE_EXTERNAL_STORAGE);
+    }
+
+    public static void grantCallPhonePermission(Activity activity) {
+        ActivityCompat.requestPermissions(activity, new String[]{PermissionString.CALL_PHONE}, RequestCode.CALL_PHONE_PERMISSION);
     }
 }

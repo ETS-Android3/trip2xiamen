@@ -1,7 +1,9 @@
 package com.t2xm.application.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,9 +23,12 @@ import com.t2xm.dao.ItemDao;
 import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
+import com.t2xm.utils.PermissionUtil;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.adapter.ReviewAdapter;
+import com.t2xm.utils.values.PermissionString;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
@@ -31,6 +37,8 @@ import java.util.List;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    private Activity activity;
+
     private Integer itemId;
     private String username;
 
@@ -38,6 +46,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv_itemName;
     private TextView tv_itemDescription;
     private ImageButton btn_location;
+    private ImageButton btn_phone;
     private List<ImageView> iv_starList;
     private TextView tv_itemRating;
     private Button btn_writeReview;
@@ -63,6 +72,18 @@ public class DetailsActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             startActivity(intent);
+        }
+    };
+
+    private View.OnClickListener phoneCallListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(PermissionUtil.phoneCallPermissionGranted(activity)) {
+                startCallPhoneActivity();
+            }
+            else {
+                PermissionUtil.grantCallPhonePermission(activity);
+            }
         }
     };
 
@@ -98,6 +119,8 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        activity = this;
 
         setupActivityComponents();
         setupOnClickListeners();
@@ -136,6 +159,21 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(requestCode == RequestCode.CALL_PHONE_PERMISSION) {
+            startCallPhoneActivity();
+        }
+    }
+
+    private void startCallPhoneActivity() {
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:" + "123"));
+        startActivity(intent);
+    }
+
     private void updateItemInformation() {
         int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
         iv_itemImage.setImageResource(resource);
@@ -158,6 +196,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void setupOnClickListeners() {
         btn_location.setOnClickListener(viewMapLocationListener);
+        btn_phone.setOnClickListener(phoneCallListener);
         btn_writeReview.setOnClickListener(writeReviewListener);
         btn_addToFavourite.setOnClickListener(addToFavouriteListener);
         btn_writeReview2.setOnClickListener(writeReviewListener);
@@ -168,6 +207,7 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemName = findViewById(R.id.tv_item_name);
         tv_itemDescription = findViewById(R.id.tv_item_description);
         btn_location = findViewById(R.id.btn_location);
+        btn_phone = findViewById(R.id.btn_phone);
         tv_itemRating = findViewById(R.id.tv_item_rating);
         btn_writeReview = findViewById(R.id.btn_write_review);
         btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);

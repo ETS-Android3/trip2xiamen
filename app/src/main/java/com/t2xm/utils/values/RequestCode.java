@@ -14,4 +14,5 @@ public class RequestCode {
     //Permission
     public static final Integer USE_CAMERA_PERMISSION = 101;
     public static final Integer READ_EXTERNAL_STORAGE_PERMISSION = 102;
+    public static final Integer CALL_PHONE_PERMISSION = 104;
 }

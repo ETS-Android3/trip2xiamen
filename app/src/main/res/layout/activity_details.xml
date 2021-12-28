@@ -41,7 +41,7 @@
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:textSize="@dimen/font_large"
-							android:layout_weight="1"
+							android:layout_weight="2"
 							android:paddingVertical="@dimen/padding_small"
 							android:text="Item Name" />
 					
@@ -52,14 +52,25 @@
 							android:scaleType="fitCenter"
 							android:padding="@dimen/padding_small"
 							android:layout_gravity="center"
-							android:layout_weight="4"
+							android:layout_weight="4.5"
 							android:src="@drawable/ic_baseline_pin_drop_24"
 							android:background="@color/transparent"
 							app:tint="@color/red" />
+					
+					<ImageButton
+							android:id="@+id/btn_phone"
+							android:layout_width="match_parent"
+							android:layout_height="match_parent"
+							android:scaleType="fitCenter"
+							android:padding="@dimen/padding_small"
+							android:layout_gravity="center"
+							android:layout_weight="4.5"
+							android:src="@drawable/ic_baseline_phone_24"
+							android:background="@color/transparent"
+							app:tint="@color/secondary_color" />
 				
 				</LinearLayout>
 				
-				<!--				TODO rating	-->
 				<LinearLayout
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
