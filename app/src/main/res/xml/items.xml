@@ -68,21 +68,24 @@
 			<image>do_zhongshan_road_walking_street_1</image>
 			<image>do_zhongshan_road_walking_street_2</image>
 		</images>
-		<latitude></latitude>
-		<longitude></longitude>
+		<latitude>24.73078299467525</latitude>
+		<longitude>118.1502214548889</longitude>
 	</Item>
 	
-<!--	TODO image	-->
 	<Item>
-		<itemName>Riyuegu Hot Spring Resort</itemName>
+		<itemName>Xiamen Riyuegu Hot Spring Resort</itemName>
 		<category>1</category>
 		<description>Xiamen Riyuegu Hot Spring Resort is 1 hour or so from Xiamen downtown by car. This resort is a sanctuary with luxury hotels, hot springs, swimming pools, restaurants, etc. It offers about 40 kinds of hot springs for its visitors to relax themselves, including the ones flavored with herbs, fruits, flowers, etc. It is said the water of its hot springs is rich in a large number of microelements beneficial to blood circulation, disease prevention, tiredness killing.
 		</description>
 		<phoneNumber>+8605926312222</phoneNumber>
 		<officialWebsite>http://www.riyuegu.com/EN/index.aspx
 		</officialWebsite>
-		<travelInformationWebsite></travelInformationWebsite>
+		<travelInformationWebsite>https://www.tripadvisor.com/Attraction_Review-g297407-d2051168-Reviews-Xiamen_Riyuegu_Hot_Spring_Resort_Communities-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>do_riyuegu_1</image>
+			<image>do_riyuegu_2</image>
+			<image>do_riyuegu_3</image>
+			<image>do_riyuegu_4</image>
 		</images>
 		<latitude>24.54560279889033</latitude>
 		<longitude>117.92841828826661</longitude>
