@@ -15,8 +15,7 @@ import com.t2xm.utils.SharedPreferenceUtil;
 
 public class StartActivity extends AppCompatActivity {
 
-    //TODO change delay time
-    private final long DELAY_TIME = 0;
+    private final long DELAY_TIME = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,7 @@ public class StartActivity extends AppCompatActivity {
         //open database
         DatabaseOpenHelper.getDatabase(getApplicationContext());
 
+        //insert item data to database on first startup
         if (SharedPreferenceUtil.getIsFirstStartup(this)) {
             boolean result = false;
             try {
