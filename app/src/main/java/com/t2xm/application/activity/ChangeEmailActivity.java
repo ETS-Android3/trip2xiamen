@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.t2xm.R;
 import com.t2xm.dao.UserDao;
 import com.t2xm.utils.SharedPreferenceUtil;
@@ -14,11 +15,14 @@ import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.ValidationUtil;
 
 public class ChangeEmailActivity extends AppCompatActivity {
-    //TODO display error with textinputlayout
 
     private Activity activity;
 
     private String username;
+
+    private TextInputLayout lay_currentEmail;
+    private TextInputLayout lay_newEmail;
+    private TextInputLayout lay_confirmEmail;
 
     private TextInputEditText et_currentEmail;
     private TextInputEditText et_newEmail;
@@ -42,7 +46,48 @@ public class ChangeEmailActivity extends AppCompatActivity {
     }
 
     private boolean validateEmail() {
-        return ValidationUtil.validateEmail(newEmail);
+        boolean valid = true;
+
+        //validate current email
+        if (currentEmail.equals("")) {
+            lay_currentEmail.setError(getString(R.string.error_email_empty));
+            valid = valid && false;
+        } else if (!currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
+            lay_currentEmail.setError(getString(R.string.error_wrong_email));
+            valid = valid && false;
+        } else {
+            lay_currentEmail.setError(getString(R.string.no_error));
+        }
+
+        //validate new email
+        if (newEmail.equals("")) {
+            lay_newEmail.setError(getString(R.string.error_email_empty));
+            valid = valid && false;
+        } else if (currentEmail.equals(newEmail)) {
+            lay_newEmail.setError(getString(R.string.error_same_email));
+            valid = valid && false;
+        } else if (!ValidationUtil.validateEmail(newEmail)) {
+            lay_newEmail.setError(getString(R.string.email_format));
+            valid = valid && false;
+        } else if (UserDao.checkEmailExistence(newEmail)) {
+            lay_newEmail.setError(getString(R.string.error_email_exist));
+            valid = valid && false;
+        } else {
+            lay_newEmail.setError(getString(R.string.no_error));
+        }
+
+        //validate confirm email
+        if (confirmEmail.equals("")) {
+            lay_confirmEmail.setError(getString(R.string.error_email_empty));
+            valid = valid && false;
+        } else if (!newEmail.equals(confirmEmail)) {
+            lay_confirmEmail.setError(getString(R.string.error_email_not_match));
+            valid = valid && false;
+        } else {
+            lay_confirmEmail.setError(getString(R.string.no_error));
+        }
+
+        return valid;
     }
 
     private void updateInputFields() {
@@ -52,6 +97,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
     }
 
     private void setupActivityComponents() {
+        lay_currentEmail = findViewById(R.id.lay_current_email);
+        lay_newEmail = findViewById(R.id.lay_new_email);
+        lay_confirmEmail = findViewById(R.id.lay_confirm_email);
+
         et_currentEmail = findViewById(R.id.et_current_email);
         et_newEmail = findViewById(R.id.et_new_email);
         et_confirmEmail = findViewById(R.id.et_confirm_email);
@@ -62,29 +111,14 @@ public class ChangeEmailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateInputFields();
-                if (currentEmail.equals("") || newEmail.equals("") || confirmEmail.equals("")) {
-                    ToastUtil.createAndShowToast(activity, "Please fill up all fields");
-                    return;
-                }
-
-                if (currentEmail.equals(newEmail)) {
-                    ToastUtil.createAndShowToast(activity, "Current email and new email cannot be the same");
-                } else if (UserDao.checkEmailExistence(newEmail)) {
-                    ToastUtil.createAndShowToast(activity, "An account with the provided new email already exist");
-                } else if (validateEmail() == true) {
-                    if (newEmail.equals(confirmEmail)) {
-                        if (UserDao.editUserEmailByUsername(username, newEmail)) {
-                            ToastUtil.createAndShowToast(activity, "Your email has been updated");
-                            onBackPressed();
-                            finish();
-                        } else {
-                            ToastUtil.createAndShowToast(activity, "Error: Please try again");
-                        }
+                if (validateEmail()) {
+                    if (UserDao.editUserEmailByUsername(username, newEmail)) {
+                        ToastUtil.createAndShowToast(activity, "Your email has been updated");
+                        onBackPressed();
+                        finish();
                     } else {
-                        ToastUtil.createAndShowToast(activity, "New Email and Confirm Email do not match");
+                        ToastUtil.createAndShowToast(activity, "Error: Please try again");
                     }
-                } else {
-                    ToastUtil.createAndShowToast(activity, "Please provide valid email");
                 }
             }
         });

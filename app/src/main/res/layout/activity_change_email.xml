@@ -3,6 +3,7 @@
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		xmlns:app="http://schemas.android.com/apk/res-auto"
 		android:orientation="vertical"
 		tools:context=".application.activity.ChangeEmailActivity">
 	
@@ -19,10 +20,12 @@
 				android:layout_gravity="center">
 			
 			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/lay_current_email"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Current Email"
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					app:errorEnabled="true"
 					android:layout_marginVertical="@dimen/margin_small">
 				
 				<com.google.android.material.textfield.TextInputEditText
@@ -33,10 +36,12 @@
 			</com.google.android.material.textfield.TextInputLayout>
 			
 			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/lay_new_email"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="New Email"
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					app:errorEnabled="true"
 					android:layout_marginVertical="@dimen/margin_small">
 				
 				<com.google.android.material.textfield.TextInputEditText
@@ -47,10 +52,12 @@
 			</com.google.android.material.textfield.TextInputLayout>
 			
 			<com.google.android.material.textfield.TextInputLayout
+					android:id="@+id/lay_confirm_email"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Confirm Email"
 					style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+					app:errorEnabled="true"
 					android:layout_marginVertical="@dimen/margin_small">
 				
 				<com.google.android.material.textfield.TextInputEditText
