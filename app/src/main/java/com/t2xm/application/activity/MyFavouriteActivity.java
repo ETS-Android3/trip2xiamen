@@ -58,9 +58,9 @@ public class MyFavouriteActivity extends AppCompatActivity {
                 } else if (tab.getText().equals("Do")) {
                     itemList = FavouriteItemDao.getItemListByUsernameAndCategory(username, 1);
                 } else if (tab.getText().equals("Stay")) {
-                    itemList = FavouriteItemDao.getItemListByUsernameAndCategory(username, 2);
-                } else if (tab.getText().equals("Eat")) {
                     itemList = FavouriteItemDao.getItemListByUsernameAndCategory(username, 3);
+                } else if (tab.getText().equals("Eat")) {
+                    itemList = FavouriteItemDao.getItemListByUsernameAndCategory(username, 2);
                 }
                 if (itemList != null && itemList.size() > 0) {
                     rv_favouriteItem.setVisibility(View.VISIBLE);
