@@ -1,5 +1,6 @@
 package com.t2xm.utils.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import com.t2xm.dao.ReviewDao;
 import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.ToastUtil;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
@@ -67,8 +69,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("itemId", item.itemId);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                ((Activity)context).startActivityForResult(intent, RequestCode.VIEW_REVIEWED_ITEM);
             }
         });
 

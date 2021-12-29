@@ -1,10 +1,12 @@
 package com.t2xm.application.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +18,9 @@ import com.t2xm.entity.Item;
 import com.t2xm.entity.Review;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.MyReviewsAdapter;
+import com.t2xm.utils.values.RequestCode;
 
+import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +45,17 @@ public class MyReviewsActivity extends AppCompatActivity {
         rv_myReviews = findViewById(R.id.rv_my_reviews);
         rl_noReviews = findViewById(R.id.rl_no_reviews);
         updateRecyclerView();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RequestCode.VIEW_REVIEWED_ITEM) {
+            if(resultCode == RESULT_OK) {
+                updateRecyclerView();
+            }
+        }
     }
 
     public void updateRecyclerView() {

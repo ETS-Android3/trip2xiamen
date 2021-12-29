@@ -184,6 +184,7 @@ public class DetailsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 item_reviewList = ReviewDao.getReviewListByItemId(itemId);
                 updateReviewList();
+                setResult(RESULT_OK);
             }
         }
     }
