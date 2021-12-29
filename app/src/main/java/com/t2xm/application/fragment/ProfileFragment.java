@@ -19,9 +19,15 @@ import com.t2xm.application.activity.SettingsActivity;
 import com.t2xm.dao.UserDao;
 import com.t2xm.entity.User;
 import com.t2xm.utils.SharedPreferenceUtil;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.ImageUtil;
 
 public class ProfileFragment extends Fragment {
+
+    ImageView iv_profileImage;
+    String username;
+    View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,18 +37,12 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.view = view;
 
-        ImageView iv_profileImage = view.findViewById(R.id.iv_profile_image);
-        String username = SharedPreferenceUtil.getUsername(getActivity().getApplicationContext());
+        iv_profileImage = view.findViewById(R.id.iv_profile_image);
+        username = SharedPreferenceUtil.getUsername(getActivity().getApplicationContext());
 
-        ((TextView) view.findViewById(R.id.tv_username)).setText(username);
-        User user = UserDao.getUserInfoByUsername(username);
-        if (user.profileImg != null) {
-            iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
-        } else {
-            iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
-            iv_profileImage.setColorFilter(R.color.black);
-        }
+        updateUserInformation();
 
         view.findViewById(R.id.btn_my_favourite).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +61,20 @@ public class ProfileFragment extends Fragment {
         view.findViewById(R.id.btn_settings).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity().getApplicationContext(), SettingsActivity.class));
+                Intent intent = new Intent(getActivity().getApplicationContext(), SettingsActivity.class);
+                getActivity().startActivityForResult(intent, RequestCode.START_SETTINGS);
             }
         });
+    }
+
+    public void updateUserInformation() {
+        ((TextView) view.findViewById(R.id.tv_username)).setText(username);
+        User user = UserDao.getUserInfoByUsername(username);
+        if (user.profileImg != null) {
+            iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
+        } else {
+            iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
+            iv_profileImage.setColorFilter(R.color.black);
+        }
     }
 }

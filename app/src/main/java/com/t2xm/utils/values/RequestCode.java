@@ -12,11 +12,9 @@ public class RequestCode {
     public static final Integer SNAP_PHOTO_FROM_CAMERA = 32;
 
     public static final Integer WRITE_REVIEW = 51;
-    public static final Integer CHANGE_PASSWORD = 52;
-    public static final Integer CHANGE_EMAIL = 53;
-    public static final Integer VIEW_FAVOURITE_ITEM = 54;
-    public static final Integer VIEW_REVIEWED_ITEM = 55;
-    public static final Integer START_SETTINGS = 56;
+    public static final Integer VIEW_FAVOURITE_ITEM = 52;
+    public static final Integer VIEW_REVIEWED_ITEM = 53;
+    public static final Integer START_SETTINGS = 54;
 
 
     //Permission

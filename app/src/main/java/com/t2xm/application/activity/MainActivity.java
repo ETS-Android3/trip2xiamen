@@ -1,10 +1,12 @@
 package com.t2xm.application.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -15,6 +17,7 @@ import com.t2xm.application.fragment.AttractionFragment;
 import com.t2xm.application.fragment.HomeFragment;
 import com.t2xm.application.fragment.ProfileFragment;
 import com.t2xm.application.fragment.RecommendFragment;
+import com.t2xm.utils.values.RequestCode;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,5 +76,18 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("No", null)
                 .create().show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        System.out.println(requestCode  + ", " + resultCode);
+
+        if(requestCode == RequestCode.START_SETTINGS && activeFragment == PROFILE_FRAGMENT) {
+            if(resultCode == RESULT_OK) {
+                PROFILE_FRAGMENT.updateUserInformation();
+            }
+        }
     }
 }

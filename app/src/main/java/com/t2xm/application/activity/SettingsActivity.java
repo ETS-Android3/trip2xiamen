@@ -170,6 +170,7 @@ public class SettingsActivity extends AppCompatActivity {
                 iv_profileImage.setImageBitmap(bitmap);
                 iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
+                setResult(RESULT_OK);
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
@@ -178,6 +179,7 @@ public class SettingsActivity extends AppCompatActivity {
                     iv_profileImage.setImageBitmap(bitmap);
                     iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
+                    setResult(RESULT_OK);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -197,6 +199,11 @@ public class SettingsActivity extends AppCompatActivity {
                 startGalleryIntent();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
     private void startGalleryIntent() {
