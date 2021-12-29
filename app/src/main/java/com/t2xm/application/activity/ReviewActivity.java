@@ -142,7 +142,7 @@ public class ReviewActivity extends AppCompatActivity {
         tv_itemName.setText(item.itemName);
         if (item == null) {
             ToastUtil.createAndShowToast(activity, "Error");
-            onBackPressed();
+            finish();
             return;
         }
         try {
@@ -275,7 +275,7 @@ public class ReviewActivity extends AppCompatActivity {
                     }
                 }
                 ToastUtil.createAndShowToast(activity, "Your review has been posted");
-                onBackPressed();
+                setResult(RESULT_OK);
                 finish();
             }
         });

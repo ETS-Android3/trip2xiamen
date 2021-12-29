@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -98,7 +99,7 @@ public class DetailsActivity extends AppCompatActivity {
         public void onClick(View view) {
             Intent intent = new Intent(getApplicationContext(), ReviewActivity.class);
             intent.putExtra("itemId", itemId);
-            startActivity(intent);
+            startActivityForResult(intent, RequestCode.WRITE_REVIEW);
         }
     };
 
@@ -174,6 +175,18 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RequestCode.WRITE_REVIEW) {
+            if (resultCode == RESULT_OK) {
+                item_reviewList = ReviewDao.getReviewListByItemId(itemId);
+                updateReviewList();
+            }
+        }
+    }
+
     private void startCallPhoneActivity() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + item.phoneNumber));
@@ -187,13 +200,16 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateItemInformation() {
+        System.out.println("update");
         int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
         iv_itemImage.setImageResource(resource);
         tv_itemName.setText(item.itemName);
         tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
         updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
+    }
 
+    private void updateReviewList() {
         if (item_reviewList != null) {
             rv_reviews.setVisibility(View.VISIBLE);
             ll_noReviewsContainer.setVisibility(View.GONE);
