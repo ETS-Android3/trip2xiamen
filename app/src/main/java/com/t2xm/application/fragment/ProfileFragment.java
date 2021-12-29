@@ -71,6 +71,7 @@ public class ProfileFragment extends Fragment {
         ((TextView) view.findViewById(R.id.tv_username)).setText(username);
         User user = UserDao.getUserInfoByUsername(username);
         if (user.profileImg != null) {
+            iv_profileImage.setColorFilter(null);
             iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
         } else {
             iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));

@@ -114,11 +114,11 @@ public class SettingsActivity extends AppCompatActivity {
                     }
                 });
 
-
         String username = SharedPreferenceUtil.getUsername(activity);
         ((TextView) findViewById(R.id.tv_username)).setText(username);
         User user = UserDao.getUserInfoByUsername(username);
         if (user.profileImg != null) {
+            iv_profileImage.setColorFilter(null);
             iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
         } else {
             iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
@@ -168,6 +168,7 @@ public class SettingsActivity extends AppCompatActivity {
         if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
             if (resultCode == RESULT_OK) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                iv_profileImage.setColorFilter(null);
                 iv_profileImage.setImageBitmap(bitmap);
                 boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                if(result == true) {
