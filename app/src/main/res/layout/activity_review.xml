@@ -43,7 +43,6 @@
 						android:layout_height="1dp"
 						android:background="@color/gray" />
 				
-				
 				<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
@@ -105,7 +104,6 @@
 									app:tint="@color/yellow" />
 						</LinearLayout>
 					</LinearLayout>
-					
 					
 					<LinearLayout
 							android:layout_width="match_parent"
@@ -184,16 +182,15 @@
 							android:textSize="@dimen/font_medium"
 							android:buttonTint="@color/primary_color"
 							android:text="I recommend this" />
+					
+					<Button
+							android:id="@+id/btn_submit_review"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:text="Submit"
+							android:layout_marginVertical="@dimen/margin_small" />
 				</LinearLayout>
 			</LinearLayout>
-			
-			<Button
-					android:id="@+id/btn_submit_review"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:text="Submit"
-					android:layout_marginVertical="@dimen/margin_small" />
-		
 		</LinearLayout>
 	</ScrollView>
 </LinearLayout>
