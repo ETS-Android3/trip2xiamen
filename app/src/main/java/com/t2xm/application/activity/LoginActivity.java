@@ -71,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 updateUsernameAndPassword();
                 if (validateLoginInput() == true) {
-                    if (UserDao.checkUsernameExistence(username) == true) {
-                        lay_username.setError(getString(R.string.error_username_exist));
+                    if (UserDao.checkUsernameExistence(username) == false) {
+                        lay_username.setError(getString(R.string.error_username_not_exist));
                     } else {
                         lay_username.setError(getString(R.string.no_error));
                         if (UserDao.validateUserAccount(username, password) == true) {
