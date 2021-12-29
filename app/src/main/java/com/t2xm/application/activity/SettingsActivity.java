@@ -11,6 +11,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -169,8 +170,15 @@ public class SettingsActivity extends AppCompatActivity {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 iv_profileImage.setImageBitmap(bitmap);
                 iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
-                setResult(RESULT_OK);
+                boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
+               if(result == true) {
+                   ToastUtil.createAndShowToast(activity, "Profile image has been updated");
+                   setResult(RESULT_OK);
+               }
+                else {
+                   ToastUtil.createAndShowToast(activity, "Error: Please try again");
+                    setResult(RESULT_CANCELED);
+               }
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
@@ -178,8 +186,16 @@ public class SettingsActivity extends AppCompatActivity {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     iv_profileImage.setImageBitmap(bitmap);
                     iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
-                    setResult(RESULT_OK);
+                    boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity),
+                            ImageUtil.bitmapToByteArray(bitmap));
+                    if(result == true) {
+                        ToastUtil.createAndShowToast(activity, "Profile image has been updated");
+                        setResult(RESULT_OK);
+                    }
+                    else {
+                        ToastUtil.createAndShowToast(activity, "Error: Please try again");
+                        setResult(RESULT_CANCELED);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
