@@ -184,7 +184,6 @@ public class SettingsActivity extends AppCompatActivity {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
                     iv_profileImage.setImageBitmap(bitmap);
-                    iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                     boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity),
                             ImageUtil.bitmapToByteArray(bitmap));
                     if(result == true) {
