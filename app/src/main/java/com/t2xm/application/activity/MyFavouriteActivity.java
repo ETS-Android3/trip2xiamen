@@ -1,10 +1,12 @@
 package com.t2xm.application.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +17,7 @@ import com.t2xm.dao.FavouriteItemDao;
 import com.t2xm.entity.Item;
 import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.ListItemAdapter;
+import com.t2xm.utils.values.RequestCode;
 
 import java.util.List;
 
@@ -45,16 +48,7 @@ public class MyFavouriteActivity extends AppCompatActivity {
         itemList = FavouriteItemDao.getFavouriteItemListByUsername(SharedPreferenceUtil.getUsername(this));
         username = SharedPreferenceUtil.getUsername(activity);
 
-        if (itemList != null) {
-            rv_favouriteItem.setVisibility(View.VISIBLE);
-            rl_noItems.setVisibility(View.GONE);
-            adapter = new ListItemAdapter(activity, itemList);
-            rv_favouriteItem.setAdapter(adapter);
-            rv_favouriteItem.setLayoutManager(new LinearLayoutManager(activity));
-        } else {
-            rv_favouriteItem.setVisibility(View.GONE);
-            rl_noItems.setVisibility(View.VISIBLE);
-        }
+        updateFavouriteItemList();
 
         tl_favourite_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -86,5 +80,30 @@ public class MyFavouriteActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RequestCode.VIEW_FAVOURITE_ITEM) {
+            if(resultCode == RESULT_OK) {
+                itemList = FavouriteItemDao.getFavouriteItemListByUsername(SharedPreferenceUtil.getUsername(this));
+                updateFavouriteItemList();
+            }
+        }
+    }
+
+    public void updateFavouriteItemList() {
+        if (itemList != null) {
+            rv_favouriteItem.setVisibility(View.VISIBLE);
+            rl_noItems.setVisibility(View.GONE);
+            adapter = new ListItemAdapter(activity, itemList);
+            rv_favouriteItem.setAdapter(adapter);
+            rv_favouriteItem.setLayoutManager(new LinearLayoutManager(activity));
+        } else {
+            rv_favouriteItem.setVisibility(View.GONE);
+            rl_noItems.setVisibility(View.VISIBLE);
+        }
     }
 }

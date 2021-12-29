@@ -1,5 +1,6 @@
 package com.t2xm.utils.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.t2xm.R;
 import com.t2xm.application.activity.DetailsActivity;
 import com.t2xm.entity.Item;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 
@@ -57,8 +59,7 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("itemId", item.itemId);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(intent);
+                ((Activity)context).startActivityForResult(intent, RequestCode.VIEW_FAVOURITE_ITEM);
             }
         });
     }

@@ -118,6 +118,7 @@ public class DetailsActivity extends AppCompatActivity {
                     ToastUtil.createAndShowToast(getApplicationContext(), item.itemName + " has been added to your favourite list");
                 }
             }
+            setResult(RESULT_OK);
         }
     };
 
@@ -187,6 +188,11 @@ public class DetailsActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+    }
+
     private void startCallPhoneActivity() {
         Intent intent = new Intent(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + item.phoneNumber));
@@ -200,7 +206,6 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateItemInformation() {
-        System.out.println("update");
         int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
         iv_itemImage.setImageResource(resource);
         tv_itemName.setText(item.itemName);
