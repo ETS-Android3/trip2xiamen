@@ -213,6 +213,7 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
         updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
+        updateReviewList();
     }
 
     private void updateReviewList() {
