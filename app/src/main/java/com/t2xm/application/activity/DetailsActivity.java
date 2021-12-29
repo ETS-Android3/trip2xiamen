@@ -47,7 +47,8 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView tv_itemDescription;
     private ImageButton btn_location;
     private ImageButton btn_phone;
-    private Button btn_moreInformation;
+    private Button btn_officialWebsite;
+    private Button btn_travelInformationWebsite;
     private List<ImageView> iv_starList;
     private TextView tv_itemRating;
     private Button btn_writeReview;
@@ -87,10 +88,17 @@ public class DetailsActivity extends AppCompatActivity {
         }
     };
 
-    private View.OnClickListener moreInformationListener = new View.OnClickListener() {
+    private View.OnClickListener officialWebsiteListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startBrowserActivity();
+            startBrowserActivity(item.officialWebsite);
+        }
+    };
+
+    private View.OnClickListener travelInformationWebsiteListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            startBrowserActivity(item.travelInformationWebsite);
         }
     };
 
@@ -200,9 +208,9 @@ public class DetailsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void startBrowserActivity() {
+    private void startBrowserActivity(String website) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(item.website));
+        intent.setData(Uri.parse(website));
         startActivity(intent);
     }
 
@@ -232,7 +240,8 @@ public class DetailsActivity extends AppCompatActivity {
     private void setupOnClickListeners() {
         btn_location.setOnClickListener(viewMapLocationListener);
         btn_phone.setOnClickListener(phoneCallListener);
-        btn_moreInformation.setOnClickListener(moreInformationListener);
+        btn_officialWebsite.setOnClickListener(officialWebsiteListener);
+        btn_travelInformationWebsite.setOnClickListener(travelInformationWebsiteListener);
         btn_writeReview.setOnClickListener(writeReviewListener);
         btn_addToFavourite.setOnClickListener(addToFavouriteListener);
         btn_writeReview2.setOnClickListener(writeReviewListener);
@@ -244,7 +253,8 @@ public class DetailsActivity extends AppCompatActivity {
         tv_itemDescription = findViewById(R.id.tv_item_description);
         btn_location = findViewById(R.id.btn_location);
         btn_phone = findViewById(R.id.btn_phone);
-        btn_moreInformation = findViewById(R.id.btn_more_information);
+        btn_officialWebsite = findViewById(R.id.btn_official_website);
+        btn_travelInformationWebsite = findViewById(R.id.btn_travel_information);
         tv_itemRating = findViewById(R.id.tv_item_rating);
         btn_writeReview = findViewById(R.id.btn_write_review);
         btn_addToFavourite = findViewById(R.id.btn_add_to_favourite);

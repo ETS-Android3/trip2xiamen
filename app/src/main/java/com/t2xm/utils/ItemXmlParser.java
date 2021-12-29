@@ -36,10 +36,11 @@ public class ItemXmlParser {
                         item.description = parser.nextText();
                     } else if (parser.getName().equals("phoneNumber")) {
                         item.phoneNumber = parser.nextText();
-                    } else if(parser.getName().equals("website")) {
-                        item.website = parser.nextText();
-                    }
-                    else if (parser.getName().equals("images")) {
+                    } else if(parser.getName().equals("officialWebsite")) {
+                        item.officialWebsite = parser.nextText();
+                    } else if(parser.getName().equals("travelInformationWebsite")) {
+                        item.travelInformationWebsite = parser.nextText();
+                    } else if (parser.getName().equals("images")) {
                         imageNameList = new ArrayList<>();
                     } else if (parser.getName().equals("image")) {
                         imageNameList.add(parser.nextText());
