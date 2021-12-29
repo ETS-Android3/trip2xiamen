@@ -33,6 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
     private Activity activity;
     private ImageView iv_profileImage;
 
+    private User user;
+    private String username;
+
     private DialogInterface.OnClickListener logoutOnClickListener = new DialogInterface.OnClickListener() {
         @Override
         public void onClick(DialogInterface dialogInterface, int i) {
@@ -63,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
     private AlertDialog.Builder deleteAccountBuilder;
 
     private AlertDialog.Builder uploadProfileImageBuilder;
-    private String[] uploadProfileImage = {"Select from gallery", "Take photo", "Cancel"};
+    private String[] uploadProfileImage = {"Select from gallery", "Take photo", "Remove profile image", "Cancel"};
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
@@ -72,10 +75,11 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
         activity = this;
-
         iv_profileImage = findViewById(R.id.iv_profile_image);
-
         Activity activity = this;
+
+        username = SharedPreferenceUtil.getUsername(activity);
+        user = UserDao.getUserInfoByUsername(username);
 
         logoutBuilder = new AlertDialog.Builder(this)
                 .setTitle("Logout")
@@ -107,6 +111,13 @@ public class SettingsActivity extends AppCompatActivity {
                                     startCameraIntent();
                                 }
                                 break;
+                            case 2:
+                                if(UserDao.removeUserProfileImageByUsername(SharedPreferenceUtil.getUsername(activity))) {
+                                    ToastUtil.createAndShowToast(activity, "Profile image has been updated");
+                                    updateUserProfileImage();
+                                    setResult(RESULT_OK);
+                                }
+                                break;
                             default:
                                 dialogInterface.dismiss();
                                 break;
@@ -116,14 +127,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         String username = SharedPreferenceUtil.getUsername(activity);
         ((TextView) findViewById(R.id.tv_username)).setText(username);
-        User user = UserDao.getUserInfoByUsername(username);
-        if (user.profileImg != null) {
-            iv_profileImage.setColorFilter(null);
-            iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
-        } else {
-            iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
-            iv_profileImage.setColorFilter(R.color.black);
-        }
+        user = UserDao.getUserInfoByUsername(username);
+        updateUserProfileImage();
 
         iv_profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,10 +173,9 @@ public class SettingsActivity extends AppCompatActivity {
         if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
             if (resultCode == RESULT_OK) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-                iv_profileImage.setColorFilter(null);
-                iv_profileImage.setImageBitmap(bitmap);
                 boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                if(result == true) {
+                   updateUserProfileImage();
                    ToastUtil.createAndShowToast(activity, "Profile image has been updated");
                    setResult(RESULT_OK);
                }
@@ -184,10 +188,9 @@ public class SettingsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    iv_profileImage.setImageBitmap(bitmap);
-                    boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity),
-                            ImageUtil.bitmapToByteArray(bitmap));
+                    boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                     if(result == true) {
+                        updateUserProfileImage();
                         ToastUtil.createAndShowToast(activity, "Profile image has been updated");
                         setResult(RESULT_OK);
                     }
@@ -229,5 +232,16 @@ public class SettingsActivity extends AppCompatActivity {
     private void startCameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, RequestCode.SNAP_PHOTO_FROM_CAMERA);
+    }
+
+    private void updateUserProfileImage() {
+        user = UserDao.getUserInfoByUsername(username);
+        if (user.profileImg != null) {
+            iv_profileImage.setColorFilter(null);
+            iv_profileImage.setImageBitmap(ImageUtil.byteArrayToBitmap(user.profileImg));
+        } else {
+            iv_profileImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_baseline_person_24));
+            iv_profileImage.setColorFilter(R.color.black);
+        }
     }
 }

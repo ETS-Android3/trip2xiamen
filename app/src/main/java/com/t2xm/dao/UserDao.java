@@ -110,4 +110,10 @@ public class UserDao extends Dao {
         Cursor cursor = database.rawQuery("select password from users where userid=?", new String[]{String.valueOf(userId)});
         return cursor.moveToNext() ? cursor.getString(0) : "";
     }
+
+    public static boolean removeUserProfileImageByUsername(String username) {
+        ContentValues cv = new ContentValues();
+        cv.putNull(PROFILE_IMG);
+        return database.update(TABLE, cv, "username=?", new String[]{username}) > 0;
+    }
 }
