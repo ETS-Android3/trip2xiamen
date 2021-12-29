@@ -11,6 +11,10 @@
 		<images>
 			<image>do_gulangyu_island_1</image>
 			<image>do_gulangyu_island_2</image>
+			<image>do_gulangyu_island_3</image>
+			<image>do_gulangyu_island_4</image>
+			<image>do_gulangyu_island_5</image>
+			<image>do_gulangyu_island_6</image>
 		</images>
 		<latitude>24.446981501640725</latitude>
 		<longitude>118.06636070196205</longitude>
@@ -26,6 +30,8 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.chinadiscovery.com/fujian/xiamen/south-putuo-temple.html</travelInformationWebsite>
 		<images>
+			<image>do_south_putuo_temple_1</image>
+			<image>do_south_putuo_temple_2</image>
 		</images>
 		<latitude>24.44095856508469</latitude>
 		<longitude>118.09686837022693</longitude>
@@ -41,6 +47,8 @@
 		</officialWebsite>
 		<travelInformationWebsite></travelInformationWebsite>
 		<images>
+			<image>do_xiamen_botanical_garden_1</image>
+			<image>do_xiamen_botanical_garden_2</image>
 		</images>
 		<latitude>24.454026047412942</latitude>
 		<longitude>118.09426234139151</longitude>
@@ -51,16 +59,20 @@
 		<category>1</category>
 		<description>Foodies and shopping lovers must like Xiamen Zhongshan Road Pedestrian Street very much. This lively street offers almost everything you want, including a wide array of local snacks, souvenirs, clothes, jewels, etc. Zhongshan Road Pedestrian Street is suitable to be visited during both day and night. Most of its shops won’t be closed until 10:00 pm. There are also shops and restaurants that offer service until 3:00am and even 4:00am.
 		</description>
+<!--		TODO disable button if no phone number	-->
 		<phoneNumber></phoneNumber>
 		<officialWebsite>
 		</officialWebsite>
 		<travelInformationWebsite></travelInformationWebsite>
 		<images>
+			<image>do_zhongshan_road_walking_street_1</image>
+			<image>do_zhongshan_road_walking_street_2</image>
 		</images>
 		<latitude></latitude>
 		<longitude></longitude>
 	</Item>
 	
+<!--	TODO image	-->
 	<Item>
 		<itemName>Riyuegu Hot Spring Resort</itemName>
 		<category>1</category>
@@ -86,6 +98,8 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.chinahighlights.com/xiamen/attraction/xiamen-university.htm</travelInformationWebsite>
 		<images>
+			<image>do_xmu_1</image>
+			<image>do_xmu_2</image>
 		</images>
 		<latitude>24.437602343798446</latitude>
 		<longitude>118.09787645488368</longitude>
@@ -104,6 +118,10 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Restaurant_Review-g297407-d12996374-Reviews-CAFE_AMOY-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>eat_cafe_amoy_1</image>
+			<image>eat_cafe_amoy_2</image>
+			<image>eat_cafe_amoy_3</image>
+			<image>eat_cafe_amoy_4</image>
 		</images>
 		<latitude>24.497235419071462</latitude>
 		<longitude>118.18978861255641</longitude>
@@ -121,6 +139,11 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Restaurant_Review-g297407-d10825155-Reviews-Rivage-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>eat_rivage_1</image>
+			<image>eat_rivage_2</image>
+			<image>eat_rivage_3</image>
+			<image>eat_rivage_4</image>
+			<image>eat_rivage_5</image>
 		</images>
 		<latitude>24.45002315118943</latitude>
 		<longitude>118.07920081070462</longitude>
@@ -139,6 +162,10 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Restaurant_Review-g297407-d3974012-Reviews-Jacky_Angela_Steakhouse-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>eat_jacky_angela_1</image>
+			<image>eat_jacky_angela_2</image>
+			<image>eat_jacky_angela_3</image>
+			<image>eat_jacky_angela_4</image>
 		</images>
 		<latitude>24.487547841820305</latitude>
 		<longitude>118.07607406022132</longitude>
@@ -154,6 +181,9 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Restaurant_Review-g297407-d2098950-Reviews-INDIANO_JOHN_s_SAMRAT-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>eat_indiano_john_1</image>
+			<image>eat_indiano_john_2</image>
+			<image>eat_indiano_john_3</image>
 		</images>
 		<latitude>24.498138480792562</latitude>
 		<longitude>118.1317712683773</longitude>
@@ -170,6 +200,11 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Restaurant_Review-g297407-d7263981-Reviews-Lian_Yuan_ShaMen_MaGe_Bei_Luo_DongFang_Restaurant-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>eat_lianyuan_1</image>
+			<image>eat_lianyuan_2</image>
+			<image>eat_lianyuan_3</image>
+			<image>eat_lianyuan_4</image>
+			<image>eat_lianyuan_5</image>
 		</images>
 		<latitude>24.481839603281426</latitude>
 		<longitude>118.08539845105182</longitude>
@@ -192,6 +227,10 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Hotel_Review-g297407-d2689063-Reviews-Kempinski_Hotel_Xiamen-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>stay_kempinski_1</image>
+			<image>stay_kempinski_2</image>
+			<image>stay_kempinski_3</image>
+			<image>stay_kempinski_4</image>
 		</images>
 		<latitude>24.47539</latitude>
 		<longitude>118.09544</longitude>
@@ -214,6 +253,11 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Hotel_Review-g297407-d578406-Reviews-Pan_Pacific_Xiamen-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>stay_pan_pacific_1</image>
+			<image>stay_pan_pacific_2</image>
+			<image>stay_pan_pacific_3</image>
+			<image>stay_pan_pacific_4</image>
+			<image>stay_pan_pacific_5</image>
 		</images>
 		<latitude>24.478470322757026</latitude>
 		<longitude>118.08238172604855</longitude>
@@ -239,6 +283,10 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Hotel_Review-g297407-d589727-Reviews-Sheraton_Xiamen_Hotel-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>stay_sheraton_1</image>
+			<image>stay_sheraton_2</image>
+			<image>stay_sheraton_3</image>
+			<image>stay_sheraton_4</image>
 		</images>
 		<latitude>24.49531865381136</latitude>
 		<longitude>118.12855889589875</longitude>
@@ -263,6 +311,8 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Hotel_Review-g297407-d1312382-Reviews-Jinjiang_Inn_Xiamen_University-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>stay_jinjiang_1</image>
+			<image>stay_jinjiang_2</image>
 		</images>
 		<latitude>24.443344958179242</latitude>
 		<longitude>118.083095624197</longitude>
@@ -287,6 +337,11 @@
 		</officialWebsite>
 		<travelInformationWebsite>https://www.tripadvisor.com/Hotel_Review-g297407-d575848-Reviews-Park_City_Hotel_Xiamen_China-Xiamen_Fujian.html</travelInformationWebsite>
 		<images>
+			<image>stay_park_city_1</image>
+			<image>stay_park_city_2</image>
+			<image>stay_park_city_3</image>
+			<image>stay_park_city_4</image>
+			<image>stay_park_city_5</image>
 		</images>
 		<latitude>24.49620472051244</latitude>
 		<longitude>118.107724370228</longitude>
