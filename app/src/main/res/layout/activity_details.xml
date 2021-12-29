@@ -126,6 +126,8 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="Visit Official Website"
+						android:backgroundTint="@color/primary_light_color"
+						android:textColor="@color/black"
 						android:layout_marginTop="@dimen/margin_medium"
 						android:layout_marginHorizontal="@dimen/margin_large"/>
 				
@@ -133,6 +135,8 @@
 						android:id="@+id/btn_travel_information"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+						android:backgroundTint="@color/primary_light_color"
+						android:textColor="@color/black"
 						android:text="More Travel Information"
 						android:layout_marginHorizontal="@dimen/margin_large"/>
 				
@@ -142,6 +146,7 @@
 						android:layout_height="wrap_content"
 						android:textSize="@dimen/font_small"
 						android:layout_marginVertical="@dimen/margin_small"
+						android:justificationMode="inter_word"
 						android:text="Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups." />
 			</LinearLayout>
 			
