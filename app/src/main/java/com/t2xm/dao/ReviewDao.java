@@ -57,7 +57,7 @@ public class ReviewDao extends Dao {
 
     @SuppressLint("Range")
     public static List<Review> get10LatestReview() {
-        Cursor cursor = database.rawQuery("select userId, itemId, reviewtext, rating from reviews order by time desc limit 10", null);
+        Cursor cursor = database.rawQuery("select userId, itemId, reviewtext, rating from reviews order by time desc limit 5", null);
         List<Review> reviewList = null;
         if (cursor.getCount() > 0) {
             reviewList = new ArrayList<>();

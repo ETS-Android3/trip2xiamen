@@ -33,7 +33,7 @@ public class RecommendFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        List<Item> itemList = ItemDao.getItemListByCategory(1);
+        List<Item> itemList = ItemDao.get5TopRatingItems();
 
         if (itemList != null) {
             RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);

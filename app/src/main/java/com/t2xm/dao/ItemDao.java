@@ -107,4 +107,22 @@ public class ItemDao extends Dao {
         }
         return itemList;
     }
+
+    @SuppressLint("Range")
+    public static List<Item> get5TopRatingItems() {
+        Cursor cursor = database.rawQuery("select itemId, itemName, image, avgRating from items order by avgRating desc limit 5", null);
+        List<Item> itemList = null;
+        if (cursor.getCount() > 0) {
+            itemList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                Item item = new Item();
+                item.itemId = cursor.getInt(cursor.getColumnIndex(ITEMID));
+                item.itemName = cursor.getString(cursor.getColumnIndex(ITEMNAME));
+                item.image = cursor.getString(cursor.getColumnIndex(IMAGE));
+                item.avgRating = cursor.getDouble(cursor.getColumnIndex(AVGRATING));
+                itemList.add(item);
+            }
+        }
+        return itemList;
+    }
 }
