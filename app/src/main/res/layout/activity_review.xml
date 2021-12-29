@@ -40,6 +40,7 @@
 					android:layout_height="wrap_content"
 					android:orientation="vertical">
 				
+				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="horizontal">
@@ -158,6 +159,8 @@
 						android:textSize="@dimen/font_medium"
 						android:buttonTint="@color/primary_color"
 						android:text="I recommend this" />
+			
+			</LinearLayout>
 			
 			<Button
 					android:id="@+id/btn_submit_review"
