@@ -56,7 +56,6 @@ public class HomeFragment extends Fragment {
             });
         }
 
-        //TODO ViewPager
         ImageView iv_homeAnimation = view.findViewById(R.id.iv_home_animation);
         iv_homeAnimation.setBackgroundResource(R.drawable.animation_list);
         AnimationDrawable frameAnimation = (AnimationDrawable) iv_homeAnimation.getBackground();
