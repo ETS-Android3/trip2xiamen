@@ -15,4 +15,35 @@
 		<latitude>24.446981501640725</latitude>
 		<longitude>118.06636070196205</longitude>
 	</Item>
+	
+	<Item>
+		<itemName>South Putuo Temple</itemName>
+		<category>1</category>
+		<description>South Putuo Temple, or called Nanputuo Temple, is adjacent to Xiamen University. It is located south of Mount Putuo in Zhejiang Province, hence the name. This temple is a sacred pilgrimage site for Fujian people and also dedicated Buddhist followers from Southeast Asia. It also has an amazing vegetarian restaurant, which allows you dinning with the monks. At the back of the temple lies Wulao Peak (Five-old Peak), where you can take a hike and have a broad panorama view of Xiamen.
+		</description>
+		<phoneNumber>+8605922087282</phoneNumber>
+		<officialWebsite>https://en.nanputuo.com/
+		</officialWebsite>
+		<travelInformationWebsite>https://www.chinadiscovery.com/fujian/xiamen/south-putuo-temple.html</travelInformationWebsite>
+		<images>
+		</images>
+		<latitude>24.44095856508469</latitude>
+		<longitude>118.09686837022693</longitude>
+	</Item>
+	
+	<Item>
+		<itemName>Xiamen Botanical Garden</itemName>
+		<category>1</category>
+		<description>Xiamen Botanical Garden (厦门园林植物园), also known as Wanshi Botanical Garden, is a big and beautiful garden that shares the border with Xiamen University. It is even the first Botanical Garden in the whole Fujian Province. At Xiamen Botanical Garden, you will find thousands kinds of lovely flowers, cactus and other plants, grotesque rocks, and also groups of locals coming for relax and picnic. It is a good place for leisure walking, especially for the visitors travelling with children.
+		</description>
+		<phoneNumber>+8605922024785</phoneNumber>
+		<officialWebsite>https://www.xiamenbg.com/index.php?m=content&amp;c=index&amp;a=lists&amp;catid=74
+		</officialWebsite>
+		<travelInformationWebsite></travelInformationWebsite>
+		<images>
+		</images>
+		<latitude>24.454026047412942</latitude>
+		<longitude>118.09426234139151</longitude>
+	</Item>
+	
 </Items>
