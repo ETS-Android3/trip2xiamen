@@ -2,9 +2,6 @@
 <animation-list xmlns:android="http://schemas.android.com/apk/res/android"
 		android:oneshot="false">
 	<item
-			android:drawable="@drawable/do_fujiantulou_1"
-			android:duration="3000" />
-	<item
 			android:drawable="@drawable/do_gulangyu_island_1"
 			android:duration="3000" />
 	<item
