@@ -92,6 +92,7 @@ public class ReviewActivity extends AppCompatActivity {
                 increaseNumberOfImages();
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
+            //TODO cannot get image
             if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());

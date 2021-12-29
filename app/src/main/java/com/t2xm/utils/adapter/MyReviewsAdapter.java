@@ -76,6 +76,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
         viewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //TODO alert dialog to confirm deletion
                 boolean result = ReviewDao.deleteReviewByReviewId(review.reviewId);
                 if (result) {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Review has been deleted");

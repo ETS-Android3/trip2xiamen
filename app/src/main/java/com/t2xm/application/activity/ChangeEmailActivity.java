@@ -14,6 +14,7 @@ import com.t2xm.utils.ToastUtil;
 import com.t2xm.utils.ValidationUtil;
 
 public class ChangeEmailActivity extends AppCompatActivity {
+    //TODO display error with textinputlayout
 
     private Activity activity;
 
