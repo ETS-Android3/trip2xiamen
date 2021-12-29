@@ -169,7 +169,6 @@ public class SettingsActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
                 iv_profileImage.setImageBitmap(bitmap);
-                iv_profileImage.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                if(result == true) {
                    ToastUtil.createAndShowToast(activity, "Profile image has been updated");
