@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -81,7 +82,12 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (PermissionUtil.phoneCallPermissionGranted(activity)) {
-                startCallPhoneActivity();
+                if(!item.phoneNumber.equals("")) {
+                    startCallPhoneActivity();
+                }
+                else {
+                    ToastUtil.createAndShowToast(activity, "No phone number is provided for this place");
+                }
             } else {
                 PermissionUtil.grantCallPhonePermission(activity);
             }
@@ -91,14 +97,24 @@ public class DetailsActivity extends AppCompatActivity {
     private View.OnClickListener officialWebsiteListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startBrowserActivity(item.officialWebsite);
+            if(!item.officialWebsite.equals("")) {
+                startBrowserActivity(item.officialWebsite);
+            }
+            else {
+                ToastUtil.createAndShowToast(activity, "No official website is available for this place");
+            }
         }
     };
 
     private View.OnClickListener travelInformationWebsiteListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            startBrowserActivity(item.travelInformationWebsite);
+            if(!item.travelInformationWebsite.equals("")) {
+                startBrowserActivity(item.travelInformationWebsite);
+            }
+            else {
+                ToastUtil.createAndShowToast(activity, "No additional website is available for this place");
+            }
         }
     };
 
@@ -180,7 +196,12 @@ public class DetailsActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == RequestCode.CALL_PHONE_PERMISSION) {
-            startCallPhoneActivity();
+            if(!item.phoneNumber.equals("")) {
+                startCallPhoneActivity();
+            }
+            else {
+                ToastUtil.createAndShowToast(activity, "No phone number is provided for this place");
+            }
         }
     }
 
@@ -188,7 +209,7 @@ public class DetailsActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RequestCode.WRITE_REVIEW) {
+        if (requestCode == RequestCode.WRITE_REVIEW) {
             if (resultCode == RESULT_OK) {
                 item_reviewList = ReviewDao.getReviewListByItemId(itemId);
                 updateReviewList();
@@ -215,13 +236,14 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateItemInformation() {
-        if(item_imageList.size() > 0) {
+        if (item_imageList.size() > 0) {
             int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
             iv_itemImage.setImageResource(resource);
         }
         tv_itemName.setText(item.itemName);
         btn_officialWebsite.setVisibility(!item.officialWebsite.equals("") ? View.VISIBLE : View.GONE);
         btn_travelInformationWebsite.setVisibility(!item.travelInformationWebsite.equals("") ? View.VISIBLE : View.GONE);
+        btn_phone.setColorFilter(!item.phoneNumber.equals("") ? getColor(R.color.primary_color) : getColor(R.color.gray));
         tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
         updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
