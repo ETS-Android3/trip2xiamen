@@ -43,8 +43,11 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
 
         //setup item image
         try {
-            String firstImageName = (String) JsonUtil.mapJsonToObject(item.image, List.class).get(0);
-            viewHolder.iv_itemImage.setImageResource(this.context.getResources().getIdentifier(firstImageName, "drawable", context.getPackageName()));
+            List images = JsonUtil.mapJsonToObject(item.image, List.class) ;
+            if(images.size() > 0) {
+                String firstImageName = (String) JsonUtil.mapJsonToObject(item.image, List.class).get(0);
+                viewHolder.iv_itemImage.setImageResource(this.context.getResources().getIdentifier(firstImageName, "drawable", context.getPackageName()));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

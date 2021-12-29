@@ -215,9 +215,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateItemInformation() {
-        int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
-        iv_itemImage.setImageResource(resource);
+        if(item_imageList.size() > 0) {
+            int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
+            iv_itemImage.setImageResource(resource);
+        }
         tv_itemName.setText(item.itemName);
+        btn_officialWebsite.setVisibility(!item.officialWebsite.equals("") ? View.VISIBLE : View.GONE);
+        btn_travelInformationWebsite.setVisibility(!item.travelInformationWebsite.equals("") ? View.VISIBLE : View.GONE);
         tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
         updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
         tv_itemDescription.setText(item.description);
