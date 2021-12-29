@@ -176,6 +176,7 @@ public class ReviewActivity extends AppCompatActivity {
         iv_starList.add(findViewById(R.id.iv_star_3));
         iv_starList.add(findViewById(R.id.iv_star_4));
         iv_starList.add(findViewById(R.id.iv_star_5));
+        rating = 5; //set default value
 
         bitmapList = new ArrayList<>();
         imageAdapter = new ReviewImageAdapter(ReviewActivity.this, bitmapList);
