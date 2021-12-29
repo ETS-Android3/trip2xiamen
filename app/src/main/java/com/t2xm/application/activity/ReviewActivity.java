@@ -149,7 +149,7 @@ public class ReviewActivity extends AppCompatActivity {
         try {
             List<String> images = JsonUtil.mapJsonToObject(item.image, List.class);
             AnimationDrawable animationDrawable = new AnimationDrawable();
-            for(String img: images) {
+            for (String img : images) {
                 int resource = getResources().getIdentifier(img, "drawable", getPackageName());
                 animationDrawable.addFrame(getDrawable(resource), 3000);
             }
@@ -223,7 +223,13 @@ public class ReviewActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                tv_reviewCharacterCount.setText(et_reviewText.getText().length() + "/" + MAX_REVIEW_LENGTH);
+                int length = et_reviewText.getText().length();
+                tv_reviewCharacterCount.setText(length + "/" + MAX_REVIEW_LENGTH);
+                if (length > MAX_REVIEW_LENGTH) {
+                    tv_reviewCharacterCount.setTextColor(getColor(R.color.red));
+                } else {
+                    tv_reviewCharacterCount.setTextColor(getColor(R.color.black));
+                }
             }
         });
 
@@ -259,29 +265,34 @@ public class ReviewActivity extends AppCompatActivity {
         btn_submitReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (String.valueOf(et_reviewText.getText()).trim().equals("") || bitmapList.size() <= 0) {
+                if (String.valueOf(et_reviewText.getText()).trim().equals("") && bitmapList.size() <= 0) {
                     ToastUtil.createAndShowToast(activity, "Please provide some contents before submitting your review");
-                }
+                } else {
+                    Integer userId = UserDao.getUserIdByUsername(SharedPreferenceUtil.getUsername(activity));
+                    String reviewText = String.valueOf(et_reviewText.getText());
 
-                Integer userId = UserDao.getUserIdByUsername(SharedPreferenceUtil.getUsername(activity));
-                String reviewText = String.valueOf(et_reviewText.getText());
-                Boolean recommend = cb_recommend.isChecked();
+                    if (reviewText.length() > MAX_REVIEW_LENGTH) {
+                        ToastUtil.createAndShowToast(activity, "Your review has exceeded maximum length");
+                    } else {
+                        Boolean recommend = cb_recommend.isChecked();
 
-                Review review = new Review(null, itemId, userId, reviewText, rating,
-                        recommend, DateUtil.getCurrentTimestamp());
-                long reviewId = ReviewDao.insertReviewAndGetReviewId(review);
+                        Review review = new Review(null, itemId, userId, reviewText, rating,
+                                recommend, DateUtil.getCurrentTimestamp());
+                        long reviewId = ReviewDao.insertReviewAndGetReviewId(review);
 
-                if (bitmapList != null && bitmapList.size() > 0) {
-                    for (Bitmap bitmap : bitmapList) {
-                        ReviewImage reviewImage = new ReviewImage(null, Math.toIntExact(reviewId), ImageUtil.bitmapToByteArray(bitmap));
-                        if (!ReviewImageDao.insertReviewImage(reviewImage)) {
-                            ToastUtil.createAndShowToast(activity, "Error: some image was not uploaded successfully");
+                        if (bitmapList != null && bitmapList.size() > 0) {
+                            for (Bitmap bitmap : bitmapList) {
+                                ReviewImage reviewImage = new ReviewImage(null, Math.toIntExact(reviewId), ImageUtil.bitmapToByteArray(bitmap));
+                                if (!ReviewImageDao.insertReviewImage(reviewImage)) {
+                                    ToastUtil.createAndShowToast(activity, "Error: some image was not uploaded successfully");
+                                }
+                            }
                         }
+                        ToastUtil.createAndShowToast(activity, "Your review has been posted");
+                        setResult(RESULT_OK);
+                        finish();
                     }
                 }
-                ToastUtil.createAndShowToast(activity, "Your review has been posted");
-                setResult(RESULT_OK);
-                finish();
             }
         });
     }
