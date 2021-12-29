@@ -89,5 +89,11 @@ public class MainActivity extends AppCompatActivity {
                 PROFILE_FRAGMENT.updateUserInformation();
             }
         }
+        if(requestCode == RequestCode.VIEW_ITEM_DETAILS && activeFragment == RECOMMEND_FRAGMENT) {
+            if(resultCode == RESULT_OK) {
+                RECOMMEND_FRAGMENT.updateTopPlaces();
+                RECOMMEND_FRAGMENT.updateLatestReviews();
+            }
+        }
     }
 }

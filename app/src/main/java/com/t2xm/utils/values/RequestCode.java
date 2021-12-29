@@ -15,7 +15,7 @@ public class RequestCode {
     public static final Integer VIEW_FAVOURITE_ITEM = 52;
     public static final Integer VIEW_REVIEWED_ITEM = 53;
     public static final Integer START_SETTINGS = 54;
-
+    public static final Integer VIEW_ITEM_DETAILS = 55;
 
     //Permission
     public static final Integer USE_CAMERA_PERMISSION = 101;

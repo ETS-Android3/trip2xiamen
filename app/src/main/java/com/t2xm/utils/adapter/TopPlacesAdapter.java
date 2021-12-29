@@ -1,6 +1,7 @@
 package com.t2xm.utils.adapter;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,11 +11,14 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatCheckedTextView$InspectionCompanion;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.t2xm.R;
 import com.t2xm.application.activity.DetailsActivity;
+import com.t2xm.application.fragment.RecommendFragment;
 import com.t2xm.entity.Item;
+import com.t2xm.utils.values.RequestCode;
 import com.t2xm.utils.valuesConverter.JsonUtil;
 
 import java.util.List;
@@ -61,7 +65,7 @@ public class TopPlacesAdapter extends RecyclerView.Adapter<TopPlacesAdapter.View
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("itemId", item.itemId);
-                context.startActivity(intent);
+                ((Activity)context).startActivityForResult(intent, RequestCode.VIEW_ITEM_DETAILS);
             }
         });
     }

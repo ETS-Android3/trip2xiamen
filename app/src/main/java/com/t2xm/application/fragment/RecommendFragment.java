@@ -23,6 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecommendFragment extends Fragment {
+
+    List<Item> itemList;
+
+    View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,8 +37,14 @@ public class RecommendFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.view = view;
 
-        List<Item> itemList = ItemDao.get5TopRatingItems();
+        updateTopPlaces();
+        updateLatestReviews();
+    }
+
+    public void updateTopPlaces() {
+        itemList = ItemDao.get5TopRatingItems();
 
         if (itemList != null) {
             RecyclerView rv_topPlaces = view.findViewById(R.id.rv_top_places);
@@ -41,8 +52,10 @@ public class RecommendFragment extends Fragment {
             rv_topPlaces.setAdapter(adapter1);
             rv_topPlaces.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         }
+    }
 
-        List<Review> topReviewList = ReviewDao.get10LatestReview();
+    public void updateLatestReviews() {
+        List<Review> topReviewList = ReviewDao.get5LatestReview();
         if (topReviewList != null) {
             List<Item> reviewItemList = new ArrayList<>();
             for (Review review : topReviewList) {
