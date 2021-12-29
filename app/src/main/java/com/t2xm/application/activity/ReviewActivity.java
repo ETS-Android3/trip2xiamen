@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -146,10 +147,14 @@ public class ReviewActivity extends AppCompatActivity {
             return;
         }
         try {
-            //TODO set multiple item image
-            String img = String.valueOf(JsonUtil.mapJsonToObject(item.image, List.class).get(0));
-            int resource = getResources().getIdentifier(img, "drawable", getPackageName());
-            iv_itemImage.setImageResource(resource);
+            List<String> images = JsonUtil.mapJsonToObject(item.image, List.class);
+            AnimationDrawable animationDrawable = new AnimationDrawable();
+            for(String img: images) {
+                int resource = getResources().getIdentifier(img, "drawable", getPackageName());
+                animationDrawable.addFrame(getDrawable(resource), 3000);
+            }
+            iv_itemImage.setBackground(animationDrawable);
+            animationDrawable.start();
         } catch (Exception e) {
             e.printStackTrace();
         }

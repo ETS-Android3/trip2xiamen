@@ -3,6 +3,7 @@ package com.t2xm.application.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -237,8 +238,18 @@ public class DetailsActivity extends AppCompatActivity {
 
     private void updateItemInformation() {
         if (item_imageList.size() > 0) {
-            int resource = getResources().getIdentifier(item_imageList.get(0), "drawable", getPackageName());
-            iv_itemImage.setImageResource(resource);
+            try {
+                List<String> images = JsonUtil.mapJsonToObject(item.image, List.class);
+                AnimationDrawable animationDrawable = new AnimationDrawable();
+                for(String img: images) {
+                    int resource = getResources().getIdentifier(img, "drawable", getPackageName());
+                    animationDrawable.addFrame(getDrawable(resource), 3000);
+                }
+                iv_itemImage.setBackground(animationDrawable);
+                animationDrawable.start();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         tv_itemName.setText(item.itemName);
         btn_officialWebsite.setVisibility(!item.officialWebsite.equals("") ? View.VISIBLE : View.GONE);
