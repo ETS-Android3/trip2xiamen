@@ -173,6 +173,7 @@ public class SettingsActivity extends AppCompatActivity {
         if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
             if (resultCode == RESULT_OK) {
                 Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                bitmap = ImageUtil.compressBitmap(bitmap);
                 boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                if(result == true) {
                    updateUserProfileImage();
@@ -185,9 +186,10 @@ public class SettingsActivity extends AppCompatActivity {
                }
             }
         } else if (requestCode == RequestCode.PICK_IMAGE_FROM_GALLERY) {
-            if (resultCode == RESULT_OK && data != null && data.getClipData() != null) {
+            if (resultCode == RESULT_OK && data != null) {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                    bitmap = ImageUtil.compressBitmap(bitmap);
                     boolean result = UserDao.editUserProfileImage(SharedPreferenceUtil.getUsername(activity), ImageUtil.bitmapToByteArray(bitmap));
                     if(result == true) {
                         updateUserProfileImage();

@@ -88,6 +88,7 @@ public class ReviewActivity extends AppCompatActivity {
         if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
             if (resultCode == RESULT_OK) {
                 bitmap = (Bitmap) data.getExtras().get("data");
+                bitmap = ImageUtil.compressBitmap(bitmap);
                 bitmapList.add(bitmap);
                 imageAdapter.notifyDataSetChanged();
                 increaseNumberOfImages();
@@ -96,6 +97,7 @@ public class ReviewActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK && data != null) {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), data.getData());
+                    bitmap = ImageUtil.compressBitmap(bitmap) ;
                     bitmapList.add(bitmap);
                     imageAdapter.notifyDataSetChanged();
                     increaseNumberOfImages();

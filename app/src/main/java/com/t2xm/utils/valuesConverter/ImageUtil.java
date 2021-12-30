@@ -50,4 +50,24 @@ public class ImageUtil {
         }
         return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
     }
+
+    public static Bitmap compressBitmap(Bitmap bitmap) {
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        final int MAX_SIZE = 512;
+        if (height >= MAX_SIZE || width >= MAX_SIZE) {
+            if (height >= width) {
+                double scale = height / MAX_SIZE;
+                return Bitmap.createScaledBitmap(bitmap, ((int) (width / scale)), ((int) (height / scale)), false);
+            } else {
+                double scale = width / MAX_SIZE;
+                return Bitmap.createScaledBitmap(bitmap, ((int) (width / scale)), ((int) (height / scale)), false);
+            }
+        }
+        return bitmap;
+    }
+
+    public static int getBitmapSize(Bitmap bitmap) {
+        return bitmap.getAllocationByteCount();
+    }
 }
