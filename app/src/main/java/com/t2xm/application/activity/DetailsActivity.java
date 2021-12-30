@@ -12,7 +12,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -46,6 +45,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     private ImageView iv_itemImage;
     private TextView tv_itemName;
+    private TextView tv_numberOfRecommend;
     private TextView tv_itemDescription;
     private ImageButton btn_location;
     private ImageButton btn_phone;
@@ -60,6 +60,7 @@ public class DetailsActivity extends AppCompatActivity {
     private Button btn_writeReview2;
 
     private Item item;
+    private Integer numberOfRecommend;
     private List<String> item_imageList;
     private List<Review> item_reviewList;
 
@@ -83,10 +84,9 @@ public class DetailsActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             if (PermissionUtil.phoneCallPermissionGranted(activity)) {
-                if(!item.phoneNumber.equals("")) {
+                if (!item.phoneNumber.equals("")) {
                     startCallPhoneActivity();
-                }
-                else {
+                } else {
                     ToastUtil.createAndShowToast(activity, "No phone number is provided for this place");
                 }
             } else {
@@ -98,10 +98,9 @@ public class DetailsActivity extends AppCompatActivity {
     private View.OnClickListener officialWebsiteListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!item.officialWebsite.equals("")) {
+            if (!item.officialWebsite.equals("")) {
                 startBrowserActivity(item.officialWebsite);
-            }
-            else {
+            } else {
                 ToastUtil.createAndShowToast(activity, "No official website is available for this place");
             }
         }
@@ -110,10 +109,9 @@ public class DetailsActivity extends AppCompatActivity {
     private View.OnClickListener travelInformationWebsiteListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if(!item.travelInformationWebsite.equals("")) {
+            if (!item.travelInformationWebsite.equals("")) {
                 startBrowserActivity(item.travelInformationWebsite);
-            }
-            else {
+            } else {
                 ToastUtil.createAndShowToast(activity, "No additional website is available for this place");
             }
         }
@@ -175,6 +173,11 @@ public class DetailsActivity extends AppCompatActivity {
             onBackPressed();
             return;
         }
+
+        //get number of recommend
+        numberOfRecommend = ReviewDao.getRecommendingNumberByItemId(item.itemId);
+
+        //get item image
         try {
             item_imageList = JsonUtil.mapJsonToObject(item.image, List.class);
         } catch (Exception e) {
@@ -197,10 +200,9 @@ public class DetailsActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == RequestCode.CALL_PHONE_PERMISSION) {
-            if(!item.phoneNumber.equals("")) {
+            if (!item.phoneNumber.equals("")) {
                 startCallPhoneActivity();
-            }
-            else {
+            } else {
                 ToastUtil.createAndShowToast(activity, "No phone number is provided for this place");
             }
         }
@@ -241,7 +243,7 @@ public class DetailsActivity extends AppCompatActivity {
             try {
                 List<String> images = JsonUtil.mapJsonToObject(item.image, List.class);
                 AnimationDrawable animationDrawable = new AnimationDrawable();
-                for(String img: images) {
+                for (String img : images) {
                     int resource = getResources().getIdentifier(img, "drawable", getPackageName());
                     animationDrawable.addFrame(getDrawable(resource), 3000);
                 }
@@ -252,6 +254,7 @@ public class DetailsActivity extends AppCompatActivity {
             }
         }
         tv_itemName.setText(item.itemName);
+        tv_numberOfRecommend.setText(String.valueOf(numberOfRecommend) + " person(s) recommended here");
         btn_officialWebsite.setVisibility(!item.officialWebsite.equals("") ? View.VISIBLE : View.GONE);
         btn_travelInformationWebsite.setVisibility(!item.travelInformationWebsite.equals("") ? View.VISIBLE : View.GONE);
         btn_phone.setColorFilter(!item.phoneNumber.equals("") ? getColor(R.color.primary_color) : getColor(R.color.gray));
@@ -262,6 +265,8 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void updateReviewList() {
+        numberOfRecommend = ReviewDao.getRecommendingNumberByItemId(item.itemId);
+        tv_numberOfRecommend.setText(String.valueOf(numberOfRecommend) + " person(s) recommended here");
         if (item_reviewList != null) {
             rv_reviews.setVisibility(View.VISIBLE);
             ll_noReviewsContainer.setVisibility(View.GONE);
@@ -287,6 +292,7 @@ public class DetailsActivity extends AppCompatActivity {
     private void setupActivityComponents() {
         iv_itemImage = findViewById(R.id.iv_item_image);
         tv_itemName = findViewById(R.id.tv_item_name);
+        tv_numberOfRecommend = findViewById(R.id.tv_number_of_recommend);
         tv_itemDescription = findViewById(R.id.tv_item_description);
         btn_location = findViewById(R.id.btn_location);
         btn_phone = findViewById(R.id.btn_phone);

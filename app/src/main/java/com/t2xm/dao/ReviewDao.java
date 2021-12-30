@@ -108,4 +108,9 @@ public class ReviewDao extends Dao {
                 new String[]{String.valueOf(itemId)});
         return cursor.moveToNext() ? cursor.getDouble(0) : 0d;
     }
+
+    public static int getRecommendingNumberByItemId(Integer itemId) {
+        Cursor cursor = database.rawQuery("select count(reviewId) from reviews where itemId=?", new String[]{String.valueOf(itemId)});
+        return cursor.moveToNext() ? cursor.getInt(0) : 0;
+    }
 }

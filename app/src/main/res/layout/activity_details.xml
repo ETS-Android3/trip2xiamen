@@ -40,14 +40,27 @@
 							android:orientation="horizontal"
 							android:layout_marginVertical="@dimen/margin_small">
 						
-						<TextView
-								android:id="@+id/tv_item_name"
+						<LinearLayout
 								android:layout_width="match_parent"
-								android:layout_height="wrap_content"
-								android:textSize="@dimen/font_large"
-								android:layout_weight="1.5"
-								android:paddingVertical="@dimen/padding_small"
-								android:text="Item Name" />
+								android:layout_height="match_parent"
+								android:orientation="vertical"
+								android:layout_weight="1.5">
+							
+							<TextView
+									android:id="@+id/tv_item_name"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textSize="@dimen/font_large"
+									android:paddingVertical="@dimen/padding_small"
+									android:text="Item Name" />
+							
+							<TextView
+									android:id="@+id/tv_number_of_recommend"
+									android:layout_width="match_parent"
+									android:layout_height="wrap_content"
+									android:textSize="@dimen/font_small"
+									android:text="4 people recommended here" />
+						</LinearLayout>
 						
 						<ImageButton
 								android:id="@+id/btn_location"
