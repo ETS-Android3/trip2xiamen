@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
+import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Item;
+import com.t2xm.entity.User;
 import com.t2xm.utils.DatabaseOpenHelper;
 import com.t2xm.utils.ItemXmlParser;
 import com.t2xm.utils.SharedPreferenceUtil;
@@ -27,6 +29,11 @@ public class StartActivity extends AppCompatActivity {
 
         //insert item data to database on first startup
         if (SharedPreferenceUtil.getIsFirstStartup(this)) {
+
+            //TODO remove (add user at default)
+            User user = new User(null, "testuser", "test@gmail.com", "Pass123", null);
+            UserDao.insertUser(user);
+
             boolean result = false;
             try {
                 for (Item item : ItemXmlParser.parseItems(getResources().getXml(R.xml.items))) {

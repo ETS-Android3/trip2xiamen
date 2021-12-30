@@ -2,10 +2,12 @@ package com.t2xm.utils.valuesConverter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 
 import java.io.ByteArrayOutputStream;
 
 public class ImageUtil {
+
     public static Bitmap imagePathToBitmap(String imagePath) {
         if (imagePath.equals("")) {
             return null;
