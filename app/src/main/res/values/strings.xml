@@ -20,6 +20,7 @@
 	<string name="error_email_not_match">New email and Confirm email do not match</string>
 	<string name="error_same_password">Current password and new password cannot be same</string>
 	<string name="error_same_email">Current email and new email cannot be same</string>
+	<string name="error_wrong_username">Current username is incorrect</string>
 	<string name="error_wrong_password">Current password is incorrect</string>
 	<string name="error_wrong_email">Current email is incorrect</string>
 	<string name="no_error"></string>

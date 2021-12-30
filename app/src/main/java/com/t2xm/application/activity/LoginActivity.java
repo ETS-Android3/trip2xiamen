@@ -85,7 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }, 1000);
                         } else {
-                            ToastUtil.createAndShowToast(getApplicationContext(), "Wrong username or password");
+                            lay_username.setError(getString(R.string.error_wrong_username));
+                            lay_password.setError(getString(R.string.error_wrong_password));
                         }
                     }
                 }
