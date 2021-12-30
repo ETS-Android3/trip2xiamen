@@ -238,6 +238,7 @@ public class DetailsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void updateItemInformation() {
         if (item_imageList.size() > 0) {
             try {

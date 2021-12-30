@@ -2,7 +2,6 @@ package com.t2xm.utils.valuesConverter;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.ExifInterface;
 
 import java.io.ByteArrayOutputStream;
 

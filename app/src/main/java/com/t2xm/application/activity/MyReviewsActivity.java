@@ -20,7 +20,6 @@ import com.t2xm.utils.SharedPreferenceUtil;
 import com.t2xm.utils.adapter.MyReviewsAdapter;
 import com.t2xm.utils.values.RequestCode;
 
-import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 import java.util.List;
 

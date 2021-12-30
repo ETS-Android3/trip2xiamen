@@ -1,5 +1,6 @@
 package com.t2xm.application.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -132,6 +133,7 @@ public class ReviewActivity extends AppCompatActivity {
         startActivityForResult(intent, RequestCode.SNAP_PHOTO_FROM_CAMERA);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void setupItemAttributes() {
         //get itemId from intent
         itemId = getIntent().getIntExtra("itemId", 0);
@@ -241,6 +243,7 @@ public class ReviewActivity extends AppCompatActivity {
             final int final_i = i;
             ImageView iv_star = iv_starList.get(i);
             iv_star.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("UseCompatLoadingForDrawables")
                 @Override
                 public void onClick(View view) {
                     rating = final_i + 1;

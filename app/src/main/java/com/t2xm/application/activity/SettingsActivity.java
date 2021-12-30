@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -236,6 +235,7 @@ public class SettingsActivity extends AppCompatActivity {
         startActivityForResult(intent, RequestCode.SNAP_PHOTO_FROM_CAMERA);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void updateUserProfileImage() {
         user = UserDao.getUserInfoByUsername(username);
         if (user.profileImg != null) {
