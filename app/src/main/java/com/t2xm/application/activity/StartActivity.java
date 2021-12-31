@@ -29,11 +29,6 @@ public class StartActivity extends AppCompatActivity {
 
         //insert item data to database on first startup
         if (SharedPreferenceUtil.getIsFirstStartup(this)) {
-
-            //TODO remove (add user at default)
-            User user = new User(null, "testuser", "test@gmail.com", "Pass123", null);
-            UserDao.insertUser(user);
-
             boolean result = false;
             try {
                 for (Item item : ItemXmlParser.parseItems(getResources().getXml(R.xml.items))) {
