@@ -1,54 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 	
-	<ScrollView
+	<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="match_parent"
+			android:layout_marginHorizontal="@dimen/margin_medium"
+			android:orientation="vertical">
 		
-		<LinearLayout
+		<RelativeLayout
+				android:id="@+id/rl_filter_container"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginVertical="@dimen/margin_small">
+			
+			<Button
+					android:id="@+id/btn_filter_by_category"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:text="Category"
+					android:layout_alignParentLeft="true" />
+			
+			<Button
+					android:id="@+id/btn_filter_by_rating"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_alignParentRight="true"
+					android:text="Sort" />
+		</RelativeLayout>
+		
+		<androidx.recyclerview.widget.RecyclerView
+				android:id="@+id/rv_attractions_in_xiamen"
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:layout_marginHorizontal="@dimen/margin_medium"
-				android:orientation="vertical">
-			
-			<RelativeLayout
-					android:id="@+id/rl_filter_container"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginVertical="@dimen/margin_small">
-				
-				<Button
-						android:id="@+id/btn_filter_by_category"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="Category"
-						android:layout_alignParentLeft="true" />
-				
-				<Button
-						android:id="@+id/btn_filter_by_rating"
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:layout_alignParentRight="true"
-						android:text="Sort" />
-			</RelativeLayout>
-			
-			<androidx.recyclerview.widget.RecyclerView
-					android:id="@+id/rv_attractions_in_xiamen"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_alignParentTop="true" />
-			
-			<TextView
-					android:id="@+id/tv_no_items_available"
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:text="Sorry, no items belong\nto this category"
-					android:textSize="@dimen/font_large"
-					android:visibility="gone"
-					android:textAlignment="center"
-					android:lineHeight="35dp" />
-		</LinearLayout>
-	</ScrollView>
-</RelativeLayout>
+				android:layout_alignParentTop="true" />
+		
+		<TextView
+				android:id="@+id/tv_no_items_available"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:text="Sorry, no items belong\nto this category"
+				android:textSize="@dimen/font_large"
+				android:visibility="gone"
+				android:textAlignment="center"
+				android:lineHeight="35dp" />
+	</LinearLayout>
+</androidx.core.widget.NestedScrollView>

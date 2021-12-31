@@ -1,106 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 		xmlns:app="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
 		tools:context=".application.activity.SettingsActivity">
 	
-	<ScrollView
+	<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent">
+			android:layout_height="match_parent"
+			android:orientation="vertical"
+			android:layout_marginHorizontal="@dimen/margin_medium">
+		
+		<RelativeLayout
+				android:layout_marginVertical="@dimen/margin_medium"
+				android:layout_width="200dp"
+				android:layout_height="200dp"
+				android:layout_gravity="center">
+			
+			<ImageView
+					android:id="@+id/iv_profile_image"
+					android:layout_width="200dp"
+					android:layout_height="200dp"
+					android:background="@color/white" />
+			
+			<ImageView
+					android:layout_width="50dp"
+					android:layout_height="50dp"
+					android:scaleType="fitXY"
+					android:src="@drawable/ic_baseline_file_upload_24"
+					android:layout_alignParentRight="true"
+					android:layout_alignParentBottom="true"
+					app:tint="@color/black" />
+		</RelativeLayout>
 		
 		<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
-				android:orientation="vertical"
-				android:layout_marginHorizontal="@dimen/margin_medium">
+				android:layout_marginVertical="@dimen/margin_small"
+				android:orientation="horizontal">
 			
-			<RelativeLayout
-					android:layout_marginVertical="@dimen/margin_medium"
-					android:layout_width="200dp"
-					android:layout_height="200dp"
-					android:layout_gravity="center">
-				
-				<ImageView
-						android:id="@+id/iv_profile_image"
-						android:layout_width="200dp"
-						android:layout_height="200dp"
-						android:background="@color/white" />
-				
-				<ImageView
-						android:layout_width="50dp"
-						android:layout_height="50dp"
-						android:scaleType="fitXY"
-						android:src="@drawable/ic_baseline_file_upload_24"
-						android:layout_alignParentRight="true"
-						android:layout_alignParentBottom="true"
-						app:tint="@color/black" />
-			</RelativeLayout>
-			
-			<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:layout_marginVertical="@dimen/margin_small"
-					android:orientation="horizontal">
-				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						style="@style/Widget.MaterialComponents.Button.TextButton"
-						android:gravity="left"
-						android:textColor="@color/black"
-						android:text="Username" />
-				
-				<TextView
-						android:id="@+id/tv_username"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_weight="1"
-						style="@style/Widget.MaterialComponents.Button.TextButton"
-						android:gravity="right"
-						android:textColor="@color/black"
-						android:text="username" />
-			</LinearLayout>
-			
-			<Button
-					android:id="@+id/btn_change_password"
+			<TextView
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:layout_weight="1"
 					style="@style/Widget.MaterialComponents.Button.TextButton"
-					android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-					android:text="Change Password"
+					android:gravity="left"
 					android:textColor="@color/black"
-					android:layout_marginVertical="@dimen/margin_small"
-					android:gravity="left" />
+					android:text="Username" />
 			
-			<Button
-					android:id="@+id/btn_change_email"
+			<TextView
+					android:id="@+id/tv_username"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
+					android:layout_weight="1"
 					style="@style/Widget.MaterialComponents.Button.TextButton"
-					android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-					android:text="Change Email"
+					android:gravity="right"
 					android:textColor="@color/black"
-					android:layout_marginVertical="@dimen/margin_small"
-					android:gravity="left" />
-			
-			<Button
-					android:id="@+id/btn_logout"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginVertical="@dimen/margin_small"
-					android:text="Logout" />
-			
-			<Button
-					android:id="@+id/btn_delete_account"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginVertical="@dimen/margin_small"
-					android:text="Delete Account"
-					android:backgroundTint="@color/red" />
+					android:text="username" />
 		</LinearLayout>
-	</ScrollView>
-</LinearLayout>
+		
+		<Button
+				android:id="@+id/btn_change_password"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
+				android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+				android:text="Change Password"
+				android:textColor="@color/black"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:gravity="left" />
+		
+		<Button
+				android:id="@+id/btn_change_email"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				style="@style/Widget.MaterialComponents.Button.TextButton"
+				android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+				android:text="Change Email"
+				android:textColor="@color/black"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:gravity="left" />
+		
+		<Button
+				android:id="@+id/btn_logout"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:text="Logout" />
+		
+		<Button
+				android:id="@+id/btn_delete_account"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginVertical="@dimen/margin_small"
+				android:text="Delete Account"
+				android:backgroundTint="@color/red" />
+	</LinearLayout>
+</ScrollView>

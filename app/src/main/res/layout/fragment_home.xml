@@ -1,117 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 	
-	<androidx.core.widget.NestedScrollView
+	<LinearLayout
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
-			android:layout_weight="1">
+			android:orientation="vertical">
+		
+		<ImageView
+				android:id="@+id/iv_home_animation"
+				android:layout_width="match_parent"
+				android:layout_height="200dp"
+				android:layout_weight="1"
+				android:scaleType="centerCrop" />
 		
 		<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="match_parent"
+				android:layout_marginHorizontal="@dimen/margin_medium"
 				android:orientation="vertical">
 			
-			<ImageView
-					android:id="@+id/iv_home_animation"
+			<TextView
 					android:layout_width="match_parent"
-					android:layout_height="200dp"
-					android:layout_weight="1"
-					android:scaleType="centerCrop" />
+					android:layout_height="wrap_content"
+					android:layout_marginVertical="@dimen/margin_medium"
+					android:textSize="@dimen/font_large"
+					android:text="About Xiamen"
+					android:textStyle="bold" />
+			
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:lineHeight="30dp"
+					android:text="@string/xiamen_introduction"
+					android:justificationMode="inter_word"
+					android:paddingHorizontal="@dimen/padding_medium"
+					android:paddingVertical="@dimen/padding_small"
+					android:textSize="@dimen/font_medium" />
+			
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="@dimen/margin_medium"
+					android:textSize="@dimen/font_large"
+					android:text="Why visit Xiamen?"
+					android:textStyle="bold" />
+			
+			<TextView
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginBottom="@dimen/margin_medium"
+					android:textSize="@dimen/font_small"
+					android:text="(Click to read more)"
+					android:textStyle="bold" />
 			
 			<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="match_parent"
-					android:layout_marginHorizontal="@dimen/margin_medium"
 					android:orientation="vertical">
 				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginVertical="@dimen/margin_medium"
-						android:textSize="@dimen/font_large"
-						android:text="About Xiamen"
-						android:textStyle="bold" />
-				
-				<TextView
+				<Button
+						android:id="@+id/btn_why_visit_xiamen_1"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:lineHeight="30dp"
-						android:text="@string/xiamen_introduction"
-						android:justificationMode="inter_word"
-						android:paddingHorizontal="@dimen/padding_medium"
+						style="@style/Widget.MaterialComponents.Button.TextButton"
+						android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+						android:gravity="left"
+						android:textColor="@color/black"
+						android:backgroundTint="@color/primary_light_color"
+						android:text="@string/why_visit_1"
 						android:paddingVertical="@dimen/padding_small"
+						android:layout_marginVertical="@dimen/margin_small"
+						android:paddingHorizontal="@dimen/padding_medium"
 						android:textSize="@dimen/font_medium" />
 				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/margin_medium"
-						android:textSize="@dimen/font_large"
-						android:text="Why visit Xiamen?"
-						android:textStyle="bold" />
 				
-				<TextView
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginBottom="@dimen/margin_medium"
-						android:textSize="@dimen/font_small"
-						android:text="(Click to read more)"
-						android:textStyle="bold" />
-				
-				<LinearLayout
+				<Button
+						android:id="@+id/btn_why_visit_xiamen_2"
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:orientation="vertical">
-					
-					<Button
-							android:id="@+id/btn_why_visit_xiamen_1"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							style="@style/Widget.MaterialComponents.Button.TextButton"
-							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-							android:gravity="left"
-							android:textColor="@color/black"
-							android:backgroundTint="@color/primary_light_color"
-							android:text="@string/why_visit_1"
-							android:paddingVertical="@dimen/padding_small"
-							android:layout_marginVertical="@dimen/margin_small"
-							android:paddingHorizontal="@dimen/padding_medium"
-							android:textSize="@dimen/font_medium" />
-					
-					
-					<Button
-							android:id="@+id/btn_why_visit_xiamen_2"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							style="@style/Widget.MaterialComponents.Button.TextButton"
-							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-							android:gravity="left"
-							android:textColor="@color/black"
-							android:backgroundTint="@color/primary_light_color"
-							android:text="@string/why_visit_2"
-							android:paddingVertical="@dimen/padding_small"
-							android:layout_marginVertical="@dimen/margin_small"
-							android:paddingHorizontal="@dimen/padding_medium"
-							android:textSize="@dimen/font_medium" />
-					
-					<Button
-							android:id="@+id/btn_why_visit_xiamen_3"
-							android:layout_width="match_parent"
-							android:layout_height="match_parent"
-							style="@style/Widget.MaterialComponents.Button.TextButton"
-							android:drawableRight="@drawable/ic_baseline_navigate_next_24"
-							android:gravity="left"
-							android:textColor="@color/black"
-							android:backgroundTint="@color/primary_light_color"
-							android:text="@string/why_visit_3"
-							android:paddingVertical="@dimen/padding_small"
-							android:layout_marginVertical="@dimen/margin_small"
-							android:paddingHorizontal="@dimen/padding_medium"
-							android:textSize="@dimen/font_medium" />
-				</LinearLayout>
+						style="@style/Widget.MaterialComponents.Button.TextButton"
+						android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+						android:gravity="left"
+						android:textColor="@color/black"
+						android:backgroundTint="@color/primary_light_color"
+						android:text="@string/why_visit_2"
+						android:paddingVertical="@dimen/padding_small"
+						android:layout_marginVertical="@dimen/margin_small"
+						android:paddingHorizontal="@dimen/padding_medium"
+						android:textSize="@dimen/font_medium" />
+				
+				<Button
+						android:id="@+id/btn_why_visit_xiamen_3"
+						android:layout_width="match_parent"
+						android:layout_height="match_parent"
+						style="@style/Widget.MaterialComponents.Button.TextButton"
+						android:drawableRight="@drawable/ic_baseline_navigate_next_24"
+						android:gravity="left"
+						android:textColor="@color/black"
+						android:backgroundTint="@color/primary_light_color"
+						android:text="@string/why_visit_3"
+						android:paddingVertical="@dimen/padding_small"
+						android:layout_marginVertical="@dimen/margin_small"
+						android:paddingHorizontal="@dimen/padding_medium"
+						android:textSize="@dimen/font_medium" />
 			</LinearLayout>
 		</LinearLayout>
-	</androidx.core.widget.NestedScrollView>
-</RelativeLayout>
+	</LinearLayout>
+</androidx.core.widget.NestedScrollView>
