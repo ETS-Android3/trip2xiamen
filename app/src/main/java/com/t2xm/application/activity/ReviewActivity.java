@@ -83,7 +83,6 @@ public class ReviewActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        //TODO compress image
 
         Bitmap bitmap = null;
         if (requestCode == RequestCode.SNAP_PHOTO_FROM_CAMERA) {
