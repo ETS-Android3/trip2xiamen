@@ -1,7 +1,9 @@
 package com.t2xm.utils.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,12 +37,17 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
     private List<Review> reviewList;
     private List<Item> itemList;
 
+    private AlertDialog.Builder deleteReviewBuilder;
+
 
     public MyReviewsAdapter(Context context, List<Review> reviewList, List<Item> itemList) {
         this.context = context;
         this.reviewList = reviewList;
         this.itemList = itemList;
         this.inflater = LayoutInflater.from(this.context);
+        deleteReviewBuilder = new AlertDialog.Builder(context)
+                .setTitle("Delete this review?")
+                .setNegativeButton("Don't Delete", null);
     }
 
     @Override
@@ -69,15 +76,23 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("itemId", item.itemId);
-                ((Activity)context).startActivityForResult(intent, RequestCode.VIEW_REVIEWED_ITEM);
+                ((Activity) context).startActivityForResult(intent, RequestCode.VIEW_REVIEWED_ITEM);
             }
         });
 
         viewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO alert dialog to confirm deletion
-                boolean result = ReviewDao.deleteReviewByReviewId(review.reviewId);
+                deleteReviewBuilder.setPositiveButton("OK", getDeleteOnClickListener(review.reviewId)).create().show();
+            }
+        });
+    }
+
+    private DialogInterface.OnClickListener getDeleteOnClickListener(Integer reviewId) {
+        return new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                boolean result = ReviewDao.deleteReviewByReviewId(reviewId);
                 if (result) {
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Review has been deleted");
                     ((MyReviewsActivity) context).updateRecyclerView();
@@ -85,7 +100,7 @@ public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.View
                     ToastUtil.createAndShowToast(context.getApplicationContext(), "Error: Please try again");
                 }
             }
-        });
+        };
     }
 
     @Override
