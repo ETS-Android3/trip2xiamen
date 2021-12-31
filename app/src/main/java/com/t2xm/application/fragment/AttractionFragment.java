@@ -98,6 +98,8 @@ public class AttractionFragment extends Fragment {
                             default:
                                 itemList = ItemDao.getAllItemList();
                         }
+                        //sort items from highest to lowest rating
+                        itemList.sort(ItemComparator.ratingAsc.reversed());
                         updateRecyclerView();
                     }
                 });
