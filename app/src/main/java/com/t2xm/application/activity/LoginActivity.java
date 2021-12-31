@@ -39,14 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         boolean valid = true;
         if (username.trim().equals("")) {
             lay_username.setError(getString(R.string.error_username_empty));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_username.setError(getString(R.string.no_error));
         }
 
         if (password.trim().equals("")) {
             lay_password.setError(getString(R.string.error_password_empty));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_password.setError(getString(R.string.no_error));
         }
@@ -70,12 +70,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateUsernameAndPassword();
-                if (validateLoginInput() == true) {
-                    if (UserDao.checkUsernameExistence(username) == false) {
+                if (validateLoginInput()) {
+                    if (!UserDao.checkUsernameExistence(username)) {
                         lay_username.setError(getString(R.string.error_username_not_exist));
                     } else {
                         lay_username.setError(getString(R.string.no_error));
-                        if (UserDao.validateUserAccount(username, password) == true) {
+                        if (UserDao.validateUserAccount(username, password)) {
                             ToastUtil.createAndShowToast(getApplicationContext(), "Login successful");
                             SharedPreferenceUtil.setUsername(username, getApplicationContext());
                             new Handler().postDelayed(new Runnable() {

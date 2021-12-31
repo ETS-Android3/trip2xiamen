@@ -52,10 +52,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         //validate current password
         if (currentPassword.equals("")) {
             lay_currentPassword.setError(getString(R.string.error_password_empty));
-            valid = valid && false;
+            valid = false;
         } else if (!UserDao.validateUserAccount(SharedPreferenceUtil.getUsername(activity), currentPassword)) {
             lay_currentPassword.setError(getString(R.string.error_wrong_password));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_currentPassword.setError(getString(R.string.no_error));
         }
@@ -63,13 +63,13 @@ public class ChangePasswordActivity extends AppCompatActivity {
         //validate new password
         if (newPassword.equals("")) {
             lay_newPassword.setError(getString(R.string.error_password_empty));
-            valid = valid && false;
+            valid = false;
         } else if (currentPassword.equals(newPassword)) {
             lay_newPassword.setError(getString(R.string.error_same_password));
-            valid = valid && false;
+            valid = false;
         } else if (!ValidationUtil.validatePassword(newPassword)) {
             lay_newPassword.setError(getString(R.string.password_format));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_newPassword.setError(getString(R.string.no_error));
         }
@@ -77,10 +77,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         //validate confirm password
         if (confirmPassword.equals("")) {
             lay_confirmPassword.setError(getString(R.string.error_password_empty));
-            valid = valid && false;
+            valid = false;
         } else if (!newPassword.equals(confirmPassword)) {
             lay_confirmPassword.setError(getString(R.string.error_password_not_match));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_confirmPassword.setError(getString(R.string.no_error));
         }

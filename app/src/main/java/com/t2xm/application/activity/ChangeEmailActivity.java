@@ -51,10 +51,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
         //validate current email
         if (currentEmail.equals("")) {
             lay_currentEmail.setError(getString(R.string.error_email_empty));
-            valid = valid && false;
+            valid = false;
         } else if (!currentEmail.equals(UserDao.getUserEmailByUsername(username))) {
             lay_currentEmail.setError(getString(R.string.error_wrong_email));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_currentEmail.setError(getString(R.string.no_error));
         }
@@ -62,16 +62,16 @@ public class ChangeEmailActivity extends AppCompatActivity {
         //validate new email
         if (newEmail.equals("")) {
             lay_newEmail.setError(getString(R.string.error_email_empty));
-            valid = valid && false;
+            valid = false;
         } else if (currentEmail.equals(newEmail)) {
             lay_newEmail.setError(getString(R.string.error_same_email));
-            valid = valid && false;
+            valid = false;
         } else if (!ValidationUtil.validateEmail(newEmail)) {
             lay_newEmail.setError(getString(R.string.email_format));
-            valid = valid && false;
+            valid = false;
         } else if (UserDao.checkEmailExistence(newEmail)) {
             lay_newEmail.setError(getString(R.string.error_email_exist));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_newEmail.setError(getString(R.string.no_error));
         }
@@ -79,10 +79,10 @@ public class ChangeEmailActivity extends AppCompatActivity {
         //validate confirm email
         if (confirmEmail.equals("")) {
             lay_confirmEmail.setError(getString(R.string.error_email_empty));
-            valid = valid && false;
+            valid = false;
         } else if (!newEmail.equals(confirmEmail)) {
             lay_confirmEmail.setError(getString(R.string.error_email_not_match));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_confirmEmail.setError(getString(R.string.no_error));
         }

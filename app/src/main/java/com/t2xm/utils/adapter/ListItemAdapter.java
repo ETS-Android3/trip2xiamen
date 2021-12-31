@@ -22,7 +22,6 @@ import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHolder> {
 
     private LayoutInflater inflater;

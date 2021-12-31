@@ -29,7 +29,6 @@ import com.t2xm.utils.valuesConverter.NumberFormatUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class MyReviewsAdapter extends RecyclerView.Adapter<MyReviewsAdapter.ViewHolder> {
 
     private LayoutInflater inflater;

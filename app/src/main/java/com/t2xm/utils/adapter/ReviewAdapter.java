@@ -21,7 +21,6 @@ import com.t2xm.utils.valuesConverter.ImageUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
 
     private LayoutInflater inflater;

@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.t2xm.R;
 import com.t2xm.dao.ItemDao;
-import com.t2xm.dao.UserDao;
 import com.t2xm.entity.Item;
-import com.t2xm.entity.User;
 import com.t2xm.utils.DatabaseOpenHelper;
 import com.t2xm.utils.ItemXmlParser;
 import com.t2xm.utils.SharedPreferenceUtil;

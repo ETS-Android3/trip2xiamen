@@ -46,13 +46,13 @@ public class SignUpActivity extends AppCompatActivity {
         // validate username
         if (username.equals("")) {
             lay_username.setError(getString(R.string.error_username_empty));
-            valid = valid && false;
-        } else if (ValidationUtil.validateUsername(username) == false) {
+            valid = false;
+        } else if (!ValidationUtil.validateUsername(username)) {
             lay_username.setError(getString(R.string.username_format));
-            valid = valid && false;
-        } else if (UserDao.checkUsernameExistence(username) == true) {
+            valid = false;
+        } else if (UserDao.checkUsernameExistence(username)) {
             lay_username.setError(getString(R.string.error_username_exist));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_username.setError(getString(R.string.no_error));
         }
@@ -60,13 +60,13 @@ public class SignUpActivity extends AppCompatActivity {
         //validate email
         if (email.equals("")) {
             lay_email.setError(getString(R.string.error_email_empty));
-            valid = valid && false;
-        } else if (ValidationUtil.validateEmail(email) == false) {
+            valid = false;
+        } else if (!ValidationUtil.validateEmail(email)) {
             lay_email.setError(getString(R.string.email_format));
-            valid = valid && false;
-        } else if (UserDao.checkEmailExistence(email) == true) {
+            valid = false;
+        } else if (UserDao.checkEmailExistence(email)) {
             lay_email.setError(getString(R.string.error_email_exist));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_email.setError(getString(R.string.no_error));
         }
@@ -74,10 +74,10 @@ public class SignUpActivity extends AppCompatActivity {
         //validate password
         if (password.equals("")) {
             lay_password.setError(getString(R.string.error_password_empty));
-            valid = valid && false;
-        } else if (ValidationUtil.validatePassword(password) == false) {
+            valid = false;
+        } else if (!ValidationUtil.validatePassword(password)) {
             lay_password.setError(getString(R.string.password_format));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_password.setError(getString(R.string.no_error));
         }
@@ -85,10 +85,10 @@ public class SignUpActivity extends AppCompatActivity {
         //validate confirm password
         if (confirmPassword.equals("")) {
             lay_confirmPassword.setError(getString(R.string.error_confirm_password_empty));
-            valid = valid && false;
+            valid = false;
         } else if (!confirmPassword.equals(password)) {
             lay_confirmPassword.setError(getString(R.string.error_password_not_match));
-            valid = valid && false;
+            valid = false;
         } else {
             lay_confirmPassword.setError(getString(R.string.no_error));
         }
@@ -120,13 +120,13 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 updateEditTextValues();
-                if (validateSignUpInput() == true) {
-                    if (password.equals(confirmPassword) == false) {
+                if (validateSignUpInput()) {
+                    if (!password.equals(confirmPassword)) {
                         ToastUtil.createAndShowToast(getApplicationContext(), "The provided password and confirm password do not match");
                     } else {
                         User user = new User(null, username, email, password, null);
                         boolean result = UserDao.insertUser(user);
-                        if (result == true) {
+                        if (result) {
                             ToastUtil.createAndShowToast(getApplicationContext(), "Sign up successful");
                             new Handler().postDelayed(new Runnable() {
                                 @Override
