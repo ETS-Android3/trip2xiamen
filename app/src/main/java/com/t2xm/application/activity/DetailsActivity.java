@@ -233,10 +233,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void startBrowserActivity(String website) {
-        //TODO debug: cannot start activity (for some items)
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse(website));
-        startActivity(intent);
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse(website));
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

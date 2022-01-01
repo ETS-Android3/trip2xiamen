@@ -29,25 +29,25 @@ public class ItemXmlParser {
                     } else if (parser.getName().equals("Item")) {
                         item = new Item();
                     } else if (parser.getName().equals("itemName")) {
-                        item.itemName = parser.nextText();
+                        item.itemName = parser.nextText().trim();
                     } else if (parser.getName().equals("category")) {
-                        item.category = Integer.valueOf(parser.nextText());
+                        item.category = Integer.valueOf(parser.nextText().trim());
                     } else if (parser.getName().equals("description")) {
-                        item.description = parser.nextText();
+                        item.description = parser.nextText().trim();
                     } else if (parser.getName().equals("phoneNumber")) {
-                        item.phoneNumber = parser.nextText();
+                        item.phoneNumber = parser.nextText().trim();
                     } else if(parser.getName().equals("officialWebsite")) {
-                        item.officialWebsite = parser.nextText();
+                        item.officialWebsite = parser.nextText().trim();
                     } else if(parser.getName().equals("travelInformationWebsite")) {
-                        item.travelInformationWebsite = parser.nextText();
+                        item.travelInformationWebsite = parser.nextText().trim();
                     } else if (parser.getName().equals("images")) {
                         imageNameList = new ArrayList<>();
                     } else if (parser.getName().equals("image")) {
-                        imageNameList.add(parser.nextText());
+                        imageNameList.add(parser.nextText().trim());
                     } else if (parser.getName().equals("longitude")) {
-                        item.longitude = Double.valueOf(parser.nextText());
+                        item.longitude = Double.valueOf(parser.nextText().trim());
                     } else if (parser.getName().equals("latitude")) {
-                        item.latitude = Double.valueOf(parser.nextText());
+                        item.latitude = Double.valueOf(parser.nextText().trim());
                     }
                     break;
                 case XmlPullParser.END_TAG:
