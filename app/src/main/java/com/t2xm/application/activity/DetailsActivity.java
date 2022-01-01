@@ -233,6 +233,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void startBrowserActivity(String website) {
+        //TODO debug: cannot start activity (for some items)
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(website));
         startActivity(intent);
