@@ -199,7 +199,7 @@ public class DetailsActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == RequestCode.CALL_PHONE_PERMISSION) {
+        if (requestCode == RequestCode.CALL_PHONE_PERMISSION && PermissionUtil.phoneCallPermissionGranted(activity)) {
             if (!item.phoneNumber.equals("")) {
                 startCallPhoneActivity();
             } else {
