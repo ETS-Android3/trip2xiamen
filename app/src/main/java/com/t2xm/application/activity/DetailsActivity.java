@@ -215,6 +215,9 @@ public class DetailsActivity extends AppCompatActivity {
         if (requestCode == RequestCode.WRITE_REVIEW) {
             if (resultCode == RESULT_OK) {
                 item_reviewList = ReviewDao.getReviewListByItemId(itemId);
+                item = ItemDao.getItemByItemId(itemId);
+                tv_itemRating.setText(String.valueOf(NumberFormatUtil.get2dpDouble(item.avgRating)));
+                updateRatingStars(NumberFormatUtil.get2dpDouble(item.avgRating));
                 updateReviewList();
                 setResult(RESULT_OK);
             }
